@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:background="@color/layoutBackgroundLight"
+    android:orientation="vertical"
+    tools:context=".payment.StripePayment">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="5dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="2dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/wallet_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:text="$ 0.0"
+                        android:textColor="@color/quantum_purple"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_color_dark"
+                        android:textSize="15dp"
+                        android:text="Wallet Balance"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="2dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Invoice"
+                        android:textSize="16sp"
+                        android:textColor="@color/black"
+                        android:padding="5dp"
+                        android:background="@color/windowBackgroundLight" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="5dp" >
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Subtotal"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary" />
+
+                            <TextView
+                                android:id="@+id/checkout_subtotal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="$000.0"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:layout_alignParentEnd="true" />
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="5dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Tax"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary" />
+
+                            <TextView
+                                android:id="@+id/checkout_tax"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="$00.0"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:layout_alignParentEnd="true" />
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="5dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Shipping"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary" />
+
+                            <TextView
+                                android:id="@+id/checkout_shipping"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="$00.0"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:layout_alignParentEnd="true" />
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginTop="5dp" >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="Total"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary" />
+
+                            <TextView
+                                android:id="@+id/checkout_total"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="$000.0"
+                                android:textSize="14sp"
+                                android:textColor="@color/textColorSecondary"
+                                android:textAlignment="textEnd"
+                                android:gravity="end"
+                                android:layout_alignParentEnd="true" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="2dp"
+                card_view:cardCornerRadius="2dp"
+                card_view:cardUseCompatPadding="true"
+                card_view:cardPreventCornerOverlap="false" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:gravity="center_vertical"
+                        android:background="@color/windowBackgroundLight">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Payment Detail"
+                            android:textSize="16sp"
+                            android:textColor="@color/black" />
+
+
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:id="@+id/stripe_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <com.stripe.android.view.CardInputWidget
+                            android:id="@+id/stripe_widget"
+                            android:outlineProvider="bounds"
+                            android:outlineSpotShadowColor="@color/blueGray200"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                        <CheckBox
+                            android:id="@+id/check_add_card"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Add Card"/>
+                        <TextView
+                            android:id="@+id/card_already"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:text="Added card already."/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+    <FrameLayout
+        android:id="@+id/loadingLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bg_uploading"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tv_uploading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/spin_kit"
+                style="@style/SpinKitView.Small.FadingCircle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                app:SpinKit_Color="@color/white" />
+        </LinearLayout>
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/checkout_cancel_btn"
+            android:layout_weight=".5"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:text="Cancel"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:background="@color/colorAccentGrey" />
+
+        <Button
+            android:id="@+id/checkout_order_btn"
+            android:layout_weight=".5"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:text="Order Now"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:background="@color/colorAccent" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: artifacts:android-stripe-connect:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../android-stripe-connect/build/.transforms/12d50fd7afcd4f315cda5d8b5c9eec11/android-stripe-connect/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../android-stripe-connect/build/.transforms/12d50fd7afcd4f315cda5d8b5c9eec11/android-stripe-connect/res" />
+      <root url="jar://$PROJECT_DIR$/../android-stripe-connect/build/.transforms/12d50fd7afcd4f315cda5d8b5c9eec11/android-stripe-connect/jars/libs/stripe-java-1.10.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".payment.ShippingActivity"
+    android:orientation="vertical">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="Contact Name"/>
+                <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/shipping_contact_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/rounded_corners_edittext_dark"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="Street Address"/>
+                <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/shipping_street_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/rounded_corners_edittext_dark"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="Apartment, suite, unit,etc"/>
+                <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/shipping_apartment_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/rounded_corners_edittext_dark"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="City, State, Country"/>
+                <AutoCompleteTextView
+                    android:layout_weight="1"
+                    android:id="@+id/address_autoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:background="@drawable/rounded_corners_edittext_dark"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="State, Country"/>
+                <EditText
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:id="@+id/shipping_state_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:hint="State, Country"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/rounded_corners_edittext_dark"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="Zip/Postal Code"/>
+                <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/shipping_postal_code_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/rounded_corners_edittext_dark"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:gravity="right"
+                    android:text="Mobile"/>
+                <EditText
+                    android:layout_weight="1"
+                    android:id="@+id/shipping_mobile_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/rounded_corners_edittext_dark"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/default_shipping_layout"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/rounded_corners_edittext_dark" >
+
+                <CheckBox
+                    android:id="@+id/default_shipping_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set as default"
+                    android:textColor="@color/textColorSecondary"
+                    android:textColorHighlight="@color/colorAccent"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/skip_shipping_btn"
+            android:layout_weight=".5"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:text="Skip"
+            android:textAllCaps="true"
+            android:visibility="gone"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:background="@color/colorAccentGrey" />
+
+        <Button
+            android:id="@+id/save_address_btn"
+            android:layout_weight=".5"
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Save Shipping Address"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:background="@color/colorAccent" />
+
+    </LinearLayout>
+</LinearLayout>

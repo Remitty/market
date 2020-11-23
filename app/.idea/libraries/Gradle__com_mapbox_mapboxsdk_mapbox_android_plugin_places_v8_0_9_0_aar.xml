@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mapbox.mapboxsdk:mapbox-android-plugin-places-v8:0.9.0@aar">
+    <CLASSES>
+      <root url="jar://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/6b3c4b7e8a7abe20a906135560bd8404/jetified-mapbox-android-plugin-places-v8-0.9.0/jars/classes.jar!/" />
+      <root url="file://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/6b3c4b7e8a7abe20a906135560bd8404/jetified-mapbox-android-plugin-places-v8-0.9.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://E:/android/gradle-5.6.4/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-android-plugin-places-v8/0.9.0/92e3c5ba196ed97be92c4ca1652c1b7e7fd3fb58/mapbox-android-plugin-places-v8-0.9.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

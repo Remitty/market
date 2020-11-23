@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.ybq:AndroidSpinKit:v1.0.0@aar">
+    <CLASSES>
+      <root url="jar://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/06c895f7b10a17a75cc4f7fa29cedfa3/AndroidSpinKit-v1.0.0/jars/classes.jar!/" />
+      <root url="file://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/06c895f7b10a17a75cc4f7fa29cedfa3/AndroidSpinKit-v1.0.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

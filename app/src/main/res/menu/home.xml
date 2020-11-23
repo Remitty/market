@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_message"
+        android:icon="@drawable/ic_stat_onesignal_default"
+        android:title=""
+        android:visible="false"
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title=""
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        />
+
+    <item
+        android:id="@+id/action_location"
+        android:icon="@drawable/ic_white_place"
+        android:title=""
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/action_cart"
+        android:icon="@drawable/ic_cart_empty"
+        android:visible="false"
+        android:title=""
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/action_wishlist"
+        android:icon="@drawable/ic_favorite"
+        android:visible="false"
+        android:title=""
+        app:showAsAction="always|collapseActionView" />
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_home_white_24dp"
+        android:visible="false"
+        android:title=""
+        app:showAsAction="always|collapseActionView" />
+
+</menu>
+    <!--        app:actionViewClass="androidx.appcompat.widget.SearchView"-->

@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: cn.weidongjian.android:popupWindowHelper:0.5@aar">
+    <CLASSES>
+      <root url="jar://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/43a4617a7f9c5dbb18b4a6e497b228fc/popupWindowHelper-0.5/jars/classes.jar!/" />
+      <root url="file://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/43a4617a7f9c5dbb18b4a6e497b228fc/popupWindowHelper-0.5/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://E:/android/gradle-5.6.4/caches/modules-2/files-2.1/cn.weidongjian.android/popupWindowHelper/0.5/3f6becf40a594b192178ae7f2ab8ec6dabeb50c9/popupWindowHelper-0.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://E:/android/gradle-5.6.4/caches/modules-2/files-2.1/cn.weidongjian.android/popupWindowHelper/0.5/c3da2e6065be65cc26b2cb4a3eea70f8397a5be4/popupWindowHelper-0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

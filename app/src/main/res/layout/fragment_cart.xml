@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cart.CartFragment"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/cart_view_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:visibility="gone"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/empty_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empty Cart"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/shop2"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/cart_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/layoutBackgroundLight"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cart_list"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <androidx.cardview.widget.CardView
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/green"
+                        android:textSize="25dp"
+                        android:text="Total Price"/>
+                    <TextView
+                        android:id="@+id/cart_total_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="$ 0.0"
+                        android:textSize="25dp"
+                        android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_checkout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="Check out"
+                    android:textSize="13dp"
+                    android:textColor="@color/white"
+                    android:background="@color/green"/>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</RelativeLayout>

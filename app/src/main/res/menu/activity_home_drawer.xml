@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Shop" />
+
+        <item
+            android:id="@+id/category"
+            android:icon="@drawable/ic_categories"
+            android:visible="false"
+            android:title="Categories" />
+
+        <item
+            android:id="@+id/auctions"
+            android:icon="@drawable/auction"
+            android:title="Auction market(Bid)" />
+        <item
+            android:id="@+id/cards"
+            android:icon="@drawable/credit_card"
+            android:title="Payment" />
+
+        <item
+            android:id="@+id/withdraw"
+            android:icon="@drawable/ic_price_tag"
+            android:title="Balance" />
+
+
+        <item
+            android:id="@+id/coin_deposit"
+            android:icon="@drawable/coin_bitcoin"
+            android:title="Deposit cryptos" />
+        <item
+            android:id="@+id/myOrders"
+            android:icon="@drawable/ic_shopping_bag"
+            android:title="My Orders" />
+        <item
+            android:id="@+id/myProducts"
+            android:icon="@drawable/ic_storage_black_24dp"
+            android:title="My Listings" />
+
+        <item
+            android:id="@+id/myAuction"
+            android:icon="@drawable/win"
+            android:title="My Auctions" />
+
+        <item
+            android:id="@+id/message"
+            android:icon="@drawable/ic_chat_bubble"
+            android:title="Message" />
+        <item
+            android:id="@+id/profile"
+            android:icon="@drawable/ic_person_outline"
+            android:title="Profile" />
+        <item
+            android:id="@+id/nav_log_out"
+            android:checkableBehavior="single"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="Logout" />
+        <item
+            android:id="@+id/nav_log_in"
+            android:checkableBehavior="single"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:visible="false"
+            android:title="Login" />
+    </group>
+    <item
+        android:id="@+id/other"
+        android:visible="false"
+        android:title="Others">
+        <menu>
+            <group
+                android:id="@+id/group2"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_blog"
+                    android:checkableBehavior="single"
+                    android:icon="@drawable/ic_blogger_icon"
+                    android:visible="false"
+                    android:title="Blog" />
+                <item
+                    android:id="@+id/nav_settings"
+                    android:checkableBehavior="single"
+                    android:icon="@drawable/ic_settings"
+                    android:visible="false"
+                    android:title="Setting" />
+                <item
+                    android:id="@+id/nav_language"
+                    android:checkableBehavior="single"
+                    android:icon="@drawable/ic_internet"
+                    android:visible="false"
+                    android:title="Language" />
+                <item
+                    android:id="@+id/nav_location"
+                    android:checkableBehavior="single"
+                    android:icon="@drawable/ic_worldwide"
+                    android:visible="false"
+                    android:title="Choose Location" />
+
+            </group>
+        </menu>
+    </item>
+
+
+</menu>
