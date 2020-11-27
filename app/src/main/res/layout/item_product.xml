@@ -4,6 +4,7 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
     card_view:cardElevation="3dp"
     card_view:cardUseCompatPadding="true">
 
@@ -11,7 +12,6 @@
         android:id="@+id/linear_layout_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
         <RelativeLayout
@@ -22,10 +22,9 @@
             <ImageView
                 android:id="@+id/image_view"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop" />
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                 />
             <ImageView
                 android:id="@+id/image_sold"
                 android:layout_width="70dp"
@@ -84,6 +83,7 @@
             android:visibility="gone" />
 
         <RelativeLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/image_layout"

@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -161,7 +162,8 @@ public class FragmentCatSubNSearch extends Fragment {
         recyclerViewProduct = view.findViewById(R.id.product_recycler_view);
         recyclerViewProduct.setHasFixedSize(true);
         recyclerViewProduct.setNestedScrollingEnabled(false);
-        recyclerViewProduct.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        StaggeredGridLayoutManager grid = new StaggeredGridLayoutManager(3, 1);
+        recyclerViewProduct.setLayoutManager(grid);
 
         emptyLayout = view.findViewById(R.id.empty_view);
         featuredLayout = view.findViewById(R.id.ll_featured);

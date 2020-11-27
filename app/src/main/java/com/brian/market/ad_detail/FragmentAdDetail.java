@@ -940,7 +940,7 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
                 latitude = Double.parseDouble(product.getLat());
                 longitude = Double.parseDouble(product.getLong());
                 setMap();
-                getDirectionBtn.setVisibility(View.VISIBLE);
+//                getDirectionBtn.setVisibility(View.VISIBLE);
             } else {
                 getDirectionBtn.setVisibility(View.GONE);
             }

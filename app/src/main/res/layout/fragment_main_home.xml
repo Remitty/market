@@ -225,6 +225,7 @@
             </RelativeLayout>
 <!--                banner-->
             <ss.com.bannerslider.views.BannerSlider
+                android:visibility="gone"
                 android:id="@+id/banner_slider"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"

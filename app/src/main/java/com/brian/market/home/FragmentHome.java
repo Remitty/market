@@ -31,6 +31,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -845,7 +846,8 @@ public class FragmentHome extends Fragment {
         latesetAdsList.clear();
 
         recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        StaggeredGridLayoutManager grid = new StaggeredGridLayoutManager(3, 1);
+        recyclerView.setLayoutManager(grid);
         ViewCompat.setNestedScrollingEnabled(recyclerView, false);
 
         try {

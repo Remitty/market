@@ -83,7 +83,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         if (!TextUtils.isEmpty(feedItem.getImageResourceId())) {
             Picasso.with(context).load(feedItem.getImageResourceId())
-                    .resize(250, 250).centerCrop()
                     .error(R.drawable.placeholder)
                     .placeholder(R.drawable.placeholder)
                     .into(holder.mainImage);

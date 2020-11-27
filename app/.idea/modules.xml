@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../Market.iml" filepath="$PROJECT_DIR$/../Market.iml" group="Market" />
-      <module fileurl="file://$PROJECT_DIR$/../PhoneVerification/PhoneVerification.iml" filepath="$PROJECT_DIR$/../PhoneVerification/PhoneVerification.iml" group="Market/PhoneVerification" />
-      <module fileurl="file://$PROJECT_DIR$/../android-stripe-connect/android-stripe-connect.iml" filepath="$PROJECT_DIR$/../android-stripe-connect/android-stripe-connect.iml" group="Market/android-stripe-connect" />
-      <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" group="Market/app" />
-      <module fileurl="file://$PROJECT_DIR$/../bottom-nav-bar/bottom-nav-bar.iml" filepath="$PROJECT_DIR$/../bottom-nav-bar/bottom-nav-bar.iml" group="Market/bottom-nav-bar" />
+      <module fileurl="file://$PROJECT_DIR$/../PhoneVerification/PhoneVerification.iml" filepath="$PROJECT_DIR$/../PhoneVerification/PhoneVerification.iml" group="market/PhoneVerification" />
+      <module fileurl="file://$PROJECT_DIR$/../android-stripe-connect/android-stripe-connect.iml" filepath="$PROJECT_DIR$/../android-stripe-connect/android-stripe-connect.iml" group="market/android-stripe-connect" />
+      <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" group="market/app" />
+      <module fileurl="file://$PROJECT_DIR$/../bottom-nav-bar/bottom-nav-bar.iml" filepath="$PROJECT_DIR$/../bottom-nav-bar/bottom-nav-bar.iml" group="market/bottom-nav-bar" />
+      <module fileurl="file://$PROJECT_DIR$/../market.iml" filepath="$PROJECT_DIR$/../market.iml" group="market" />
     </modules>
   </component>
 </project>
