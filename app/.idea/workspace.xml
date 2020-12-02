@@ -10,18 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle____local_aars___F__Brian_Market_app_libs_YouTubeAndroidPlayerApi_jar_unspecified_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle____local_aars___F__Brian_work_market_app_libs_YouTubeAndroidPlayerApi_jar_unspecified_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__artifacts_android_stripe_connect_unspecified_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__artifacts_android_stripe_connect_unspecified_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/FragmentCatSubNSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/FragmentCatSubNSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/ad_detail/FragmentAdDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/ad_detail/FragmentAdDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ProductAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentHome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_main_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_main_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/item_product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/item_product.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
