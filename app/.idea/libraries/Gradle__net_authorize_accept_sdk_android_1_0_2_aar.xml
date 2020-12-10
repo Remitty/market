@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: net.authorize:accept-sdk-android:1.0.2@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00f94ec752f85e10368660912d91211e/accept-sdk-android-1.0.2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/00f94ec752f85e10368660912d91211e/accept-sdk-android-1.0.2/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c374435058b7834f97b29895fa7c59e5/accept-sdk-android-1.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c374435058b7834f97b29895fa7c59e5/accept-sdk-android-1.0.2/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.authorize/accept-sdk-android/1.0.2/82922aabd2660932ab7567a47256b7aabeafa65c/accept-sdk-android-1.0.2-javadoc.jar!/" />

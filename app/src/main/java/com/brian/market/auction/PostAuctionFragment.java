@@ -1,7 +1,6 @@
 package com.brian.market.auction;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,11 +23,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brian.market.R;
-import com.brian.market.auction.adapter.AuctionAdapter;
-import com.brian.market.databases.User_Cart_DB;
+import com.brian.market.auction.adapter.MyAuctionAdapter;
 import com.brian.market.helper.OnAuctionItemClickListener;
 import com.brian.market.modelsList.Auction;
-import com.brian.market.payment.ShippingActivity;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.RuntimePermissionHelper;
 import com.brian.market.utills.SettingsMain;
@@ -50,7 +47,7 @@ public class PostAuctionFragment extends Fragment implements RuntimePermissionHe
     private ArrayList<Auction> auctionList = new ArrayList<>();
     RecyclerView recyclerView;
 
-    AuctionAdapter auctionAdapter;
+    MyAuctionAdapter myAuctionAdapter;
 
     LinearLayout emptyLayout;
 
@@ -80,8 +77,8 @@ public class PostAuctionFragment extends Fragment implements RuntimePermissionHe
         restService = UrlController.createService(RestService.class, settingsMain.getAuthToken(), getActivity());
         runtimePermissionHelper = new RuntimePermissionHelper(getActivity(), this);
 
-        auctionAdapter = new AuctionAdapter(getActivity(), auctionList, 1);
-        auctionAdapter.setOnItemClickListener(new OnAuctionItemClickListener() {
+        myAuctionAdapter = new MyAuctionAdapter(getActivity(), auctionList, 1);
+        myAuctionAdapter.setOnItemClickListener(new OnAuctionItemClickListener() {
             @Override
             public void onItemClick(Auction item) {
                 Intent intent = new Intent(getActivity(), AuctionDetailActivity.class);
@@ -101,7 +98,7 @@ public class PostAuctionFragment extends Fragment implements RuntimePermissionHe
         });
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(auctionAdapter);
+        recyclerView.setAdapter(myAuctionAdapter);
 
         emptyLayout = view.findViewById(R.id.empty);
         if(auctionList.size() == 0)

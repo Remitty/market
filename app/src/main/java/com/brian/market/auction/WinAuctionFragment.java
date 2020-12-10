@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.brian.market.R;
-import com.brian.market.auction.adapter.AuctionAdapter;
+import com.brian.market.auction.adapter.MyAuctionAdapter;
 import com.brian.market.helper.OnAuctionItemClickListener;
 import com.brian.market.modelsList.Auction;
 import com.brian.market.utills.Network.RestService;
@@ -41,7 +41,7 @@ public class WinAuctionFragment extends Fragment {
     private ArrayList<Auction> auctionList = new ArrayList<>();
     RecyclerView recyclerView;
 
-    AuctionAdapter auctionAdapter;
+    MyAuctionAdapter myAuctionAdapter;
 
     LinearLayout emptyLayout;
 
@@ -69,8 +69,8 @@ public class WinAuctionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_win_auction, container, false);
 
-        auctionAdapter = new AuctionAdapter(getActivity(), auctionList, 3);
-        auctionAdapter.setOnItemClickListener(new OnAuctionItemClickListener() {
+        myAuctionAdapter = new MyAuctionAdapter(getActivity(), auctionList, 3);
+        myAuctionAdapter.setOnItemClickListener(new OnAuctionItemClickListener() {
             @Override
             public void onItemClick(Auction item) {
 
@@ -88,7 +88,7 @@ public class WinAuctionFragment extends Fragment {
         });
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(auctionAdapter);
+        recyclerView.setAdapter(myAuctionAdapter);
 
         emptyLayout = view.findViewById(R.id.empty);
         if(auctionList.size() == 0)

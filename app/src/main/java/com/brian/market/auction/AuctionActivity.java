@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.brian.market.auction.adapter.AuctionAdapter;
+import com.brian.market.auction.adapter.MyAuctionAdapter;
 import com.brian.market.helper.OnAuctionItemClickListener;
 import com.brian.market.modelsList.Auction;
 import com.brian.market.R;
@@ -29,15 +30,14 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.brian.market.App.getContext;
 import static com.brian.market.utills.SettingsMain.getMainColor;
 
 public class AuctionActivity extends AppCompatActivity {
@@ -48,7 +48,7 @@ public class AuctionActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     ViewPager mViewPager;
-    AuctionAdapter auctionAdapter;
+    AuctionAdapter myAuctionAdapter;
     LinearLayout emptyLayout;
 
     @Override
@@ -70,8 +70,8 @@ public class AuctionActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Auction");
         }
 
-        auctionAdapter = new AuctionAdapter(AuctionActivity.this, auctionList, 2);
-        auctionAdapter.setOnItemClickListener(new OnAuctionItemClickListener() {
+        myAuctionAdapter = new AuctionAdapter(AuctionActivity.this, auctionList, 2);
+        myAuctionAdapter.setOnItemClickListener(new OnAuctionItemClickListener() {
             @Override
             public void onItemClick(Auction item) {
                 Intent intent = new Intent(AuctionActivity.this, AuctionDetailActivity.class);
@@ -90,8 +90,9 @@ public class AuctionActivity extends AppCompatActivity {
             }
         });
         recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(auctionAdapter);
+        StaggeredGridLayoutManager grid = new StaggeredGridLayoutManager(3, 1);
+        recyclerView.setLayoutManager(grid);
+        recyclerView.setAdapter(myAuctionAdapter);
 
         emptyLayout = findViewById(R.id.empty);
         
@@ -129,7 +130,7 @@ public class AuctionActivity extends AppCompatActivity {
                                     }
                                 }
 
-                                auctionAdapter.notifyDataSetChanged();
+                                myAuctionAdapter.notifyDataSetChanged();
 
                                 if(auctionList.size() == 0)
                                     emptyLayout.setVisibility(View.VISIBLE);

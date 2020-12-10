@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.iarcuschin:simpleratingbar:0.1.5@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9d3813ffb594925d6528ff1a206a980a/jetified-simpleratingbar-0.1.5/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9d3813ffb594925d6528ff1a206a980a/jetified-simpleratingbar-0.1.5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0cc4342b80240d24f97a08fce98817d0/jetified-simpleratingbar-0.1.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0cc4342b80240d24f97a08fce98817d0/jetified-simpleratingbar-0.1.5/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.iarcuschin/simpleratingbar/0.1.5/b2876a7bbd89a740644b6b9d967b69da94c26052/simpleratingbar-0.1.5-javadoc.jar!/" />

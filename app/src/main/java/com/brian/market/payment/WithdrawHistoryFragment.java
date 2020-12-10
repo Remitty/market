@@ -1,6 +1,5 @@
 package com.brian.market.payment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,10 +12,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.brian.market.R;
-import com.brian.market.auction.AuctionDetailActivity;
-import com.brian.market.auction.adapter.AuctionAdapter;
-import com.brian.market.helper.OnAuctionItemClickListener;
-import com.brian.market.modelsList.Auction;
 import com.brian.market.modelsList.WithdrawTransaction;
 import com.brian.market.payment.adapter.TransactionAdapter;
 

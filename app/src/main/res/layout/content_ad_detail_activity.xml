@@ -57,10 +57,12 @@
         <View
             android:id="@+id/temphide"
             android:layout_width="1dp"
+            android:visibility="gone"
             android:layout_height="match_parent"
             android:background="@color/white" />
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"

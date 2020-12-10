@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.plaid.link:sdk-core:1.4.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d029624b706d87c7637f289c7b97e34b/sdk-core-1.4.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d029624b706d87c7637f289c7b97e34b/sdk-core-1.4.1/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d029624b706d87c7637f289c7b97e34b/sdk-core-1.4.1/jars/libs/r-classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1e805c5b04c300a3a3c6df4f744b6704/sdk-core-1.4.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1e805c5b04c300a3a3c6df4f744b6704/sdk-core-1.4.1/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1e805c5b04c300a3a3c6df4f744b6704/sdk-core-1.4.1/jars/libs/r-classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

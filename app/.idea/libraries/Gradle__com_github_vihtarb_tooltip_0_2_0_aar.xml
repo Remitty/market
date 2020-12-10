@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.vihtarb:tooltip:0.2.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4e250a38afbe6afd2808010378ed39aa/jetified-tooltip-0.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4e250a38afbe6afd2808010378ed39aa/jetified-tooltip-0.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b5c929310f319f2da3e5701f628513f3/jetified-tooltip-0.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b5c929310f319f2da3e5701f628513f3/jetified-tooltip-0.2.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.vihtarb/tooltip/0.2.0/3e56a2597124cbc1da6f6aa8e9683ca0bde09f58/tooltip-0.2.0-javadoc.jar!/" />
