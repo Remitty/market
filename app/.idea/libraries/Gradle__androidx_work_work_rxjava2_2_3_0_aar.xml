@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.work:work-rxjava2:2.3.0@aar">
     <CLASSES>
-      <root url="jar://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/923512a3bb952e5d9e0da3fd1f5e4f32/work-rxjava2-2.3.0/jars/classes.jar!/" />
-      <root url="file://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/923512a3bb952e5d9e0da3fd1f5e4f32/work-rxjava2-2.3.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/923512a3bb952e5d9e0da3fd1f5e4f32/work-rxjava2-2.3.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/923512a3bb952e5d9e0da3fd1f5e4f32/work-rxjava2-2.3.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://E:/android/gradle-5.6.4/caches/modules-2/files-2.1/androidx.work/work-rxjava2/2.3.0/7cfe06c337e5336ff3c2bde59b5241d171034fde/work-rxjava2-2.3.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.work/work-rxjava2/2.3.0/7cfe06c337e5336ff3c2bde59b5241d171034fde/work-rxjava2-2.3.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

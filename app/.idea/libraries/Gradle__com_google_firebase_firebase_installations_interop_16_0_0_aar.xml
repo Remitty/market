@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.firebase:firebase-installations-interop:16.0.0@aar">
     <CLASSES>
-      <root url="jar://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/523e1bb6738c79f4109bd2c5e20e3ab7/firebase-installations-interop-16.0.0/jars/classes.jar!/" />
-      <root url="file://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/523e1bb6738c79f4109bd2c5e20e3ab7/firebase-installations-interop-16.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/523e1bb6738c79f4109bd2c5e20e3ab7/firebase-installations-interop-16.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/523e1bb6738c79f4109bd2c5e20e3ab7/firebase-installations-interop-16.0.0/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://E:/android/gradle-5.6.4/caches/modules-2/files-2.1/com.google.firebase/firebase-installations-interop/16.0.0/1ae747557debcaf69a3a8082bf136399d29643de/firebase-installations-interop-16.0.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-installations-interop/16.0.0/1ae747557debcaf69a3a8082bf136399d29643de/firebase-installations-interop-16.0.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

@@ -1,5 +1,7 @@
 package com.brian.market.modelsList;
 
+import com.brian.market.utills.UrlController;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -56,7 +58,10 @@ public class CoinInfo {
 
     public String getCoinIcon() {
         try {
-            return data.getString("icon");
+            String str = data.getString("coin_icon");
+            if(!str.startsWith("http"))
+                str = UrlController.IP_ADDRESS + str;
+            return str;
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

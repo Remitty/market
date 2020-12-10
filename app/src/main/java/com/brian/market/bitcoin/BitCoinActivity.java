@@ -95,7 +95,7 @@ public class BitCoinActivity extends AppCompatActivity {
         CoinInfo coin = coinList.get(index);
         JsonObject params = new JsonObject();
 
-        params.addProperty("currency", coin.getCoinId());
+        params.addProperty("coin", coin.getCoinId());
         params.addProperty("user_type", 1);
         if (SettingsMain.isConnectingToInternet(this)) {
 

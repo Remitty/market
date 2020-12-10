@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.douglasjunior:android-simple-tooltip:0.2.3@aar">
     <CLASSES>
-      <root url="jar://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/ee645ddec82a493a5e5849e8eba13c6e/jetified-android-simple-tooltip-0.2.3/jars/classes.jar!/" />
-      <root url="file://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/ee645ddec82a493a5e5849e8eba13c6e/jetified-android-simple-tooltip-0.2.3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea6a76e49d35e4ed832abe157b886a39/jetified-android-simple-tooltip-0.2.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ea6a76e49d35e4ed832abe157b886a39/jetified-android-simple-tooltip-0.2.3/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://E:/android/gradle-5.6.4/caches/modules-2/files-2.1/com.github.douglasjunior/android-simple-tooltip/0.2.3/ecec0c314f495cb2e2f12d690331a4735b57e2cb/android-simple-tooltip-0.2.3-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.douglasjunior/android-simple-tooltip/0.2.3/ecec0c314f495cb2e2f12d690331a4735b57e2cb/android-simple-tooltip-0.2.3-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://E:/android/gradle-5.6.4/caches/modules-2/files-2.1/com.github.douglasjunior/android-simple-tooltip/0.2.3/c1c80f2b69ca3abab3b027a09f4fd68556e6d542/android-simple-tooltip-0.2.3-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.douglasjunior/android-simple-tooltip/0.2.3/c1c80f2b69ca3abab3b027a09f4fd68556e6d542/android-simple-tooltip-0.2.3-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

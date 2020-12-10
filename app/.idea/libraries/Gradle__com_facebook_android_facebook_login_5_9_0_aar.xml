@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.android:facebook-login:5.9.0@aar">
     <CLASSES>
-      <root url="jar://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/07f853df42c3546351870554ab971307/jetified-facebook-login-5.9.0/jars/classes.jar!/" />
-      <root url="file://E:/android/gradle-5.6.4/caches/transforms-2/files-2.1/07f853df42c3546351870554ab971307/jetified-facebook-login-5.9.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/42ec004bee29e189376a0b99c73f62fd/jetified-facebook-login-5.9.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/42ec004bee29e189376a0b99c73f62fd/jetified-facebook-login-5.9.0/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://E:/android/gradle-5.6.4/caches/modules-2/files-2.1/com.facebook.android/facebook-login/5.9.0/df2a4599a0872b3dff2e07c63e76415f3ac7d894/facebook-login-5.9.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-login/5.9.0/df2a4599a0872b3dff2e07c63e76415f3ac7d894/facebook-login-5.9.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://E:/android/gradle-5.6.4/caches/modules-2/files-2.1/com.facebook.android/facebook-login/5.9.0/e5bcfdc20a03bb8cff1d9b320904304f870d8ed5/facebook-login-5.9.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.android/facebook-login/5.9.0/e5bcfdc20a03bb8cff1d9b320904304f870d8ed5/facebook-login-5.9.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
