@@ -89,9 +89,9 @@ public class Login_Fragment extends Fragment implements OnClickListener,
     View view;
     Activity activity;
     EditText emailid, password;
-    Button loginButton, fbloginButton;
+    Button loginButton, startExplore, fbloginButton;
     private SignInButton gmailLoginButton;
-    TextView forgotPassword, signUp, startExplore;
+    TextView forgotPassword, signUp;
     LinearLayout loginLayout;
     SettingsMain settingsMain;
     LinearLayout linearLayoutLogo;
@@ -149,9 +149,9 @@ public class Login_Fragment extends Fragment implements OnClickListener,
         gmailLoginButton.setVisibility(View.INVISIBLE);
         loginLayout = view.findViewById(id.login_layout);
         startExplore = view.findViewById(id.startExplore);
-        guestLayout = view.findViewById(R.id.guestLayout);
+//        guestLayout = view.findViewById(R.id.guestLayout);
 
-        textViewOR = view.findViewById(id.or);
+//        textViewOR = view.findViewById(id.or);
         textViewWelcome = view.findViewById(id.welcomeTV);
         imageViewLogo = view.findViewById(id.logoimage);
 //        linearLayoutLogo = view.findViewById(id.logo);
@@ -172,7 +172,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
             @SuppressWarnings("deprecation") ColorStateList csl = ColorStateList.createFromXml(getResources(),
                     xrp);
 
-            forgotPassword.setTextColor(csl);
+//            forgotPassword.setTextColor(csl);
 //            signUp.setTextColor(csl);
         } catch (Exception ignored) {
         }
@@ -195,7 +195,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
         Log.d("joiint open", settingsMain.getAppOpen()+"");
 
 //        if (!settingsMain.getAppOpen()) {
-            guestLayout.setVisibility(View.VISIBLE);
+//            guestLayout.setVisibility(View.VISIBLE);
             startExplore.setVisibility(View.VISIBLE);
 //                                settingsMain.setUserName(response.getJSONObject("data").getString("guest_text"));
 //        }

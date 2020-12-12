@@ -147,12 +147,12 @@ public class SignUp_Fragment extends Fragment implements OnClickListener
     private void adforest_initViews() {
         fragmentManager = getActivity().getSupportFragmentManager();
 
-        firstName = view.findViewById(R.id.firstName);
-        lastName = view.findViewById(R.id.lastName);
-        emailId = view.findViewById(R.id.userEmailId);
+        firstName = view.findViewById(R.id.firstname);
+        lastName = view.findViewById(R.id.lastname);
+        emailId = view.findViewById(R.id.email);
         mobileNumber = view.findViewById(R.id.mobileNumber);
         password = view.findViewById(R.id.password);
-        signUpButton = view.findViewById(R.id.signUpBtn);
+        signUpButton = view.findViewById(R.id.signup);
         login = view.findViewById(R.id.already_user);
 
         terms_conditions = view.findViewById(R.id.terms_conditions);
@@ -162,7 +162,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener
         gmailLoginButton = view.findViewById(R.id.gmailLogin);
 
         titleTV = view.findViewById(R.id.title);
-        orTV = view.findViewById(R.id.or);
+//        orTV = view.findViewById(R.id.or);
 
         signUpButton.setTextColor(Color.parseColor(settingsMain.getMainColor()));
         signUpButton.setBackground(CustomBorderDrawable.customButton(3, 3, 3, 3, settingsMain.getMainColor(), "#00000000", settingsMain.getMainColor(), 2));
@@ -189,8 +189,8 @@ public class SignUp_Fragment extends Fragment implements OnClickListener
         } catch (Exception ignored) {
         }
 
-        leftSideAttributLayout = view.findViewById(R.id.btnLL);
-        leftSideAttributLayout.removeAllViews();
+//        leftSideAttributLayout = view.findViewById(R.id.btnLL);
+//        leftSideAttributLayout.removeAllViews();
 
     }
 
@@ -209,7 +209,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener
             case R.id.fbLogin:
                 adforest_loginToFacebook();
                 break;
-            case R.id.signUpBtn:
+            case R.id.signup:
 
                 // Call adforest_checkValidation method
 //                phoneLogin();

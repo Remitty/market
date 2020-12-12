@@ -6,7 +6,7 @@
         <item
             android:id="@+id/home"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Shop" />
+            android:title="Shop locally" />
 
         <item
             android:id="@+id/category"
@@ -17,7 +17,7 @@
         <item
             android:id="@+id/auctions"
             android:icon="@drawable/auction"
-            android:title="Auction market(Bid)" />
+            android:title="Shop Auction sales" />
         <item
             android:id="@+id/cards"
             android:icon="@drawable/credit_card"
