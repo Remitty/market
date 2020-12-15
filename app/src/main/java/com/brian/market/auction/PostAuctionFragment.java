@@ -88,7 +88,7 @@ public class PostAuctionFragment extends Fragment implements RuntimePermissionHe
 
             @Override
             public void onViewDetailClick(String id) {
-                getDefaultShippingAddress();
+                getWinnerShippingAddress(id);
             }
 
             @Override
@@ -109,10 +109,10 @@ public class PostAuctionFragment extends Fragment implements RuntimePermissionHe
 
 
 
-    private void getDefaultShippingAddress() {
+    private void getWinnerShippingAddress(String winner) {
         if (SettingsMain.isConnectingToInternet(getActivity())) {
 
-            Call<ResponseBody> myCall = restService.getDefaultShippingAddress(UrlController.AddHeaders(getActivity()));
+            Call<ResponseBody> myCall = restService.getWinnerShippingAddress(winner, UrlController.AddHeaders(getActivity()));
             myCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
@@ -123,12 +123,12 @@ public class PostAuctionFragment extends Fragment implements RuntimePermissionHe
                             JSONObject response = new JSONObject(responseObj.body().string());
                             Log.d("shipping_addres", response.toString());
                             if (response.getBoolean("success")) {
-                                JSONObject address = response.optJSONObject("address");
+                                JSONObject address = response.getJSONObject("address");
                                 boolean isDefault = response.getBoolean("hasDefault");
                                 displayAddressDialog(address, isDefault);
                             }
                             else
-                                Toast.makeText(getContext(), response.optString("message"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {

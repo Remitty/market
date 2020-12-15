@@ -15,6 +15,7 @@ import retrofit2.http.HeaderMap;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 /**
@@ -564,6 +565,12 @@ public interface RestService {
 
     @GET("shipping_address")
     Call<ResponseBody> getDefaultShippingAddress(
+            @HeaderMap Map<String, String> headers
+    );
+
+    @GET("winner_shipping_address")
+    Call<ResponseBody> getWinnerShippingAddress(
+            @Query("id") String winner_id,
             @HeaderMap Map<String, String> headers
     );
 

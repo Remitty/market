@@ -41,7 +41,14 @@
             android:scrollHorizontally="false"
             android:hint="Description (255 characters)"
             />
-
+        <Spinner
+            android:id="@+id/cat_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:ems="10"
+            />
         <Spinner
             android:id="@+id/week_spinner"
             android:layout_width="match_parent"

@@ -46,9 +46,9 @@
                         app:suffixHour="H"
                         app:suffixMinute="M"
                         app:suffixSecond="S"
-                        app:suffixTextColor="@color/white"
+                        app:suffixTextColor="@color/black"
                         app:suffixTextSize="8dp"
-                        app:timeTextColor="@color/white"
+                        app:timeTextColor="@color/text"
                     card_view:isTimeTextBold="true"
                         app:timeTextSize="14dp" />
 
@@ -69,6 +69,24 @@
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="3dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Category: "
+                        android:textColor="@color/text_color_dark"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/auction_cat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text=""/>
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

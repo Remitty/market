@@ -53,6 +53,11 @@ public class Auction {
         return  currency == null? "$" : currency.optString("currency");
     }
 
+    public String getCategory() {
+        JSONObject category = data.optJSONObject("category");
+        return  category == null? "No category" : category.optString("cat_name");
+    }
+
     public String getWinnerID() {
         return data.optString("winner_id");
     }

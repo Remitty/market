@@ -53,6 +53,7 @@ public class MyAuctionAdapter extends RecyclerView.Adapter<MyAuctionAdapter.MyVi
 
         holder.titleTextView.setText(feedItem.getTitle());
         holder.dateTV.setText(feedItem.getDayAgo());
+        holder.catTV.setText(feedItem.getCategory());
 
         holder.startPriceTV.setText(feedItem.getStartPrice() +  feedItem.getCurrency());
         holder.betPriceTV.setText(feedItem.getHighPrice() +  feedItem.getCurrency());
@@ -128,7 +129,7 @@ public class MyAuctionAdapter extends RecyclerView.Adapter<MyAuctionAdapter.MyVi
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView, dateTV, startPriceTV, betPriceTV, statusTV, locationTV, bidderTV, winnerViewDetail, winnerName, shippingPrice;
+        TextView titleTextView, dateTV, startPriceTV, betPriceTV, statusTV, locationTV, bidderTV, winnerViewDetail, winnerName, shippingPrice, catTV;
         ImageView mainImage;
         LinearLayout layout, winnerLayout, shippingLayout;
         CountdownView countDown;
@@ -145,6 +146,7 @@ public class MyAuctionAdapter extends RecyclerView.Adapter<MyAuctionAdapter.MyVi
             statusTV = v.findViewById(R.id.auction_status);
             locationTV = v.findViewById(R.id.auction_location);
             bidderTV = v.findViewById(R.id.auction_bidders);
+            catTV = v.findViewById(R.id.auction_cat);
 
             winnerName = v.findViewById(R.id.winner_name);
             winnerViewDetail = v.findViewById(R.id.winner_detail);

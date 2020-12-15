@@ -47,7 +47,7 @@ import java.util.Map;
 import static com.brian.market.utills.SettingsMain.getMainColor;
 
 public class AuctionDetailActivity extends AppCompatActivity {
-    TextView titleTextView, dateTV, startPriceTV, betPriceTV, statusTV, locationTV, descriptionTV, winnerTV, biddersTV, shippingPrice;
+    TextView titleTextView, dateTV, startPriceTV, betPriceTV, statusTV, locationTV, descriptionTV, winnerTV, biddersTV, shippingPrice, catTV;
     Button btnBet;
     EditText editBetPrice;
 
@@ -121,6 +121,7 @@ public class AuctionDetailActivity extends AppCompatActivity {
     private void initComponents() {
         titleTextView = findViewById(R.id.auction_title);
         dateTV = findViewById(R.id.auction_post_time);
+        catTV = findViewById(R.id.auction_cat);
         betPriceTV = findViewById(R.id.auction_bet_price);
         startPriceTV = findViewById(R.id.auction_start_price);
         statusTV = findViewById(R.id.auction_status);
@@ -171,6 +172,7 @@ public class AuctionDetailActivity extends AppCompatActivity {
                                 auction.setData(data);
 
                                 titleTextView.setText(auction.getTitle());
+                                catTV.setText(auction.getCategory());
                                 descriptionTV.setText(auction.getDescription());
                                 startPriceTV.setText(auction.getStartPrice()  +  auction.getCurrency());
                                 locationTV.setText(auction.getLocation());

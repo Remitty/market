@@ -210,7 +210,7 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
     String stringImageLimitText = "";
     LinearLayout page1, page2, page3, linearLayoutImageSection, showHideLocation;
     ImageView imageViewNext1, imageViewNext2, imageViewBack1, imageViewBack2;
-    Spinner weekSpinner, currencySpinner;
+    Spinner weekSpinner, currencySpinner, catSpinner;
 
     RadioGroup rdgShipping;
     RadioButton rdbShipping, rdbShippingLocal;
@@ -336,6 +336,13 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
         currencySpinner.setSelection(1);
         currencySpinner.setOnItemSelectedListener(this);
 
+        ArrayList<String> categories = new ArrayList<String>();
+        categories = settingsMain.getCategories();
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        catSpinner.setAdapter(adapter2);
+        catSpinner.setOnItemSelectedListener(this);
+
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_bottom_amenties, null);
         dialog = new BottomSheetDialog(AddNewAuctionPost.this);
         dialog.setContentView(dialogView);
@@ -398,6 +405,7 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
                                 mLocationAutoTextView.setText(auction.getLocation());
                                 weekSpinner.setSelection(data.getInt("duration_week"));
                                 currencySpinner.setSelection(data.getInt("currency"));
+                                catSpinner.setSelection(data.getInt("cat_id"));
 
                             } else {
                                 Toast.makeText(context, response.get("message").toString(), Toast.LENGTH_SHORT).show();
@@ -476,6 +484,7 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
 
         weekSpinner = findViewById(R.id.week_spinner);
         currencySpinner = findViewById(R.id.spin_currency);
+        catSpinner = findViewById(R.id.cat_spinner);
 
         page2.setVisibility(View.VISIBLE);
         page3.setVisibility(View.GONE);
@@ -579,6 +588,10 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
                 b = true;
             }
 
+            if(catSpinner.getSelectedItemPosition() == 0) {
+                b = true;
+            }
+
             if(rdbShipping.isChecked() && editShippingPrice.getText().toString().equals("")){
                 b = true;
                 editShippingPrice.setError("Please input shipping price");
@@ -607,6 +620,12 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
                     setSpinnerError(currencySpinner);
                     currencySpinner.requestFocus();
                     Toast.makeText(context, "Please select currency", Toast.LENGTH_SHORT).show();
+                }
+
+                if (catSpinner.getSelectedItemPosition() == 0) {
+                    setSpinnerError(catSpinner);
+                    catSpinner.requestFocus();
+                    Toast.makeText(context, "Please select category", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -809,6 +828,7 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
         params.addProperty("location", mLocationAutoTextView.getText().toString());
 
         params.addProperty("currency", currencySpinner.getSelectedItemPosition());
+        params.addProperty("cat_id", catSpinner.getSelectedItemPosition());
 
         int selectedShipping = rdgShipping.getCheckedRadioButtonId();
         switch (selectedShipping){
@@ -847,7 +867,7 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
 
                                 Toast.makeText(context, response.get("message").toString(), Toast.LENGTH_LONG).show();
 
-                                Intent intent = new Intent(AddNewAuctionPost.this, HomeActivity.class);
+                                Intent intent = new Intent(AddNewAuctionPost.this, MyAuctionActivity.class);
 //                                intent.putExtra("adId", response.getJSONObject("data").getString("ad_id"));
                                 startActivity(intent);
 

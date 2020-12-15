@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.brian.market.auction.adapter.MyAuctionPageAdapter;
 import com.brian.market.helper.OnAuctionItemClickListener;
+import com.brian.market.home.HomeActivity;
 import com.brian.market.modelsList.Auction;
 import com.brian.market.R;
 import com.brian.market.order.adapter.MyOrderPageAdapter;
@@ -196,6 +197,7 @@ public class MyAuctionActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(this, HomeActivity.class));
         overridePendingTransition(R.anim.left_enter, R.anim.right_out);
     }
 
