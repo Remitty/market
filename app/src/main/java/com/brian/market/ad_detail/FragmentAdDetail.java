@@ -710,42 +710,44 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
 
                                 relatedProducts.clear();
                                 JSONArray related = response.getJSONArray("related_products");
-                                for (int i = 0; i < related.length(); i ++){
-                                    JSONObject object = related.getJSONObject(i);
-                                    ProductDetails product = new ProductDetails();
-                                    product.setData(object);
-                                    relatedProducts.add(product);
+
+                                if(related.length() > 0) {
+                                    for (int i = 0; i < related.length(); i ++){
+                                        JSONObject object = related.getJSONObject(i);
+                                        ProductDetails product = new ProductDetails();
+                                        product.setData(object);
+                                        relatedProducts.add(product);
+                                    }
+                                    ProductAdapter adapter = new ProductAdapter(getActivity(), relatedProducts, true);
+                                    mRelatedRecyclerView.setAdapter(adapter);
+                                    GridLayoutManager MyLayoutManager2 = new GridLayoutManager(getActivity(), related.length());
+                                    MyLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
+                                    mRelatedRecyclerView.setLayoutManager(MyLayoutManager2);
+                                    adapter.setOnItemClickListener(new OnItemClickListener2() {
+                                        @Override
+                                        public void onItemClick(ProductDetails item) {
+                                            Log.d("item_id", item.getId() + "");
+                                            FragmentAdDetail.myId = item.getId() + "";
+                                            adforest_recreateAdDetail();
+                                            nestedScroll.scrollTo(0, 0);
+                                        }
+
+                                        @Override
+                                        public void onRemoveFav(int position) {
+
+                                        }
+
+                                        @Override
+                                        public void onShare(ProductDetails item) {
+
+                                        }
+
+                                        @Override
+                                        public void onAddCart(ProductDetails item) {
+
+                                        }
+                                    });
                                 }
-
-                                ProductAdapter adapter = new ProductAdapter(getActivity(), relatedProducts, true);
-                                mRelatedRecyclerView.setAdapter(adapter);
-                                GridLayoutManager MyLayoutManager2 = new GridLayoutManager(getActivity(), related.length());
-                                MyLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
-                                mRelatedRecyclerView.setLayoutManager(MyLayoutManager2);
-                                adapter.setOnItemClickListener(new OnItemClickListener2() {
-                                    @Override
-                                    public void onItemClick(ProductDetails item) {
-                                        Log.d("item_id", item.getId()+"");
-                                        FragmentAdDetail.myId = item.getId()+"";
-                                        adforest_recreateAdDetail();
-                                        nestedScroll.scrollTo(0, 0);
-                                    }
-
-                                    @Override
-                                    public void onRemoveFav(int position) {
-
-                                    }
-
-                                    @Override
-                                    public void onShare(ProductDetails item) {
-
-                                    }
-
-                                    @Override
-                                    public void onAddCart(ProductDetails item) {
-
-                                    }
-                                });
 
                             } else {
                                 Toast.makeText(getActivity(), response.get("message").toString(), Toast.LENGTH_SHORT).show();
