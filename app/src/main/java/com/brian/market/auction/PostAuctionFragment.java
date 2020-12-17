@@ -83,6 +83,7 @@ public class PostAuctionFragment extends Fragment implements RuntimePermissionHe
             public void onItemClick(Auction item) {
                 Intent intent = new Intent(getActivity(), AuctionDetailActivity.class);
                 intent.putExtra("post_id", item.getId());
+                intent.putExtra("type", "post");
                 startActivity(intent);
             }
 

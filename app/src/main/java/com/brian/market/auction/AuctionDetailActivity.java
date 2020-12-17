@@ -1,6 +1,9 @@
 package com.brian.market.auction;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import cn.iwgang.countdownview.CountdownView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -10,6 +13,7 @@ import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.banners.RemoteBanner;
 import ss.com.bannerslider.views.BannerSlider;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -48,15 +52,17 @@ import static com.brian.market.utills.SettingsMain.getMainColor;
 
 public class AuctionDetailActivity extends AppCompatActivity {
     TextView titleTextView, dateTV, startPriceTV, betPriceTV, statusTV, locationTV, descriptionTV, winnerTV, biddersTV, shippingPrice, catTV;
-    Button btnBet;
+    Button btnBet, btnCancel;
     EditText editBetPrice;
+
+    CardView cardBet;
 
     BannerSlider bannerSlider;
     List<Banner> banners = new ArrayList<>();
     ArrayList<String> imageUrls = new ArrayList<>();
     CountdownView countdownView;
     LinearLayout loadingLayout;
-    private String myId;
+    private String myId, mType="";
 
     LinearLayout shippingLayout;
 
@@ -82,6 +88,8 @@ public class AuctionDetailActivity extends AppCompatActivity {
         }
 
         myId = getIntent().getStringExtra("post_id");
+        if(getIntent().hasExtra("type"))
+            mType = getIntent().getStringExtra("type");
 
         restService = UrlController.createService(RestService.class);
         settingsMain = new SettingsMain(this);
@@ -116,6 +124,23 @@ public class AuctionDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(AuctionDetailActivity.this);
+                alert.setTitle("Confirm cancel auction")
+                        .setIcon(R.mipmap.ic_launcher_round)
+                        .setMessage("Are you sure you want to cancel the auction?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                sendCancel();
+                            }
+                        })
+                        .show();
+            }
+        });
     }
 
     private void initComponents() {
@@ -139,6 +164,13 @@ public class AuctionDetailActivity extends AppCompatActivity {
 
         btnBet = findViewById(R.id.btn_bet);
         editBetPrice = findViewById(R.id.edit_bet_price);
+
+        cardBet = findViewById(R.id.card_bet);
+        btnCancel = findViewById(R.id.btn_cancel_auction);
+        if(mType.equals("post")) {
+            cardBet.setVisibility(View.GONE);
+            btnCancel.setVisibility(View.VISIBLE);
+        }
     }
 
     private void getPostDetail() {
@@ -238,7 +270,6 @@ public class AuctionDetailActivity extends AppCompatActivity {
         if (SettingsMain.isConnectingToInternet(this)) {
 
             loadingLayout.setVisibility(View.VISIBLE);
-            btnBet.setVisibility(View.GONE);
 //            SettingsMain.showDilog(this);
             Log.d("info bet Data", "" + params.toString());
             Call<ResponseBody> myCall = restService.postBet(params, UrlController.AddHeaders(this));
@@ -285,6 +316,58 @@ public class AuctionDetailActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Internet error", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    private void sendCancel() {
+        restService = UrlController.createService(RestService.class, settingsMain.getAuthToken(), this);
+        JsonObject params = new JsonObject();
+        params.addProperty("id", myId);
+
+        if (SettingsMain.isConnectingToInternet(this)) {
+
+            loadingLayout.setVisibility(View.VISIBLE);
+//            SettingsMain.showDilog(this);
+            Log.d("info bet Data", "" + params.toString());
+            Call<ResponseBody> myCall = restService.cancelBet(params, UrlController.AddHeaders(this));
+            myCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
+                    try {
+                        Log.d("info bet Resp", "" + responseObj.toString());
+                        if (responseObj.isSuccessful()) {
+
+                            JSONObject response = new JSONObject(responseObj.body().string());
+                            Toast.makeText(getBaseContext(), response.optString("message"), Toast.LENGTH_SHORT).show();
+
+                        }
+                        SettingsMain.hideDilog();
+                    } catch (JSONException e) {
+                        SettingsMain.hideDilog();
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        SettingsMain.hideDilog();
+                        e.printStackTrace();
+                    }
+//                    SettingsMain.hideDilog();
+                    loadingLayout.setVisibility(View.GONE);
+                    btnBet.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                    SettingsMain.hideDilog();
+                    loadingLayout.setVisibility(View.GONE);
+                    btnBet.setVisibility(View.VISIBLE);
+                    Log.d("info AdPost error", String.valueOf(t));
+                    Log.d("info AdPost error", String.valueOf(t.getMessage() + t.getCause() + t.fillInStackTrace()));
+                }
+            });
+        } else {
+            SettingsMain.hideDilog();
+            Toast.makeText(getBaseContext(), "Internet error", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @Override
     public void onBackPressed() {

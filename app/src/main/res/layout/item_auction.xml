@@ -65,7 +65,7 @@
                     android:layout_height="wrap_content"
                     android:text="Title"
                     android:textColor="@color/black"
-                    android:textSize="20dp"
+                    android:textSize="15dp"
                     android:maxLines="1"
                     android:ellipsize="end"
                     android:textStyle="bold"/>
@@ -79,12 +79,15 @@
                         android:layout_height="wrap_content"
                         android:text="Category: "
                         android:textColor="@color/text_color_dark"
+                        android:textSize="11dp"
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/auction_cat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
                         android:text=""/>
                 </LinearLayout>
                 <LinearLayout
@@ -97,12 +100,15 @@
                         android:layout_height="wrap_content"
                         android:text="Start Price: "
                         android:textColor="@color/text_color_dark"
+                        android:textSize="11dp"
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/auction_start_price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
                         android:text="$ 0.0 "/>
                 </LinearLayout>
                 <LinearLayout
@@ -115,13 +121,16 @@
                         android:layout_height="wrap_content"
                         android:text="Start Time: "
                         android:textColor="@color/text_color_dark"
+                        android:textSize="11dp"
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/auction_post_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
+                        android:textSize="11dp"
                         android:text="left 1 day"
+                        android:textColor="@color/black"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -135,6 +144,7 @@
                         android:layout_height="wrap_content"
                         android:text="Time Limit: "
                         android:textColor="@color/text_color_dark"
+                        android:textSize="11dp"
                         android:textStyle="bold"/>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -155,12 +165,15 @@
                         android:layout_height="wrap_content"
                         android:text="Bid Price: "
                         android:textColor="@color/text_color_dark"
+                        android:textSize="11dp"
                         android:textStyle="bold"/>
                     <TextView
                         android:id="@+id/auction_bet_price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
                         android:text="$ 0.0 "/>
                 </LinearLayout>
                 <LinearLayout
@@ -172,6 +185,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Status: "
+                        android:textSize="11dp"
                         android:textColor="@color/text_color_dark"
                         android:textStyle="bold"/>
                     <TextView
@@ -179,8 +193,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Started"
+                        android:textSize="11dp"
                         android:gravity="end"
-                        android:textColor="@color/text_color_dark"
+                        android:textColor="@color/black"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -196,6 +211,8 @@
                         android:layout_marginVertical="3dp"
                         android:maxLines="1"
                         android:ellipsize="end"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
                         android:text=""
                         />
                     <TextView
@@ -203,6 +220,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
+                        android:textSize="11dp"
+                        android:textColor="@color/black"
                         android:text="0"/>
                 </LinearLayout>
                 <LinearLayout
@@ -221,6 +240,7 @@
                         android:ellipsize="end"
                         android:text="Shipping"
                         android:textColor="@color/text_color_dark"
+                        android:textSize="11dp"
                         android:textStyle="bold"
                         />
                     <TextView
@@ -228,6 +248,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
+                        android:textSize="11dp"
                         android:text="0"/>
                 </LinearLayout>
 
@@ -245,6 +266,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Winner: "
+                            android:textSize="11dp"
                             android:textColor="@color/text_color_dark"
                             android:textStyle="bold"
                             />
@@ -255,6 +277,7 @@
                             android:text=""
                             android:gravity="end"
                             android:textStyle="bold"
+                            android:textSize="11dp"
                             android:textColor="@color/green"
                             />
                     </LinearLayout>
@@ -266,6 +289,7 @@
                         android:gravity="center"
                         android:text="View winner shipping address"
                         android:textStyle="bold"
+                        android:textSize="11dp"
                         android:textColor="@color/quantum_purple"/>
                 </LinearLayout>
                 <Button

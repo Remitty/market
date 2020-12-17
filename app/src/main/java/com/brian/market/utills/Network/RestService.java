@@ -848,6 +848,11 @@ public interface RestService {
             @Body JsonObject jsonObject,
             @HeaderMap Map<String, String> headers
     );
+    @POST("auction/cancel")
+    Call<ResponseBody> cancelBet(
+            @Body JsonObject jsonObject,
+            @HeaderMap Map<String, String> headers
+    );
 
     @POST("auction/confirm")
     Call<ResponseBody> postConfirm(
