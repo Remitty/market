@@ -266,10 +266,10 @@ public class AuctionDetailActivity extends AppCompatActivity {
         JsonObject params = new JsonObject();
         params.addProperty("id", myId);
         params.addProperty("price", editBetPrice.getText().toString());
-
         if (SettingsMain.isConnectingToInternet(this)) {
 
             loadingLayout.setVisibility(View.VISIBLE);
+            btnBet.setVisibility(View.GONE);
 //            SettingsMain.showDilog(this);
             Log.d("info bet Data", "" + params.toString());
             Call<ResponseBody> myCall = restService.postBet(params, UrlController.AddHeaders(this));
@@ -337,6 +337,9 @@ public class AuctionDetailActivity extends AppCompatActivity {
                         if (responseObj.isSuccessful()) {
 
                             JSONObject response = new JSONObject(responseObj.body().string());
+                            if(response.getBoolean("success"))
+                                btnCancel.setVisibility(View.GONE);
+
                             Toast.makeText(getBaseContext(), response.optString("message"), Toast.LENGTH_SHORT).show();
 
                         }
@@ -350,14 +353,12 @@ public class AuctionDetailActivity extends AppCompatActivity {
                     }
 //                    SettingsMain.hideDilog();
                     loadingLayout.setVisibility(View.GONE);
-                    btnBet.setVisibility(View.VISIBLE);
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
 //                    SettingsMain.hideDilog();
                     loadingLayout.setVisibility(View.GONE);
-                    btnBet.setVisibility(View.VISIBLE);
                     Log.d("info AdPost error", String.valueOf(t));
                     Log.d("info AdPost error", String.valueOf(t.getMessage() + t.getCause() + t.fillInStackTrace()));
                 }
