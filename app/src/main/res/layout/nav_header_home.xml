@@ -54,5 +54,14 @@
         android:paddingEnd="5dp"
         android:paddingStart="5dp"
         android:text="" />
-
+    <TextView
+        android:id="@+id/view_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:gravity="center"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:textColor="@color/colorRedCrayon"
+        android:text="View Profile" />
 </RelativeLayout>

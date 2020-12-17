@@ -59,6 +59,7 @@ import com.brian.market.order.MyOrderActivity;
 import com.brian.market.home.AddNewProductPost;
 import com.brian.market.profile.MyProductActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.sufficientlysecure.htmltextview.HtmlTextView;
@@ -116,7 +117,8 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
     ArrayList<String> imageUrls;
     JSONObject  jsonObjectReport,
             jsonObjectShareInfo, jsonObjectRatingInfo, blockUserObject, JsonObjectData;
-    RecyclerView mRecyclerView, ratingRecylerView;
+    RecyclerView mRelatedRecyclerView, ratingRecylerView;
+    ArrayList<ProductDetails> relatedProducts = new ArrayList<>();
     View temphide;
     LinearLayout linearLayout, linearLayoutSubmitRating, ratingLoadLayout;
     int noOfCol = 2;
@@ -135,7 +137,6 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
     FrameLayout youtube_view;
     RuntimePermissionHelper runtimePermissionHelper;
     Dialog callDialog;
-    private ArrayList<ProductDetails> list = new ArrayList<>();
     private ArrayList<blogCommentsModel> listitems = new ArrayList<>();
     private String phoneNumber, maskedPhoneNumber, maskedService;
     private String adAuthorId;
@@ -184,11 +185,9 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
         initListeners();
 
         checkDetailType();
-        mRecyclerView = mView.findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        GridLayoutManager MyLayoutManager2 = new GridLayoutManager(getActivity(), 1);
-        MyLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
-        mRecyclerView.setLayoutManager(MyLayoutManager2);
+        mRelatedRecyclerView = mView.findViewById(R.id.recycler_view);
+//        mRelatedRecyclerView.setHasFixedSize(true);
+
 
 //        SwipeRefreshLayout swipeRefreshLayout = mView.findViewById(R.id.swipe_refresh_layout);
 //        swipeRefreshLayout.setOnRefreshListener(() -> adforest_recreateAdDetail());
@@ -702,15 +701,27 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
                             JSONObject response = new JSONObject(responseObj.body().string());
 
                             if (response.getBoolean("success")) {
-                                Log.d("info AdDetails object", "" + response.getJSONObject("data"));
+                                Log.d("info AdDetails object", "" + response.toString());
 
                                 JsonObjectData = response.getJSONObject("data");
 
                                 adforest_setAllViewsText(JsonObjectData,
                                         JsonObjectData.getJSONObject("owner"));
 
-                                ProductAdapter adapter = new ProductAdapter(getActivity(), list);
-                                mRecyclerView.setAdapter(adapter);
+                                relatedProducts.clear();
+                                JSONArray related = response.getJSONArray("related_products");
+                                for (int i = 0; i < related.length(); i ++){
+                                    JSONObject object = related.getJSONObject(i);
+                                    ProductDetails product = new ProductDetails();
+                                    product.setData(object);
+                                    relatedProducts.add(product);
+                                }
+
+                                ProductAdapter adapter = new ProductAdapter(getActivity(), relatedProducts, true);
+                                mRelatedRecyclerView.setAdapter(adapter);
+                                GridLayoutManager MyLayoutManager2 = new GridLayoutManager(getActivity(), related.length());
+                                MyLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
+                                mRelatedRecyclerView.setLayoutManager(MyLayoutManager2);
                                 adapter.setOnItemClickListener(new OnItemClickListener2() {
                                     @Override
                                     public void onItemClick(ProductDetails item) {
@@ -977,7 +988,7 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
         }
 
 
-        list.clear();
+
     }
 
     private void setMap() {

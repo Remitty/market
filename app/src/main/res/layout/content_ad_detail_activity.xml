@@ -42,7 +42,6 @@
                 android:background="@drawable/bottmbar"
                 android:clickable="true"
                 android:drawablePadding="10dp"
-                android:drawableStart="@drawable/ic_mail_outlinewhite"
                 android:gravity="center"
                 android:paddingBottom="12dp"
                 android:paddingEnd="30dp"
@@ -51,7 +50,8 @@
                 android:textAlignment="center"
                 android:text="Make Offer"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textStyle="bold"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <View

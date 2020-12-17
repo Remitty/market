@@ -2,6 +2,8 @@ package com.brian.market.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -38,11 +40,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     private User_Recents_DB recents_db;
     private User_Favorites_DB favorites_db;
+    private boolean flag_related = false;
 
     public ProductAdapter(Context context, ArrayList<ProductDetails> Data) {
         this.list = Data;
         settingsMain = new SettingsMain(context);
         this.context = context;
+
+        recents_db = new User_Recents_DB();
+        favorites_db = new User_Favorites_DB();
+    }
+
+    public ProductAdapter(Context context, ArrayList<ProductDetails> Data, boolean b) {
+        this.list = Data;
+        settingsMain = new SettingsMain(context);
+        this.context = context;
+        flag_related = b;
 
         recents_db = new User_Recents_DB();
         favorites_db = new User_Favorites_DB();
@@ -87,6 +100,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     .placeholder(R.drawable.placeholder)
                     .into(holder.mainImage);
         }
+        if(flag_related)
+            holder.mainImage.setMaxHeight(200);
 
         if(feedItem.isShipping()){
             if (CartFragment.checkCartHasProduct(feedItem.getId())) {

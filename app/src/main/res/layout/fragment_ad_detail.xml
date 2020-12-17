@@ -1235,17 +1235,23 @@
                 android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
                 android:padding="3dp"
-                android:visibility="gone"
+                android:text="Related Products"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:textSize="17sp" />
-
+            <HorizontalScrollView
+                android:id="@+id/horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/relatedText"
+                >
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/relatedText"
                 android:layout_margin="5dp"
                 android:scrollbars="none"
-                android:visibility="gone"
-                tools:listitem="@layout/itemof_related_posts" />
+                 />
+            </HorizontalScrollView>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>

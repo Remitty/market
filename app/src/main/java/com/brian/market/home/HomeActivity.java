@@ -263,6 +263,14 @@ public class HomeActivity extends AppCompatActivity
             TextView textViewUserEmail = header.findViewById(R.id.textView);
             textViewUserName = header.findViewById(R.id.username);
             imageViewProfile = header.findViewById(R.id.imageView);
+            TextView viewProfile = header.findViewById(R.id.view_profile);
+
+            viewProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                }
+            });
 
             int[] colors = {Color.parseColor(getMainColor()), Color.parseColor(getMainColor())};
             //create a new gradient color

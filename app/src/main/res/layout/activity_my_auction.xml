@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabTextColor="@color/white"
-            android:background="@color/quantum_purple"
+            android:background="@color/colorAccent"
             app:tabIndicatorColor="@color/quantum_purple100"/>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
@@ -33,7 +33,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginStart="16dp"
-        android:background="@color/white"
-        android:src="@drawable/ic_add"/>
+        android:backgroundTint="@color/colorPrimary"
+        app:rippleColor="@color/white"
+        android:src="@drawable/ic_photo_camera"/>
 
 </FrameLayout>

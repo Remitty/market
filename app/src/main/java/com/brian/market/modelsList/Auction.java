@@ -58,6 +58,11 @@ public class Auction {
         return  category == null? "No category" : category.optString("cat_name");
     }
 
+    public int getCategoryId() {
+        JSONObject category = data.optJSONObject("category");
+        return  category == null? 0 : category.optInt("id");
+    }
+
     public String getWinnerID() {
         return data.optString("winner_id");
     }

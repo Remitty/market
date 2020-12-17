@@ -389,7 +389,7 @@ public class FragmentHome extends Fragment {
         featuredRecylerViewMid = mView.findViewById(R.id.featuredRecylerViewMid);
         latestRecyclerView = mView.findViewById(R.id.latestRecyclerView);
         scrollView = mView.findViewById(R.id.scrollView);
-        catCardView = mView.findViewById(R.id.card_view);
+        catCardView = mView.findViewById(R.id.cat_card);
         buttonAllCat = mView.findViewById(R.id.buttonAllCat);
         buttonAllCat.setBackground(CustomBorderDrawable.customButton(6, 6, 6, 6, SettingsMain.getMainColor(), SettingsMain.getMainColor(), SettingsMain.getMainColor(), 3));
 

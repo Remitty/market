@@ -43,6 +43,9 @@ public class Ad_detail_activity extends AppCompatActivity implements RuntimePerm
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.parseColor(settingsMain.getMainColor()));
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                window.setStatusBarColor(getColor(R.color.colorRedCrayon));
+//            }
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

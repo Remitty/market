@@ -12,10 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.brian.market.auction.adapter.AuctionAdapter;
-import com.brian.market.auction.adapter.MyAuctionAdapter;
+import com.brian.market.helper.GridSpacingItemDecoration;
 import com.brian.market.helper.OnAuctionItemClickListener;
+import com.brian.market.home.adapter.ItemMainAllCatAdapter;
 import com.brian.market.modelsList.Auction;
 import com.brian.market.R;
+import com.brian.market.modelsList.homeCatListModel;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
@@ -29,7 +31,10 @@ import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
@@ -45,10 +50,12 @@ public class AuctionActivity extends AppCompatActivity {
     RestService restService;
 
     private ArrayList<Auction> auctionList = new ArrayList<>();
-    RecyclerView recyclerView;
+    private ArrayList<Auction> auctionListTemp = new ArrayList<>();
+    private ArrayList<homeCatListModel> catList = new ArrayList<>();
+    RecyclerView recyclerView, catRecycler;
 
     ViewPager mViewPager;
-    AuctionAdapter myAuctionAdapter;
+    AuctionAdapter auctionAdapter;
     LinearLayout emptyLayout;
 
     @Override
@@ -62,7 +69,7 @@ public class AuctionActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.parseColor(getMainColor()));
+
         }
 
         if (getSupportActionBar() != null) {
@@ -70,8 +77,8 @@ public class AuctionActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Auction");
         }
 
-        myAuctionAdapter = new AuctionAdapter(AuctionActivity.this, auctionList, 2);
-        myAuctionAdapter.setOnItemClickListener(new OnAuctionItemClickListener() {
+        auctionAdapter = new AuctionAdapter(AuctionActivity.this, auctionList, 2);
+        auctionAdapter.setOnItemClickListener(new OnAuctionItemClickListener() {
             @Override
             public void onItemClick(Auction item) {
                 Intent intent = new Intent(AuctionActivity.this, AuctionDetailActivity.class);
@@ -92,7 +99,9 @@ public class AuctionActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         StaggeredGridLayoutManager grid = new StaggeredGridLayoutManager(3, 1);
         recyclerView.setLayoutManager(grid);
-        recyclerView.setAdapter(myAuctionAdapter);
+        recyclerView.setAdapter(auctionAdapter);
+
+        catRecycler = findViewById(R.id.recycler_cat);
 
         emptyLayout = findViewById(R.id.empty);
         
@@ -116,6 +125,7 @@ public class AuctionActivity extends AppCompatActivity {
                             JSONObject response = new JSONObject(responseObj.body().string());
                             if(response.getBoolean("success")) {
                                 auctionList.clear();
+                                catList.clear();
 
                                 JSONArray list = response.getJSONArray("data");
                                 Log.d("info load auction", list.toString());
@@ -127,10 +137,42 @@ public class AuctionActivity extends AppCompatActivity {
                                         item.setData(product);
 
                                          auctionList.add(item);
+                                        auctionListTemp.add(item);
                                     }
                                 }
 
-                                myAuctionAdapter.notifyDataSetChanged();
+                                auctionAdapter.notifyDataSetChanged();
+
+                                JSONArray cats = response.getJSONArray("cats");
+
+                                if (cats != null && cats.length() > 0) {
+                                    for (int i = 0; i < cats.length(); i++) {
+                                        homeCatListModel item = new homeCatListModel();
+                                        item.setTitle(cats.optJSONObject(i).optString("cat_name"));
+                                        item.setThumbnail(cats.optJSONObject(i).optString("cat_img"));
+                                        item.setId(cats.optJSONObject(i).optString("id"));
+                                        item.setData(cats.optJSONObject(i));
+
+                                        catList.add(item);
+                                    }
+                                }
+                                int noOfCol = cats.length();
+                                GridLayoutManager MyLayoutManager = new GridLayoutManager(AuctionActivity.this, cats.length());
+                                MyLayoutManager.setOrientation(RecyclerView.VERTICAL);
+                                catRecycler.setLayoutManager(MyLayoutManager);
+
+                                catRecycler.addItemDecoration(new GridSpacingItemDecoration(noOfCol, 0, false));
+                                ItemMainAllCatAdapter adapter = new ItemMainAllCatAdapter(getBaseContext(), catList, noOfCol);
+                                catRecycler.setAdapter(adapter);
+                                adapter.setOnItemClickListener(item -> {
+                                    auctionList.clear();
+                                    for (Auction auction: auctionListTemp) {
+                                        if(auction.getCategoryId() == Integer.parseInt(item.getId())){
+                                            auctionList.add(auction);
+                                        }
+                                    }
+                                    auctionAdapter.notifyDataSetChanged();
+                                });
 
                                 if(auctionList.size() == 0)
                                     emptyLayout.setVisibility(View.VISIBLE);
