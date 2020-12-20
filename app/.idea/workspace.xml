@@ -11,11 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionDetailActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/PostAuctionFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/PostAuctionFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/Network/RestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/Network/RestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_auction_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_auction_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/item_auction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/item_auction.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/nav_header_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/nav_header_home.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,8 +61,8 @@
     <property name="AnalyzeApkAction.lastApkPath" value="$PROJECT_DIR$/build/outputs/apk/debug/mackirel-1.0.apk" />
     <property name="ApkExportedModule" value="app" />
     <property name="BundleExportedModule" value="app" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_XL_API_30" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-24T10:40:28.871Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="test" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-12-18T03:58:30.852Z" />
     <property name="ExportApk.ApkPath" value="F:\Brian\Market\app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -180,7 +176,28 @@
       <option name="project" value="LOCAL" />
       <updated>1608183023202</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add related products and cancel auction">
+      <created>1608241921052</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608241921052</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add related products and cancel auction">
+      <created>1608243200887</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608243200887</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix related products error">
+      <created>1608245890217</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608245890217</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,6 +216,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add category field into auction" />
     <MESSAGE value="update color system &amp; add related products" />
-    <option name="LAST_COMMIT_MESSAGE" value="update color system &amp; add related products" />
+    <MESSAGE value="add related products and cancel auction" />
+    <MESSAGE value="fix related products error" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix related products error" />
   </component>
 </project>
