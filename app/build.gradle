@@ -8,9 +8,9 @@ android {
         applicationId "com.brian.market"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 07
+        versionCode 8
         multiDexEnabled true
-        versionName "2.0"
+        versionName "2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         resValue "string", "places_api_key", (project.findProperty("AIzaSyBl2lwQ1zOgrJ3-HY2WsxqqCuODdomQ4Fg") ?: "AIzaSyBl2lwQ1zOgrJ3-HY2WsxqqCuODdomQ4Fg")
