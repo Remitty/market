@@ -152,7 +152,7 @@ public class FragmentHome extends Fragment {
     ItemMainAllLocationPoPUpHome ItemMainAllLocationPoPUpHome;
     protected GoogleMap mMap;
     RuntimePermissionHelper runtimePermissionHelper;
-    private String address;
+    private String address="test";
     private TextView myAddress;
 
     BannerSlider bannerSlider;
@@ -288,24 +288,7 @@ public class FragmentHome extends Fragment {
 
         getActivity().setTitle(getResources().getString(R.string.app_name));
 
-
-        GPSTracker gps = new GPSTracker(getActivity());
-        if (gps.canGetLocation()) {
-            Double latitude = gps.getLatitude();
-            Double longitude = gps.getLongitude();
-
-            Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
-            List<Address> addresses = null;
-            try {
-                addresses = geocoder.getFromLocation(latitude, longitude, 1);
-                address = addresses.get(0).getAddressLine(0);
-
-                adforest_getAllData();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        else gps.showSettingsAlert();
+        adforest_getAllData();
 
         return mView;
 
@@ -523,7 +506,7 @@ public class FragmentHome extends Fragment {
             SettingsMain.showDilog(getActivity());
             JsonObject object = new JsonObject();
             object.addProperty("address", address);
-            Call<ResponseBody> myCall = restService.postHomeDetails(object, UrlController.AddHeaders(getActivity()));
+            Call<ResponseBody> myCall = restService.getHomeDetails(UrlController.AddHeaders(getActivity()));
             myCall.enqueue(new Callback<ResponseBody>() {
                 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -557,8 +540,8 @@ public class FragmentHome extends Fragment {
                                 }
 
                                 settingsMain.setKey("stripeKey", responseData.getString("stripe_key"));
-                                address = responseData.getString("my_location");
-                                myAddress.setText(address);
+//                                address = responseData.getString("my_location");
+//                                myAddress.setText(address);
                                 if (responseData.getJSONArray("cat_icons").length() == 0) {
                                     catCardView.setVisibility(View.GONE);
                                 } else {

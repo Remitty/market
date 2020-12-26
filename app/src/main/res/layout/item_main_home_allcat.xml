@@ -22,6 +22,6 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="10sp" />
+        android:textColor="@color/cat1"
+        android:textSize="12sp" />
 </LinearLayout>

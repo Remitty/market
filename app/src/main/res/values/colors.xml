@@ -11,6 +11,9 @@
     <color name="rattingBarColor">#aaffffff</color>
     <color name="green">#66BB6A</color>
 
+    <color name="cat1">#05472a</color>
+    <color name="cat2">#45cea2</color>
+
     <color name="tab1">#a0d468</color>
     <color name="tab2">#3498db</color>
     <color name="tab3">#e8ce4d</color>
