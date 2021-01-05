@@ -3,6 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.brian.market">
 
+    <uses-sdk tools:overrideLibrary="android.support.v17.leanback" />
+    <!-- for card.io card scanning -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -14,7 +33,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".payment.PaymentActivity"></activity>
         <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait">
@@ -171,8 +190,7 @@
         <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
         <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
         <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
-        <activity android:name=".bitcoin.BitCoinActivity"
-            ></activity>
+        <activity android:name=".bitcoin.BitCoinActivity" />
         <activity android:name=".auction.AuctionDetailActivity" />
         <activity android:name=".auction.MyAuctionActivity" />
         <activity android:name=".auction.AddNewAuctionPost" />
@@ -196,8 +214,7 @@
             android:name=".home.SearchLocationLatLongActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan" />
-        <!-- Full screen image Viewer -->
+            android:windowSoftInputMode="adjustPan" /> <!-- Full screen image Viewer -->
         <meta-data
             android:name="com.plaid.link.public_key"
             android:value="9631b048a502739144d719f9e69973" />
@@ -248,24 +265,5 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
     </application>
-    <!-- for card.io card scanning -->
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-    <uses-sdk tools:overrideLibrary="android.support.v17.leanback" />
 
 </manifest>

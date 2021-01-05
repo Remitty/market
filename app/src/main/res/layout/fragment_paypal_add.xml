@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="10dp"
+    android:orientation="horizontal"
+    tools:context=".payment.PaypalAddFragment">
+
+    <EditText
+        android:id="@+id/eidt_paypal"
+        android:layout_weight="1"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/edittext_background"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingHorizontal="10dp"
+        android:hint="Paypal Email"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_paypal"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:cornerRadius="10dp"
+            android:backgroundTint="@color/dark_blue"
+            android:gravity="center"
+            android:text="Save"
+            android:textSize="11dp"/>
+        <FrameLayout
+            android:id="@+id/loadingLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_uploading"
+            android:visibility="gone">
+
+            <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/spin_kit"
+                style="@style/SpinKitView.Small.FadingCircle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                app:SpinKit_Color="@color/white" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

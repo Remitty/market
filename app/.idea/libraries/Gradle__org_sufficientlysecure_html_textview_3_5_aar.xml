@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: org.sufficientlysecure:html-textview:3.5@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/423f24156ee2cb7b9eadb327235e1257/jetified-html-textview-3.5/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/423f24156ee2cb7b9eadb327235e1257/jetified-html-textview-3.5/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/38b88e3e307258cb450f251b14c67879/jetified-html-textview-3.5/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/38b88e3e307258cb450f251b14c67879/jetified-html-textview-3.5/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.sufficientlysecure/html-textview/3.5/da1f21aaa2fd4cb8457d9f9a733efe3e37a6bf7/html-textview-3.5-javadoc.jar!/" />

@@ -532,7 +532,7 @@ public class FragmentHome extends Fragment {
                                     menu.findItem(R.id.myProducts).setVisible(false);
                                     menu.findItem(R.id.myOrders).setVisible(false);
                                     menu.findItem(R.id.myAuction).setVisible(false);
-                                    menu.findItem(R.id.cards).setVisible(false);
+                                    menu.findItem(R.id.payment).setVisible(false);
 
                                     menu.findItem(R.id.nav_log_out).setVisible(false);
                                     menu.findItem(R.id.coin_deposit).setVisible(false);

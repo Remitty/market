@@ -987,10 +987,9 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
 
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
-
-
-
     }
 
     private void setMap() {

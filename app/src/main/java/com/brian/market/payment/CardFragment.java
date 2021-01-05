@@ -3,60 +3,53 @@ package com.brian.market.payment;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
 import com.brian.market.R;
 import com.brian.market.modelsList.CreditCard;
-import com.brian.market.payment.adapter.CardListAdapter;
+import com.brian.market.payment.adapter.CardPagerAdapter;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
+import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CardListPage extends Fragment {
+public class CardFragment extends Fragment {
+    private CreditCard mCard;
+    private ViewPager mCardPager;
     SettingsMain settingsMain;
-    FrameLayout loadingLayout;
     RestService restService;
 
-    RecyclerView cardListView;
-    CardListAdapter mAdapter;
-    List<CreditCard> cardList = new ArrayList<>();
-
-    public CardListPage() {
+    public CardFragment(CreditCard card, ViewPager pager) {
         // Required empty public constructor
-    }
-
-    public static CardListPage newInstance(List<CreditCard> cardList) {
-        CardListPage fragment = new CardListPage();
-        fragment.cardList = cardList;
-        return fragment;
+        mCard = card;
+        mCardPager = pager;
     }
 
     @Override
@@ -67,35 +60,47 @@ public class CardListPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_card_list_page, container, false);
+        // Inflate the layout for this fragment
+        View view =inflater.inflate(R.layout.fragment_card, container, false);
 
         settingsMain = new SettingsMain(getContext());
-
-        loadingLayout = (FrameLayout) view.findViewById(R.id.loadingLayout);
-
         restService = UrlController.createService(RestService.class, settingsMain.getAuthToken(), getContext());
 
-        cardListView = view.findViewById(R.id.card_list_view);
+        ImageView cardLogo = view.findViewById(R.id.card_logo);
+        TextView cardId = view.findViewById(R.id.card_id);
+        Button btnCard = view.findViewById(R.id.btn_card);
+        Button btnCardDelete = view.findViewById(R.id.btn_card_delete);
 
-        LinearLayout emptyLayout = view.findViewById(R.id.empty_view);
-        if (cardList.size() > 0) {
-            emptyLayout.setVisibility(View.GONE);
-            cardListView.setVisibility(View.VISIBLE);
+
+        if(mCard.getData() != null) {
+            if(mCard.getBrand().equals("Visa"))
+                Picasso.with(getContext()).load(R.drawable.ic_visa)
+                        .error(R.drawable.ic_cards)
+                        .placeholder(R.drawable.ic_cards)
+                        .into(cardLogo);
+            else
+                Picasso.with(getContext()).load(R.drawable.ic_mastercard)
+                        .error(R.drawable.ic_cards)
+                        .placeholder(R.drawable.ic_cards)
+                        .into(cardLogo);
+
+            cardId.setText("XXXX-XXXX-XXXX-" + mCard.getLastFour());
+
+            btnCard.setText("Edit");
+            btnCardDelete.setVisibility(View.VISIBLE);
         }
-        else {
-            emptyLayout.setVisibility(View.VISIBLE);
-            cardListView.setVisibility(View.GONE);
-        }
 
-        cardListView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new CardListAdapter(cardList, true);
-        mAdapter.setListener(new CardListAdapter.Listener() {
-
+        btnCard.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void OnDelete(int position) {
+            public void onClick(View v) {
+                mCardPager.setCurrentItem(1);
+            }
+        });
 
+        btnCardDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 builder.setTitle(getContext().getResources().getString(R.string.app_name))
                         .setIcon(R.mipmap.ic_launcher)
                         .setMessage("Are you sure you want to delete this card?");
@@ -103,8 +108,7 @@ public class CardListPage extends Fragment {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        CreditCard card = cardList.get(position);
-                        sendCardDeleteRequest(card.getCardId(), position);
+                        sendCardDeleteRequest(mCard.getCardId());
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -117,16 +121,12 @@ public class CardListPage extends Fragment {
                 alert.show();
             }
         });
-        cardListView.setAdapter(mAdapter);
 
         return view;
     }
 
-
-
-    private void sendCardDeleteRequest(String card_id, int position) {
+    private void sendCardDeleteRequest(String card_id) {
         if (SettingsMain.isConnectingToInternet(getActivity())) {
-            showLoading();
             JsonObject params = new JsonObject();
             params.addProperty("card_id", card_id);
 
@@ -134,7 +134,7 @@ public class CardListPage extends Fragment {
             myCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
-                    loadingLayout.setVisibility(View.GONE);
+//                    loadingLayout.setVisibility(View.GONE);
                     try {
                         Log.d("info delete card Resp", "" + responseObj.toString());
                         if (responseObj.isSuccessful()) {
@@ -142,8 +142,7 @@ public class CardListPage extends Fragment {
                             JSONObject response = new JSONObject(responseObj.body().string());
 
                             Toast.makeText(getContext(), response.get("message").toString(), Toast.LENGTH_SHORT).show();
-                            cardList.remove(position);
-                            mAdapter.notifyDataSetChanged();
+                            startActivity(new Intent(getActivity(), PaymentActivity.class));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -154,7 +153,7 @@ public class CardListPage extends Fragment {
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    loadingLayout.setVisibility(View.GONE);
+//                    loadingLayout.setVisibility(View.GONE);
                     if (t instanceof TimeoutException) {
                         Toast.makeText(getContext(), settingsMain.getAlertDialogMessage("internetMessage"), Toast.LENGTH_SHORT).show();
                     }
@@ -175,25 +174,5 @@ public class CardListPage extends Fragment {
 //            loadingLayout.setVisibility(View.GONE);
             Toast.makeText(getActivity(), settingsMain.getAlertDialogTitle("error"), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void showLoading(){
-        Drawable drawable = getResources().getDrawable(R.drawable.bg_uploading).mutate();
-        drawable.setColorFilter(Color.parseColor(SettingsMain.getMainColor()), PorterDuff.Mode.SRC_ATOP);
-//        loadingLayout.setBackground(drawable);
-//        loadingLayout.setVisibility(View.VISIBLE);
-    }
-
-    private void handleError(String error) {
-        final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-
-        alert.setTitle(settingsMain.getAlertDialogTitle("error"));
-        alert.setMessage(error);
-        alert.setPositiveButton(settingsMain.getAlertOkText(), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-            }
-        });
-        alert.show();
     }
 }

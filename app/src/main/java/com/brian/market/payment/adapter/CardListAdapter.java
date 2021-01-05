@@ -47,7 +47,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.OrderV
     public void onBindViewHolder(@NonNull final OrderViewHolder holder, final int position) {
         CreditCard item = arrItems.get(position);
 
-        holder.tvCardNumber.setText("xxxx-xxxx-xxxx-" + item.getLast_four());
+        holder.tvCardNumber.setText("xxxx-xxxx-xxxx-" + item.getLastFour());
 
         holder.btnCardDelete.setOnClickListener(new View.OnClickListener() {
             @Override

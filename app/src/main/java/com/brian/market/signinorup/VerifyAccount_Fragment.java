@@ -119,8 +119,8 @@ public class VerifyAccount_Fragment extends Fragment implements View.OnClickList
                                 Log.d("info verify account obj", "" + response.getJSONObject("data"));
                                 if (!response.getJSONObject("data").getString("logo").equals(""))
                                     Picasso.with(getContext()).load(response.getJSONObject("data").getString("logo"))
-                                            .error(R.drawable.logo)
-                                            .placeholder(R.drawable.logo)
+                                            .error(R.mipmap.ic_launcher_round)
+                                            .placeholder(R.mipmap.ic_launcher_round)
                                             .into(imageViewLogo);
 
                                 headingText.setText(response.getJSONObject("data").getString("text"));

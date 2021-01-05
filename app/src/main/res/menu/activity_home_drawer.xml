@@ -19,7 +19,7 @@
             android:icon="@drawable/auction"
             android:title="Shop Auction sales" />
         <item
-            android:id="@+id/cards"
+            android:id="@+id/payment"
             android:icon="@drawable/credit_card"
             android:title="Payment" />
 

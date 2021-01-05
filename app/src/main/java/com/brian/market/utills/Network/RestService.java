@@ -9,6 +9,7 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.HeaderMap;
@@ -537,23 +538,14 @@ public interface RestService {
             @HeaderMap Map<String, String> headers
     );
 
+    @GET("payment/")
+    Call<ResponseBody> payment(
+            @HeaderMap Map<String, String> headers
+    );
+
     //Get Stripe Payment View Details
     @GET("payment/card/")
     Call<ResponseBody> getStripeDetailsView(
-            @HeaderMap Map<String, String> headers
-    );
-
-    //Checkout endpoint in checkout proocess activity
-    @POST("payment/invoice")
-    Call<ResponseBody> postInvoice(
-            @Body JsonObject invoiceData,
-            @HeaderMap Map<String, String> headers
-    );
-
-    //Checkout endpoint in checkout proocess activity
-    @POST("payment/")
-    Call<ResponseBody> postCheckout(
-            @Body JsonObject updateStatus,
             @HeaderMap Map<String, String> headers
     );
 
@@ -588,6 +580,37 @@ public interface RestService {
     @POST("card/delete")
     Call<ResponseBody> deleteCard(
             @Body JsonObject jsonObject,
+            @HeaderMap Map<String, String> headers
+    );
+
+    @DELETE("card")
+    Call<ResponseBody>card_delete(
+            @QueryMap JsonObject jsonObject,
+            @HeaderMap Map<String, String> headers
+    );
+
+    @POST("paypal")
+    Call<ResponseBody>paypal(
+            @Body JsonObject jsonObject,
+            @HeaderMap Map<String, String> headers
+    );
+
+    @POST("paypal/delete")
+//    @HTTP(method = "DELETE", path = "paypal")
+    Call<ResponseBody>paypal_delete(
+            @HeaderMap Map<String, String> headers
+    );
+
+    //Checkout endpoint in checkout process activity
+    @POST("order/")
+    Call<ResponseBody> postCheckout(
+            @Body JsonObject updateStatus,
+            @HeaderMap Map<String, String> headers
+    );
+
+    @POST("order/invoice")
+    Call<ResponseBody> postInvoice(
+            @Body JsonObject invoiceData,
             @HeaderMap Map<String, String> headers
     );
 
@@ -864,6 +887,7 @@ public interface RestService {
     Call<ResponseBody> getCoinsList(
             @QueryMap Map<String, String> params,
             @HeaderMap Map<String, String> headers
+
     );
 
     @POST("coins/deposit")

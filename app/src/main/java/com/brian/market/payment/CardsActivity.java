@@ -103,9 +103,7 @@ public class CardsActivity extends AppCompatActivity {
                                         JSONObject cardObject = response.getJSONObject(i);
 
                                         CreditCard card = new CreditCard();
-                                        card.setCard_id(cardObject.optString("card_id"));
-                                        card.setBrand(cardObject.optString("brand"));
-                                        card.setLast_four(cardObject.optString("last_four"));
+                                        card.setData(cardObject);
 
                                         cardList.add(card);
                                     } catch (JSONException e) {

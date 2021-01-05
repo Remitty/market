@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="10dp"
+    tools:context=".payment.PaypalFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:src="@drawable/ic_paypal"
+            android:layout_gravity="center_vertical"
+            android:layout_width="60dp"
+            android:layout_height="40dp"/>
+        <TextView
+            android:id="@+id/paypal_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_vertical"
+            android:text="Paypal"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="17dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_paypal"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                app:cornerRadius="10dp"
+                android:backgroundTint="@color/dark_blue"
+                android:gravity="center"
+                android:text="Add"
+                android:textSize="11dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_paypal_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                app:cornerRadius="10dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="Delete"
+                android:textSize="11dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

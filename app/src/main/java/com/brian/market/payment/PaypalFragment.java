@@ -1,62 +1,49 @@
 package com.brian.market.payment;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonObject;
 import com.brian.market.R;
-import com.brian.market.modelsList.CreditCard;
-import com.brian.market.payment.adapter.CardListAdapter;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeoutException;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CardListPage extends Fragment {
+public class PaypalFragment extends Fragment {
+    private String mPaypal;
+    private ViewPager mPaypalPager;
     SettingsMain settingsMain;
-    FrameLayout loadingLayout;
     RestService restService;
 
-    RecyclerView cardListView;
-    CardListAdapter mAdapter;
-    List<CreditCard> cardList = new ArrayList<>();
-
-    public CardListPage() {
+    public PaypalFragment(String paypal, ViewPager paypalPager) {
         // Required empty public constructor
-    }
-
-    public static CardListPage newInstance(List<CreditCard> cardList) {
-        CardListPage fragment = new CardListPage();
-        fragment.cardList = cardList;
-        return fragment;
+        mPaypal = paypal;
+        mPaypalPager = paypalPager;
     }
 
     @Override
@@ -67,44 +54,41 @@ public class CardListPage extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_card_list_page, container, false);
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_paypal, container, false);
 
         settingsMain = new SettingsMain(getContext());
-
-        loadingLayout = (FrameLayout) view.findViewById(R.id.loadingLayout);
-
         restService = UrlController.createService(RestService.class, settingsMain.getAuthToken(), getContext());
 
-        cardListView = view.findViewById(R.id.card_list_view);
+        TextView paypal = view.findViewById(R.id.paypal_id);
+        Button btnPaypal = view.findViewById(R.id.btn_paypal);
+        Button btnPaypalDelete = view.findViewById(R.id.btn_paypal_delete);
 
-        LinearLayout emptyLayout = view.findViewById(R.id.empty_view);
-        if (cardList.size() > 0) {
-            emptyLayout.setVisibility(View.GONE);
-            cardListView.setVisibility(View.VISIBLE);
-        }
-        else {
-            emptyLayout.setVisibility(View.VISIBLE);
-            cardListView.setVisibility(View.GONE);
+        if(!mPaypal.equals("") && !mPaypal.equals("null")) {
+            paypal.setText(mPaypal);
+            btnPaypal.setText("Edit");
+            btnPaypalDelete.setVisibility(View.VISIBLE);
         }
 
-        cardListView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new CardListAdapter(cardList, true);
-        mAdapter.setListener(new CardListAdapter.Listener() {
-
+        btnPaypal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void OnDelete(int position) {
+            public void onClick(View v) {
+                mPaypalPager.setCurrentItem(1);
+            }
+        });
 
+        btnPaypalDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 builder.setTitle(getContext().getResources().getString(R.string.app_name))
                         .setIcon(R.mipmap.ic_launcher)
-                        .setMessage("Are you sure you want to delete this card?");
+                        .setMessage("Are you sure you want to delete this paypal?");
                 builder.setCancelable(true);
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        CreditCard card = cardList.get(position);
-                        sendCardDeleteRequest(card.getCardId(), position);
+                        sendPaypalDeleteRequest();
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -117,24 +101,18 @@ public class CardListPage extends Fragment {
                 alert.show();
             }
         });
-        cardListView.setAdapter(mAdapter);
 
         return view;
     }
 
-
-
-    private void sendCardDeleteRequest(String card_id, int position) {
+    private void sendPaypalDeleteRequest() {
         if (SettingsMain.isConnectingToInternet(getActivity())) {
-            showLoading();
-            JsonObject params = new JsonObject();
-            params.addProperty("card_id", card_id);
 
-            Call<ResponseBody> myCall = restService.deleteCard(params, UrlController.AddHeaders(getContext()));
+            Call<ResponseBody> myCall = restService.paypal_delete(UrlController.AddHeaders(getContext()));
             myCall.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
-                    loadingLayout.setVisibility(View.GONE);
+//                    loadingLayout.setVisibility(View.GONE);
                     try {
                         Log.d("info delete card Resp", "" + responseObj.toString());
                         if (responseObj.isSuccessful()) {
@@ -142,8 +120,7 @@ public class CardListPage extends Fragment {
                             JSONObject response = new JSONObject(responseObj.body().string());
 
                             Toast.makeText(getContext(), response.get("message").toString(), Toast.LENGTH_SHORT).show();
-                            cardList.remove(position);
-                            mAdapter.notifyDataSetChanged();
+                            startActivity(new Intent(getActivity(), PaymentActivity.class));
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -154,7 +131,7 @@ public class CardListPage extends Fragment {
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    loadingLayout.setVisibility(View.GONE);
+//                    loadingLayout.setVisibility(View.GONE);
                     if (t instanceof TimeoutException) {
                         Toast.makeText(getContext(), settingsMain.getAlertDialogMessage("internetMessage"), Toast.LENGTH_SHORT).show();
                     }
@@ -175,25 +152,5 @@ public class CardListPage extends Fragment {
 //            loadingLayout.setVisibility(View.GONE);
             Toast.makeText(getActivity(), settingsMain.getAlertDialogTitle("error"), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void showLoading(){
-        Drawable drawable = getResources().getDrawable(R.drawable.bg_uploading).mutate();
-        drawable.setColorFilter(Color.parseColor(SettingsMain.getMainColor()), PorterDuff.Mode.SRC_ATOP);
-//        loadingLayout.setBackground(drawable);
-//        loadingLayout.setVisibility(View.VISIBLE);
-    }
-
-    private void handleError(String error) {
-        final AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-
-        alert.setTitle(settingsMain.getAlertDialogTitle("error"));
-        alert.setMessage(error);
-        alert.setPositiveButton(settingsMain.getAlertOkText(), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-            }
-        });
-        alert.show();
     }
 }

@@ -27,6 +27,7 @@ import com.brian.market.cart.CartActivity;
 import com.brian.market.cart.CartFragment;
 import com.brian.market.messages.ChatActivity;
 import com.brian.market.order.MyOrderActivity;
+import com.brian.market.payment.PaymentActivity;
 import com.brian.market.profile.ProfileActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -777,8 +778,8 @@ public class HomeActivity extends AppCompatActivity
                 intent1.putExtra("receiverId", "");
                 startActivity(intent1);
                 break;
-            case R.id.cards:
-                startActivity(new Intent(getApplicationContext(), CardsActivity.class));
+            case R.id.payment:
+                startActivity(new Intent(getApplicationContext(), PaymentActivity.class));
                 overridePendingTransition(R.anim.right_enter, R.anim.left_out);
                 break;
             case R.id.coin_deposit:
