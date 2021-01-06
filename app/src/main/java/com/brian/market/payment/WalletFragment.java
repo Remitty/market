@@ -49,7 +49,7 @@ public class WalletFragment extends Fragment {
 
     TextView tvBalance;
     EditText editCashAmount;
-    Button btnCashout;
+    Button btnCashout, btnCashoutPaypal;
     RelativeLayout loadingLayout;
     String stripeAccount;
 
@@ -89,31 +89,71 @@ public class WalletFragment extends Fragment {
             @Override
             public void onClick(View v) {
 //                PlaidConnect.initPlaid(WithdrawActivity.this);
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                builder.setTitle(getActivity().getResources().getString(R.string.app_name))
-                        .setIcon(R.mipmap.ic_launcher)
-                        .setMessage("Are you sure you want to withdraw $ "+editCashAmount.getText()+"?");
-                builder.setCancelable(true);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        requestWithdraw();
-                    }
-                });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
+                if (validate()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    builder.setTitle(getActivity().getResources().getString(R.string.app_name))
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setMessage("Are you sure you want to withdraw $ " + editCashAmount.getText() + " via bank?");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            requestWithdraw("Bank");
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
 
+                }
+            }
+        });
+
+        btnCashoutPaypal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    builder.setTitle(getActivity().getResources().getString(R.string.app_name))
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setMessage("Are you sure you want to withdraw $ " + editCashAmount.getText() + " via paypal?");
+                    builder.setCancelable(true);
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            requestWithdraw("Paypal");
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
+                }
             }
         });
 
         return mView;
+    }
+
+    private boolean validate() {
+        boolean validate = true;
+        if(editCashAmount.getText().toString().equals("")) {
+            validate = false;
+            editCashAmount.setError("!");
+        }
+        return validate;
     }
 
     private void initStripeConnect() {
@@ -185,14 +225,16 @@ public class WalletFragment extends Fragment {
         tvBalance.setText("$ " + wallet);
         editCashAmount = mView.findViewById(R.id.edit_cash_amount);
         btnCashout = mView.findViewById(R.id.btn_cashout);
+        btnCashoutPaypal = mView.findViewById(R.id.btn_cashout_paypal);
         loadingLayout = mView.findViewById(R.id.loadingLayout);
     }
 
-    private void requestWithdraw() {
+    private void requestWithdraw(String method) {
         if (SettingsMain.isConnectingToInternet(getActivity())) {
             loadingLayout.setVisibility(View.VISIBLE);
             JsonObject params = new JsonObject();
             params.addProperty("withdraw_price", editCashAmount.getText().toString());
+            params.addProperty("method", method);
 
             Call<ResponseBody> myCall = restService.withdraw(params, UrlController.AddHeaders(getActivity()));
             myCall.enqueue(new Callback<ResponseBody>() {

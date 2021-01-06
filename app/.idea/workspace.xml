@@ -11,10 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/FragmentCatSubNSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/FragmentCatSubNSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/Network/RestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/Network/RestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/SettingsMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/SettingsMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_cat_subcatlist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_cat_subcatlist.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WalletFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WalletFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_wallet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_wallet.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -222,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609925412337</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add search more logic">
+      <created>1609929586825</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1609929586825</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -245,6 +250,7 @@
     <MESSAGE value="fix related products error" />
     <MESSAGE value="add payment screen" />
     <MESSAGE value="add load more logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="add load more logic" />
+    <MESSAGE value="add search more logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="add search more logic" />
   </component>
 </project>

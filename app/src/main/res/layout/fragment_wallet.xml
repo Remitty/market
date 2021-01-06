@@ -57,12 +57,22 @@
         </LinearLayout>
         <Button
             android:id="@+id/btn_cashout"
-            android:layout_width="210dp"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorRedCrayon"
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
-            android:text="CashOut"
+            android:backgroundTint="@color/dark_blue"
+            android:text="Cashout to Bank"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/btn_cashout_paypal"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/dark_blue"
+            android:text="Cashout to Paypal"
             android:textColor="@color/white"/>
 
         <RelativeLayout
@@ -87,9 +97,10 @@
 
         <com.github.thiagolocatelli.stripe.StripeButton
             android:id="@+id/btnStripeConnect"
-            android:layout_height="wrap_content"
-            android:layout_width="220dip"
+            android:layout_height="40dp"
+            android:layout_width="220dp"
             android:layout_gravity="center_horizontal|bottom"
+            android:textSize="13dp"
             android:layout_marginTop="20dp"/>
     </LinearLayout>
 
