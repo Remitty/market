@@ -55,15 +55,16 @@ public class WalletFragment extends Fragment {
 
     private StripeApp mApp;
     private StripeButton mStripeButton;
-    String wallet;
+    String wallet, paypal;
 
-    public WalletFragment(String wallet) {
+    public WalletFragment(String wallet, String paypal) {
         // Required empty public constructor
         this.wallet = wallet;
+        this.paypal = paypal;
     }
 
-    public static WalletFragment newInstance(String wallet) {
-        WalletFragment fragment = new WalletFragment(wallet);
+    public static WalletFragment newInstance(String wallet, String paypal) {
+        WalletFragment fragment = new WalletFragment(wallet, paypal);
         return fragment;
     }
 
@@ -118,12 +119,16 @@ public class WalletFragment extends Fragment {
         btnCashoutPaypal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(paypal.equals("") || paypal.equals("null")) {
+                    Toast.makeText(getContext(), "No paypal", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (validate()) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                     builder.setTitle(getActivity().getResources().getString(R.string.app_name))
                             .setIcon(R.mipmap.ic_launcher)
-                            .setMessage("Are you sure you want to withdraw $ " + editCashAmount.getText() + " via paypal?");
+                            .setMessage("Are you sure you want to withdraw $ " + editCashAmount.getText() + " to " + paypal +" ?");
                     builder.setCancelable(true);
                     builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override

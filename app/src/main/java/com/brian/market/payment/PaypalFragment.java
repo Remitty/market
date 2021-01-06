@@ -3,6 +3,7 @@ package com.brian.market.payment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -21,11 +22,16 @@ import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
 import com.google.gson.JsonObject;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeoutException;
 
@@ -35,14 +41,22 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PaypalFragment extends Fragment {
-    private String mPaypal;
+
+    private String mPaypal="";
     private ViewPager mPaypalPager;
     SettingsMain settingsMain;
     RestService restService;
 
+    private JSONObject paypal;
+
     public PaypalFragment(String paypal, ViewPager paypalPager) {
         // Required empty public constructor
         mPaypal = paypal;
+        mPaypalPager = paypalPager;
+    }
+
+    public PaypalFragment(JSONObject paypal, ViewPager paypalPager) {
+        this.paypal = paypal;
         mPaypalPager = paypalPager;
     }
 
@@ -104,6 +118,8 @@ public class PaypalFragment extends Fragment {
 
         return view;
     }
+
+
 
     private void sendPaypalDeleteRequest() {
         if (SettingsMain.isConnectingToInternet(getActivity())) {

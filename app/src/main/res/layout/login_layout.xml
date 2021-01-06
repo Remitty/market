@@ -60,7 +60,7 @@
                             android:id="@+id/login_emailid"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="70dp"
+                            android:layout_marginTop="20dp"
                             android:background="@drawable/rounded_corners_edittext_dark"
                             android:drawableStart="@drawable/ic_mail_outline"
                             android:drawablePadding="8dp"

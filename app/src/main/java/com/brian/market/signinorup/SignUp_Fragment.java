@@ -164,8 +164,8 @@ public class SignUp_Fragment extends Fragment implements OnClickListener
         titleTV = view.findViewById(R.id.title);
 //        orTV = view.findViewById(R.id.or);
 
-        signUpButton.setTextColor(Color.parseColor(settingsMain.getMainColor()));
-        signUpButton.setBackground(CustomBorderDrawable.customButton(3, 3, 3, 3, settingsMain.getMainColor(), "#00000000", settingsMain.getMainColor(), 2));
+//        signUpButton.setTextColor(Color.parseColor(settingsMain.getMainColor()));
+//        signUpButton.setBackground(CustomBorderDrawable.customButton(3, 3, 3, 3, settingsMain.getMainColor(), "#00000000", settingsMain.getMainColor(), 2));
 
         /*LinearLayout linearLayout = view.findViewById(R.id.myLinearLayout);
 

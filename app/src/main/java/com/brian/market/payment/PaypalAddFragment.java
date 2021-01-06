@@ -38,7 +38,7 @@ public class PaypalAddFragment extends Fragment {
     SettingsMain settingsMain;
     FrameLayout loadingLayout;
     RestService restService;
-    private String mPaypal;
+    private String mPaypal="";
     Button btnPaypal;
     public PaypalAddFragment(String paypal) {
         // Required empty public constructor

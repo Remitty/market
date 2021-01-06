@@ -9,14 +9,23 @@ import androidx.viewpager.widget.ViewPager;
 import com.brian.market.payment.PaypalAddFragment;
 import com.brian.market.payment.PaypalFragment;
 
+import org.json.JSONObject;
+
 public class PaypalPagerAdapter extends FragmentPagerAdapter {
     private String mPaypal;
+    private JSONObject paypal;
     ViewPager mPaypalPager;
 
     public PaypalPagerAdapter(@NonNull FragmentManager fm, String paypal, ViewPager paypalPager) {
         super(fm);
         mPaypal = paypal;
         mPaypalPager = paypalPager;
+    }
+
+    public PaypalPagerAdapter(@NonNull FragmentManager fm, JSONObject paypal, ViewPager paypalPager) {
+        super(fm);
+        this.paypal = paypal;
+        mPaypal = paypal.optString("paypal");
     }
 
     @NonNull

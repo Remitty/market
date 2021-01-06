@@ -156,11 +156,11 @@ public class Login_Fragment extends Fragment implements OnClickListener,
         imageViewLogo = view.findViewById(id.logoimage);
 //        linearLayoutLogo = view.findViewById(id.logo);
 //        linearLayoutLogo.setBackgroundColor(Color.parseColor(SettingsMain.getMainColor()));
-        startExplore.setTextColor(Color.parseColor(SettingsMain.getMainColor()));
-        startExplore.setBackground(CustomBorderDrawable.customButton(3, 3, 3, 3, SettingsMain.getMainColor(), "#00000000", SettingsMain.getMainColor(), 2));
+//        startExplore.setTextColor(Color.parseColor(SettingsMain.getMainColor()));
+//        startExplore.setBackground(CustomBorderDrawable.customButton(3, 3, 3, 3, SettingsMain.getMainColor(), "#00000000", SettingsMain.getMainColor(), 2));
 
-        loginButton.setTextColor(Color.parseColor(SettingsMain.getMainColor()));
-        loginButton.setBackground(CustomBorderDrawable.customButton(3, 3, 3, 3, SettingsMain.getMainColor(), "#00000000", SettingsMain.getMainColor(), 2));
+//        loginButton.setTextColor(Color.parseColor(SettingsMain.getMainColor()));
+//        loginButton.setBackground(CustomBorderDrawable.customButton(3, 3, 3, 3, SettingsMain.getMainColor(), "#00000000", SettingsMain.getMainColor(), 2));
 
         // Load ShakeAnimation
         shakeAnimation = AnimationUtils.loadAnimation(getActivity(),

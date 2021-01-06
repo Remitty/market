@@ -1,6 +1,7 @@
 package com.brian.market.payment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -34,6 +35,11 @@ import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.brian.market.modelsList.CreditCard;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.squareup.picasso.Picasso;
 import com.stripe.android.Stripe;
 import com.stripe.android.TokenCallback;
@@ -45,6 +51,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -74,10 +81,15 @@ public class StripePayment extends AppCompatActivity {
 
     private CreditCard mCard = new CreditCard();
     private String mPaypal="";
+    private JSONObject paypal;
 
     private String id = "", strSubtotal, strTax, strShipping, strTotal, strPaymentMethod="";
     private boolean shipping, defaultshipping;
     private Intent mIntent;
+
+    public static final int PAYPAL_REQUEST_CODE = 123;
+    private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
+    String paymentId="";
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -162,10 +174,10 @@ public class StripePayment extends AppCompatActivity {
         check3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mPaypal.equals("null") || mPaypal.equals("")) {
-                    Toast.makeText(getBaseContext(), "No paypal.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if(mPaypal.equals("null") || mPaypal.equals("")) {
+//                    Toast.makeText(getBaseContext(), "No paypal.", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
                 if(strPaymentMethod.equals("Paypal"))
                     return;
                 strPaymentMethod = "Paypal";
@@ -211,7 +223,8 @@ public class StripePayment extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 showLoading();
-
+                if(strPaymentMethod.equals("Paypal")) handlePaypal();
+                else
                 adforest_Checkout();
             }
         });
@@ -267,19 +280,20 @@ public class StripePayment extends AppCompatActivity {
                             if (response.getBoolean("success")) {
 
                                 strSubtotal = new DecimalFormat("$#0.00").format(response.optDouble("subtotal"));
-                                strTotal = new DecimalFormat("$#0.00").format(response.optDouble("total"));
+                                strTotal = new DecimalFormat("#0.00").format(response.optDouble("total"));
                                 strTax = new DecimalFormat("$#0.00").format(response.optDouble("tax"));
                                 strShipping = new DecimalFormat("$#0.00").format(response.optDouble("shipping_price"));
 
                                 tvSubTotal.setText(strSubtotal);
-                                tvTotal.setText(strTotal);
+                                tvTotal.setText("$"+strTotal);
                                 tvTax.setText(strTax);
                                 tvShipping.setText(strShipping);
 
                                 tvWalletBalance.setText(new DecimalFormat("$#0.00").format(response.optDouble("wallet_balance")));
 
                                 mCard.setData(response.optJSONObject("card"));
-                                mPaypal = response.optString("paypal");
+                                paypal = response.optJSONObject("paypal");
+                                mPaypal = paypal.optString("paypal");
 
                                 if(mCard.getData() != null) {
                                     tvCardId.setText("XXXX-XXXX-XXXX-"+mCard.getLastFour());
@@ -326,6 +340,10 @@ public class StripePayment extends AppCompatActivity {
 
             JsonObject params = new JsonObject();
             params.addProperty("payment", strPaymentMethod);
+            if(strPaymentMethod.equals("Paypal")) {
+                params.addProperty("payment_id", paymentId);
+                params.addProperty("total_price", strTotal);
+            }
             User_Cart_DB user_cart_db = new User_Cart_DB();
             params.addProperty("product_ids", user_cart_db.getCartItemsForInvoice().toString());
             boolean shipping = mIntent.getBooleanExtra("shipping", false);
@@ -396,9 +414,89 @@ public class StripePayment extends AppCompatActivity {
             });
         } else {
             loadingLayout.setVisibility(View.GONE);
-            SettingsMain.hideDilog();
             Toast.makeText(StripePayment.this, settingsMain.getAlertDialogTitle("error"), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void handlePaypal() {
+        PayPalConfiguration
+                config = null;
+        try {
+            config = new PayPalConfiguration()
+                    // Start with mock environment.  When ready, switch to sandbox (ENVIRONMENT_SANDBOX)
+                    // or live (ENVIRONMENT_PRODUCTION)
+//                    .environment(CONFIG_ENVIRONMENT)
+                    .environment(paypal.getString("mode"))
+                    .clientId(paypal.getString("client_id"))
+                    .merchantName(paypal.getString("merchant_name"));
+//                    .merchantPrivacyPolicyUri(Uri.parse(jsonObject.getString("privecy_url")))
+//                    .merchantUserAgreementUri(Uri.parse(jsonObject.getString("agreement_url")));
+            Intent intent = new Intent(StripePayment.this, PayPalService.class);
+
+            intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
+            this.startService(intent);
+
+            //Creating a paypalpayment
+            PayPalPayment payment = new PayPalPayment(new BigDecimal(strTotal), paypal.getString("currency"), "Mackirel",
+                    PayPalPayment.PAYMENT_INTENT_SALE);
+//
+//            //Creating Paypal Payment activity intent
+            Intent intent1 = new Intent(StripePayment.this, com.paypal.android.sdk.payments.PaymentActivity.class);
+//
+//            //putting the paypal configuration to the intent
+            intent1.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+//
+//            //Puting paypal payment to the intent
+            intent1.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+//
+//            //Starting the intent activity for result
+//            //the request code will be used on the method onActivityResult
+            startActivityForResult(intent1, PAYPAL_REQUEST_CODE);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //If the result is from paypal
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PAYPAL_REQUEST_CODE) {
+
+            //If the result is OK i.e. user has not canceled the payment
+            if (resultCode == Activity.RESULT_OK) {
+                //Getting the payment confirmation
+                PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+
+                //if confirmation is not null
+                if (confirm != null) {
+                    try {
+                        //Getting the payment details
+                        String paymentDetails = confirm.toJSONObject().toString(4);
+                        Log.i("paymentExample", paymentDetails);
+                        paymentId = confirm.toJSONObject()
+                                .getJSONObject("response").getString("id");
+
+                        adforest_Checkout();
+
+                    } catch (JSONException e) {
+                        Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
+                    }
+                }
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Log.i("paymentExample", "The user canceled.");
+                loadingLayout.setVisibility(View.GONE);
+            } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+                Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
+                loadingLayout.setVisibility(View.GONE);
+            }
+        }
+
+
     }
 
     @Override

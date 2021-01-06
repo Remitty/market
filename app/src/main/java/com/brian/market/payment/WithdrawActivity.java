@@ -111,6 +111,7 @@ public class WithdrawActivity extends AppCompatActivity {
                             JSONObject response = new JSONObject(responseObj.body().string());
 
                             String wallet = response.getString("balance");
+                            String paypal = response.getString("paypal");
 
                             JSONArray list2 = response.getJSONArray("withdraw_history");
                             Log.d("info load wining", list2.toString());
@@ -124,7 +125,7 @@ public class WithdrawActivity extends AppCompatActivity {
                                 }
                             }
 
-                            mPageAdapter = new WalletPageAdapter(getSupportFragmentManager(), wallet, list);
+                            mPageAdapter = new WalletPageAdapter(getSupportFragmentManager(), wallet, paypal, list);
                             mViewPager.setAdapter(mPageAdapter);
                             mViewPager.setCurrentItem(0);
                             mPageAdapter.notifyDataSetChanged();

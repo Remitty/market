@@ -8,9 +8,9 @@ android {
         applicationId "com.brian.market"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 9
+        versionCode 10
         multiDexEnabled true
-        versionName "2.1"
+        versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         resValue "string", "places_api_key", (project.findProperty("AIzaSyBl2lwQ1zOgrJ3-HY2WsxqqCuODdomQ4Fg") ?: "AIzaSyBl2lwQ1zOgrJ3-HY2WsxqqCuODdomQ4Fg")
@@ -119,7 +119,7 @@ dependencies {
     implementation 'com.github.iwgang:countdownview:2.1.6'
     implementation 'com.codemybrainsout.rating:ratingdialog:1.0.8'
     //PaypPal
-    implementation('com.paypal.sdk:paypal-android-sdk:2.13.3') {
+    implementation('com.paypal.sdk:paypal-android-sdk:2.16.0') {
         exclude group: 'io.card'
     }
     implementation 'com.anjlab.android.iab.v3:library:1.0.44'

@@ -16,18 +16,19 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class WalletPageAdapter extends FragmentPagerAdapter {
     private ArrayList<WithdrawTransaction> history = new ArrayList<>();
-    private String wallet;
-    public WalletPageAdapter(FragmentManager fm, String wallet, ArrayList<WithdrawTransaction> list) {
+    private String wallet, paypal;
+    public WalletPageAdapter(FragmentManager fm, String wallet, String paypal, ArrayList<WithdrawTransaction> list) {
         super(fm);
         this.history = list;
         this.wallet = wallet;
+        this.paypal = paypal;
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return WalletFragment.newInstance(wallet);
+                return WalletFragment.newInstance(wallet, paypal);
             case 1:
                 return WithdrawHistoryFragment.newInstance(history);
             default:
