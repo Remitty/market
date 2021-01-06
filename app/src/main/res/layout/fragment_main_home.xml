@@ -383,7 +383,9 @@
 
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
-
+    <include
+        layout="@layout/item_loading"
+        />
     <LinearLayout
         android:id="@+id/empty_view"
         android:layout_width="match_parent"

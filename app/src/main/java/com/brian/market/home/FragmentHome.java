@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.brian.market.ad_detail.full_screen_image.FullScreenViewActivity;
+import com.brian.market.helper.EndlessNestedScrollViewListener;
 import com.brian.market.helper.EndlessRecyclerViewScrollListener;
 import com.brian.market.helper.WorkaroundMapFragment;
 import com.brian.market.utills.GPSTracker;
@@ -54,6 +55,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -258,7 +260,9 @@ public class FragmentHome extends Fragment {
 
         initListeners();
 
-        initLastestProducts();
+        initLastestProductsView();
+
+        initNestedScrollView();
 
         if (getArguments() != null) {
 //            locationIDd = getArguments().getString("location_id");
@@ -300,16 +304,23 @@ public class FragmentHome extends Fragment {
 
     }
 
-    private void initLastestProducts() {
+    private void initNestedScrollView() {
+        if (scrollView != null) {
+            scrollView.setOnScrollChangeListener(new EndlessNestedScrollViewListener(latestRecyclerView.getLayoutManager()){
+                @Override
+                public void onLoadMore(int page) {
+                    showMoreLoading();
+                    loadMoreLatestProducts(page);
+                }
+            });
+        }
+    }
+
+    private void initLastestProductsView() {
         latestRecyclerView.setNestedScrollingEnabled(false);
         StaggeredGridLayoutManager grid = new StaggeredGridLayoutManager(3, 1);
         latestRecyclerView.setLayoutManager(grid);
-        latestRecyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(grid){
-            @Override
-            public void onLoadMore(int page, int totalItemsCount) {
-                loadMoreLatestProducts(page);
-            }
-        });
+
         ViewCompat.setNestedScrollingEnabled(latestRecyclerView, false);
 
         productAdapter = new ProductAdapter(getActivity(), latesetAdsList);
@@ -711,7 +722,7 @@ public class FragmentHome extends Fragment {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
                     try {
-
+                        hideMoreLoading();
                         if (responseObj.isSuccessful()) {
 
                             JSONObject response = new JSONObject(responseObj.body().string());
@@ -734,13 +745,14 @@ public class FragmentHome extends Fragment {
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    SettingsMain.hideDilog();
+                    hideMoreLoading();
                     Log.d("info HomeGet error", String.valueOf(t));
 //                    Timber.d(String.valueOf(t.getMessage() + t.getCause() + t.fillInStackTrace()));
                 }
             });
 
         } else {
+            hideMoreLoading();
             Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
         }
     }
@@ -938,7 +950,7 @@ public class FragmentHome extends Fragment {
                 latesetAdsList.add(item);
             }
 
-            productAdapter.notifyDataSetChanged();
+            productAdapter.loadMore(latesetAdsList);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -951,6 +963,16 @@ public class FragmentHome extends Fragment {
         transaction.replace(R.id.frameContainer, someFragment, tag);
         transaction.addToBackStack(tag);
         transaction.commit();
+    }
+
+    private void showMoreLoading() {
+        ProgressBar progressBar = mView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideMoreLoading() {
+        ProgressBar progressBar = mView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

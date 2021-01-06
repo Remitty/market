@@ -154,7 +154,11 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private void showLoadingView(LoadingViewHolder viewHolder, int position) {
         //ProgressBar would be displayed
+    }
 
+    public void loadMore(ArrayList<ProductDetails> newList) {
+        list.retainAll(newList);
+        notifyItemRangeChanged(list.size()-1 , newList.size());
     }
 
     private void populateItemRows(MyViewHolder holder, int position) {
