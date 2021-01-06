@@ -325,8 +325,13 @@ public interface RestService {
             @Body JsonObject menuSearch,
             @HeaderMap Map<String, String> headers
     );
-    //endregion
 
+    @POST("product/category/more")
+    Call<ResponseBody> postMoreProductsBySearch(
+            @Body JsonObject jsonObject,
+            @HeaderMap Map<String, String> headers
+    );
+    //endregion
 
     //region Home and Profile Endpoints
     //Get Home Details
