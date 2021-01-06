@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.brian.market.ad_detail.full_screen_image.FullScreenViewActivity;
+import com.brian.market.helper.EndlessRecyclerViewScrollListener;
 import com.brian.market.helper.WorkaroundMapFragment;
 import com.brian.market.utills.GPSTracker;
 import com.brian.market.utills.RuntimePermissionHelper;
@@ -25,6 +26,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.widget.NestedScrollView;
@@ -159,6 +161,8 @@ public class FragmentHome extends Fragment {
     List<Banner> banners = new ArrayList<>();
     ArrayList<String> imageUrls = new ArrayList<>();
 
+    ProductAdapter productAdapter;
+
     public FragmentHome() {
     }
 
@@ -254,6 +258,8 @@ public class FragmentHome extends Fragment {
 
         initListeners();
 
+        initLastestProducts();
+
         if (getArguments() != null) {
 //            locationIDd = getArguments().getString("location_id");
 //            imageViewLocation =getArguments().getString("location_img");
@@ -292,6 +298,51 @@ public class FragmentHome extends Fragment {
 
         return mView;
 
+    }
+
+    private void initLastestProducts() {
+        latestRecyclerView.setNestedScrollingEnabled(false);
+        StaggeredGridLayoutManager grid = new StaggeredGridLayoutManager(3, 1);
+        latestRecyclerView.setLayoutManager(grid);
+        latestRecyclerView.addOnScrollListener(new EndlessRecyclerViewScrollListener(grid){
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                loadMoreLatestProducts(page);
+            }
+        });
+        ViewCompat.setNestedScrollingEnabled(latestRecyclerView, false);
+
+        productAdapter = new ProductAdapter(getActivity(), latesetAdsList);
+        latestRecyclerView.setAdapter(productAdapter);
+
+        productAdapter.setOnItemClickListener(new OnItemClickListener2() {
+            @Override
+            public void onItemClick(ProductDetails item) {
+                Log.d("item_id", item.getId()+"");
+                Intent intent = new Intent(getActivity(), Ad_detail_activity.class);
+                intent.putExtra("adId", ""+item.getId());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onRemoveFav(int position) {
+
+            }
+
+            @Override
+            public void onShare(ProductDetails item) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_SUBJECT, item.getCardName());
+                i.putExtra(Intent.EXTRA_TEXT, "link");
+                startActivity(Intent.createChooser(i, "Share Product"));
+            }
+
+            @Override
+            public void onAddCart(ProductDetails item) {
+
+            }
+        });
     }
 
     private void initListeners() {
@@ -505,8 +556,10 @@ public class FragmentHome extends Fragment {
 
             SettingsMain.showDilog(getActivity());
             JsonObject object = new JsonObject();
-            object.addProperty("address", address);
-            Call<ResponseBody> myCall = restService.getHomeDetails(UrlController.AddHeaders(getActivity()));
+            object.addProperty("step", 0);
+//            object.addProperty("address", address);
+            Call<ResponseBody> myCall = restService.postHomeDetails(object, UrlController.AddHeaders(getActivity()));
+//            Call<ResponseBody> myCall = restService.getHomeDetails(UrlController.AddHeaders(getActivity()));
             myCall.enqueue(new Callback<ResponseBody>() {
                 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
                 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -528,6 +581,7 @@ public class FragmentHome extends Fragment {
                                 if (!settingsMain.getAppOpen()) {
                                     menu.findItem(R.id.message).setVisible(false);
                                     menu.findItem(R.id.profile).setVisible(false);
+                                    menu.findItem(R.id.balance).setVisible(false);
                                     menu.findItem(R.id.withdraw).setVisible(false);
                                     menu.findItem(R.id.myProducts).setVisible(false);
                                     menu.findItem(R.id.myOrders).setVisible(false);
@@ -590,6 +644,7 @@ public class FragmentHome extends Fragment {
 
                                 if (responseData.getBoolean("is_show_latest")) {
                                     latestLayout.setVisibility(View.VISIBLE);
+                                    latesetAdsList.clear();
                                     adforest_setAllLatesetAds(responseData.getJSONObject("latest_ads"), latestRecyclerView, "latest");
                                 }
 
@@ -640,6 +695,52 @@ public class FragmentHome extends Fragment {
 
         } else {
             SettingsMain.hideDilog();
+            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void loadMoreLatestProducts(int page) {
+        if (SettingsMain.isConnectingToInternet(getActivity())) {
+
+            JsonObject object = new JsonObject();
+            object.addProperty("step", page);
+            Call<ResponseBody> myCall = restService.postMoreProducts(object, UrlController.AddHeaders(getActivity()));
+            myCall.enqueue(new Callback<ResponseBody>() {
+                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
+                    try {
+
+                        if (responseObj.isSuccessful()) {
+
+                            JSONObject response = new JSONObject(responseObj.body().string());
+
+                            if (response.getBoolean("success")) {
+                                responseData = response.getJSONObject("data");
+                                adforest_setAllLatesetAds(responseData.getJSONObject("latest_ads"), latestRecyclerView, "latest");
+
+                            } else {
+                                Toast.makeText(getActivity(), response.get("message").toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    SettingsMain.hideDilog();
+                    Log.d("info HomeGet error", String.valueOf(t));
+//                    Timber.d(String.valueOf(t.getMessage() + t.getCause() + t.fillInStackTrace()));
+                }
+            });
+
+        } else {
             Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
         }
     }
@@ -825,14 +926,7 @@ public class FragmentHome extends Fragment {
     }
 
     private void adforest_setAllLatesetAds(JSONObject jsonObject, RecyclerView recyclerView, final String checkAdsType) {
-
-        latesetAdsList.clear();
-
-        recyclerView.setNestedScrollingEnabled(false);
-        StaggeredGridLayoutManager grid = new StaggeredGridLayoutManager(3, 1);
-        recyclerView.setLayoutManager(grid);
-        ViewCompat.setNestedScrollingEnabled(recyclerView, false);
-
+//        latesetAdsList.clear();
         try {
             JSONObject object = jsonObject;
 
@@ -844,37 +938,7 @@ public class FragmentHome extends Fragment {
                 latesetAdsList.add(item);
             }
 
-            ProductAdapter adapter = new ProductAdapter(getActivity(), latesetAdsList);
-            recyclerView.setAdapter(adapter);
-
-            adapter.setOnItemClickListener(new OnItemClickListener2() {
-                @Override
-                public void onItemClick(ProductDetails item) {
-                    Log.d("item_id", item.getId()+"");
-                    Intent intent = new Intent(getActivity(), Ad_detail_activity.class);
-                    intent.putExtra("adId", ""+item.getId());
-                    startActivity(intent);
-                }
-
-                @Override
-                public void onRemoveFav(int position) {
-
-                }
-
-                @Override
-                public void onShare(ProductDetails item) {
-                    Intent i = new Intent(Intent.ACTION_SEND);
-                    i.setType("text/plain");
-                    i.putExtra(Intent.EXTRA_SUBJECT, item.getCardName());
-                    i.putExtra(Intent.EXTRA_TEXT, "link");
-                    startActivity(Intent.createChooser(i, "Share Product"));
-                }
-
-                @Override
-                public void onAddCart(ProductDetails item) {
-
-                }
-            });
+            productAdapter.notifyDataSetChanged();
 
         } catch (JSONException e) {
             e.printStackTrace();

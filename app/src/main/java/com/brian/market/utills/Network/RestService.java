@@ -341,6 +341,18 @@ public interface RestService {
             @HeaderMap Map<String, String> headers
     );
 
+    @POST("home/address")
+    Call<ResponseBody> postHomeDetailsByAddress(
+            @Body JsonObject jsonObject,
+            @HeaderMap Map<String, String> headers
+    );
+
+    @POST("home/more")
+    Call<ResponseBody> postMoreProducts(
+            @Body JsonObject jsonObject,
+            @HeaderMap Map<String, String> headers
+    );
+
     //Set firebase id with server
     @POST("home")
     Call<ResponseBody> postFirebaseId(

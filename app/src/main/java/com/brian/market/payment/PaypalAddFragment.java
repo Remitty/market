@@ -100,9 +100,17 @@ public class PaypalAddFragment extends Fragment {
                         if (responseObj.isSuccessful()) {
 
                             JSONObject response = new JSONObject(responseObj.body().string());
-                            startActivity(new Intent(getActivity(), PaymentActivity.class));
-
                             Toast.makeText(getContext(), response.get("message").toString(), Toast.LENGTH_SHORT).show();
+
+                            //restart activity
+                            Intent intent = getActivity().getIntent();
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            getActivity().overridePendingTransition(0, 0);
+                            getActivity().finish();
+
+                            getActivity().overridePendingTransition(0, 0);
+                            startActivity(intent);
 
                         }
                     } catch (JSONException e) {

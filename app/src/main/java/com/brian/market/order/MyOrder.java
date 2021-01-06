@@ -224,6 +224,7 @@ public class MyOrder extends Fragment {
 
             JsonObject params = new JsonObject();
             params.addProperty("order_id", order.getOrderId());
+            Log.d("cancel order id", order.getOrderId());
 
             Call<ResponseBody> myCall = restService.ordercancel(params, UrlController.AddHeaders(context));
             myCall.enqueue(new Callback<ResponseBody>() {

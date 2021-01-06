@@ -3,6 +3,7 @@ package com.brian.market.adapters;
 import android.content.Context;
 import android.graphics.Color;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,8 +33,10 @@ import com.brian.market.modelsList.ProductDetails;
 import com.brian.market.utills.SettingsMain;
 
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private static final int VIEW_TYPE_ITEM = 0;
+    private static final int VIEW_TYPE_LOADING = 1;
     SettingsMain settingsMain;
     Context context;
     private ArrayList<ProductDetails> list;
@@ -61,16 +65,100 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         favorites_db = new User_Favorites_DB();
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_product, parent, false);
-        return new MyViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(viewType == VIEW_TYPE_ITEM) {
+            View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_product, parent, false);
+            return new MyViewHolder(view);
+        } else {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_loading, parent, false);
+            return new LoadingViewHolder(view);
+        }
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
+        if (viewHolder instanceof MyViewHolder) {
+            populateItemRows((MyViewHolder) viewHolder, position);
+        } else if (viewHolder instanceof LoadingViewHolder) {
+            showLoadingView((LoadingViewHolder) viewHolder, position);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    /**
+     * The following method decides the type of ViewHolder to display in the RecyclerView
+     *
+     * @param position
+     * @return
+     */
+    @Override
+    public int getItemViewType(int position) {
+        return list.get(position) == null ? VIEW_TYPE_LOADING : VIEW_TYPE_ITEM;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener2 onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView titleTextView, dateTV, priceTV, shipPriceTV, locationTV, addressTV, featureText, dayAgo;
+        ImageView mainImage, shareImage, cartImage, soldImage;
+        ToggleButton btnFav;
+        RelativeLayout linearLayout;
+        CountdownView cv_countdownView;
+        LinearLayout shipping_layout, add_cart_layout;
+
+        MyViewHolder(View v) {
+            super(v);
+
+            titleTextView = v.findViewById(R.id.text_view_name);
+            dateTV = v.findViewById(R.id.date);
+            priceTV = v.findViewById(R.id.prices);
+            shipPriceTV = v.findViewById(R.id.shipping_price);
+            locationTV = v.findViewById(R.id.location);
+            addressTV = v.findViewById(R.id.address);
+            dayAgo = v.findViewById(R.id.day_ago);
+//            priceTV.setTextColor(Color.parseColor(settingsMain.getMainColor()));
+
+            mainImage = v.findViewById(R.id.image_view);
+            soldImage = v.findViewById(R.id.image_sold);
+            btnFav = v.findViewById(R.id.add_fav);
+            shareImage = v.findViewById(R.id.share);
+            cartImage = v.findViewById(R.id.add_cart);
+            cv_countdownView = v.findViewById(R.id.cv_countdownView);
+
+            add_cart_layout = v.findViewById(R.id.ll_add_cart);
+
+            linearLayout = v.findViewById(R.id.linear_layout_card_view);
+            featureText = v.findViewById(R.id.textView4);
+            shipping_layout = v.findViewById(R.id.shipping_layout);
+        }
+    }
+
+    private class LoadingViewHolder extends RecyclerView.ViewHolder {
+
+        ProgressBar progressBar;
+
+        public LoadingViewHolder(@NonNull View itemView) {
+            super(itemView);
+            progressBar = itemView.findViewById(R.id.progressBar);
+        }
+    }
+
+    private void showLoadingView(LoadingViewHolder viewHolder, int position) {
+        //ProgressBar would be displayed
+
+    }
+
+    private void populateItemRows(MyViewHolder holder, int position) {
+
         final ProductDetails feedItem = list.get(position);
 
         holder.titleTextView.setText(feedItem.getCardName());
@@ -200,49 +288,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         });
 
         holder.linearLayout.setOnClickListener(listener);
-    }
 
-    @Override
-    public int getItemCount() {
-        return list.size();
-    }
-
-    public void setOnItemClickListener(OnItemClickListener2 onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView, dateTV, priceTV, shipPriceTV, locationTV, addressTV, featureText, dayAgo;
-        ImageView mainImage, shareImage, cartImage, soldImage;
-        ToggleButton btnFav;
-        RelativeLayout linearLayout;
-        CountdownView cv_countdownView;
-        LinearLayout shipping_layout, add_cart_layout;
-
-        MyViewHolder(View v) {
-            super(v);
-
-            titleTextView = v.findViewById(R.id.text_view_name);
-            dateTV = v.findViewById(R.id.date);
-            priceTV = v.findViewById(R.id.prices);
-            shipPriceTV = v.findViewById(R.id.shipping_price);
-            locationTV = v.findViewById(R.id.location);
-            addressTV = v.findViewById(R.id.address);
-            dayAgo = v.findViewById(R.id.day_ago);
-//            priceTV.setTextColor(Color.parseColor(settingsMain.getMainColor()));
-
-            mainImage = v.findViewById(R.id.image_view);
-            soldImage = v.findViewById(R.id.image_sold);
-            btnFav = v.findViewById(R.id.add_fav);
-            shareImage = v.findViewById(R.id.share);
-            cartImage = v.findViewById(R.id.add_cart);
-            cv_countdownView = v.findViewById(R.id.cv_countdownView);
-
-            add_cart_layout = v.findViewById(R.id.ll_add_cart);
-
-            linearLayout = v.findViewById(R.id.linear_layout_card_view);
-            featureText = v.findViewById(R.id.textView4);
-            shipping_layout = v.findViewById(R.id.shipping_layout);
-        }
     }
 }

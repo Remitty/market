@@ -27,6 +27,7 @@ import com.brian.market.cart.CartActivity;
 import com.brian.market.cart.CartFragment;
 import com.brian.market.messages.ChatActivity;
 import com.brian.market.order.MyOrderActivity;
+import com.brian.market.payment.BalanceActivity;
 import com.brian.market.payment.PaymentActivity;
 import com.brian.market.profile.ProfileActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -792,6 +793,10 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.withdraw:
                 startActivity(new Intent(getApplicationContext(), WithdrawActivity.class));
+                overridePendingTransition(R.anim.right_enter, R.anim.left_out);
+                break;
+            case R.id.balance:
+                startActivity(new Intent(getApplicationContext(), BalanceActivity.class));
                 overridePendingTransition(R.anim.right_enter, R.anim.left_out);
                 break;
             case R.id.myProducts:

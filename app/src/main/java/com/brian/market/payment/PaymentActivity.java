@@ -123,7 +123,7 @@ public class PaymentActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(PaymentActivity.this, HomeActivity.class));
+//        startActivity(new Intent(PaymentActivity.this, HomeActivity.class));
         overridePendingTransition(R.anim.left_enter, R.anim.right_out);
     }
 }

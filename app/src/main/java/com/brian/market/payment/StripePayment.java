@@ -15,6 +15,7 @@ import com.brian.market.databases.User_Cart_DB;
 import com.brian.market.home.HomeActivity;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,12 +27,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.brian.market.modelsList.CreditCard;
+import com.squareup.picasso.Picasso;
 import com.stripe.android.Stripe;
 import com.stripe.android.TokenCallback;
 import com.stripe.android.model.Card;
@@ -64,15 +67,15 @@ public class StripePayment extends AppCompatActivity {
     FrameLayout loadingLayout;
     RestService restService;
 
-    CardInputWidget stripeWidget;
-    CheckBox checkAddCard;
     Button chkout, cancel;
     TextView tvSubTotal, tvTax, tvShipping, tvTotal;
-    TextView tvCardHint;
-    TextView tvWalletBalance;
+    TextView tvWalletBalance, tvPaypal, tvCardId;
+    ImageView check1, check2, check3, imgCard;
 
-    private String PUBLISHABLE_KEY;  //pk_live_tkSrJzIUzdR9sDx7rLINyGHI //pk_test_07HcOQstgKo91LWCA2rd1a13
-    private String id = "", strSubtotal, strTax, strShipping, strTotal;
+    private CreditCard mCard = new CreditCard();
+    private String mPaypal="";
+
+    private String id = "", strSubtotal, strTax, strShipping, strTotal, strPaymentMethod="";
     private boolean shipping, defaultshipping;
     private Intent mIntent;
 
@@ -83,8 +86,6 @@ public class StripePayment extends AppCompatActivity {
         setContentView(R.layout.activity_stripe_payment);
 
         settingsMain = new SettingsMain(this);
-
-        PUBLISHABLE_KEY = settingsMain.getKey("stripeKey");
 
         mIntent = getIntent();
 
@@ -99,8 +100,6 @@ public class StripePayment extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(settingsMain.getMainColor())));
         getSupportActionBar().setTitle("Check Out");
 
-        stripeWidget = (CardInputWidget) findViewById(R.id.stripe_widget);
-
         initComponents();
 
         initListeners();
@@ -109,12 +108,18 @@ public class StripePayment extends AppCompatActivity {
 
         getInvoiceData();
 
+
+
     }
 
     private void initListeners() {
         chkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(strPaymentMethod.equals("")) {
+                    Toast.makeText(getBaseContext(), "Please select payment option.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 confirmOrder();
             }
         });
@@ -123,6 +128,50 @@ public class StripePayment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(StripePayment.this, HomeActivity.class));
+            }
+        });
+
+        check1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(strPaymentMethod.equals("Cash"))
+                    return;
+                strPaymentMethod = "Cash";
+                check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
+                check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+            }
+        });
+
+        check2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCard.getData() == null) {
+                    Toast.makeText(getBaseContext(), "No card.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(strPaymentMethod.equals("Card"))
+                    return;
+                strPaymentMethod = "Card";
+                check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
+                check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+            }
+        });
+
+        check3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mPaypal.equals("null") || mPaypal.equals("")) {
+                    Toast.makeText(getBaseContext(), "No paypal.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(strPaymentMethod.equals("Paypal"))
+                    return;
+                strPaymentMethod = "Paypal";
+                check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
             }
         });
 
@@ -162,12 +211,8 @@ public class StripePayment extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 showLoading();
-                if(stripeWidget.getCard() != null && !TextUtils.isEmpty(stripeWidget.getCard().getNumber())) {
-                    adforest_checkoutStripe();
-                }
-                else {
-                    adforest_Checkout(id, null);
-                }
+
+                adforest_Checkout();
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -185,13 +230,18 @@ public class StripePayment extends AppCompatActivity {
         chkout.setBackgroundColor(Color.parseColor(settingsMain.getMainColor()));
         cancel = findViewById(R.id.checkout_cancel_btn);
         loadingLayout = (FrameLayout) findViewById(R.id.loadingLayout);
-        checkAddCard = findViewById(R.id.check_add_card);
         tvSubTotal = findViewById(R.id.checkout_subtotal);
         tvTax = findViewById(R.id.checkout_tax);
         tvShipping = findViewById(R.id.checkout_shipping);
         tvTotal = findViewById(R.id.checkout_total);
-        tvCardHint = findViewById(R.id.card_already);
         tvWalletBalance = findViewById(R.id.wallet_balance);
+        tvCardId = findViewById(R.id.card_id);
+        tvPaypal = findViewById(R.id.paypal_id);
+        check1 = findViewById(R.id.check1);
+        check2 = findViewById(R.id.check2);
+        check3 = findViewById(R.id.check3);
+        imgCard = findViewById(R.id.card_logo);
+
     }
 
     private void getInvoiceData() {
@@ -228,11 +278,21 @@ public class StripePayment extends AppCompatActivity {
 
                                 tvWalletBalance.setText(new DecimalFormat("$#0.00").format(response.optDouble("wallet_balance")));
 
-                                if(response.optInt("card_count") > 0)
-                                    tvCardHint.setVisibility(View.VISIBLE);
+                                mCard.setData(response.optJSONObject("card"));
+                                mPaypal = response.optString("paypal");
+
+                                if(mCard.getData() != null) {
+                                    tvCardId.setText("XXXX-XXXX-XXXX-"+mCard.getLastFour());
+                                    if(mCard.getBrand().equals("Visa"))
+                                        imgCard.setImageDrawable(getDrawable(R.drawable.ic_visa));
+                                    else imgCard.setImageDrawable(getDrawable(R.drawable.ic_mastercard));
+                                }
+
+                                if(!mPaypal.equals("null") && !mPaypal.equals(""))
+                                    tvPaypal.setText(mPaypal);
 
                             } else {
-                                Toast.makeText(StripePayment.this, response.get("message").toString(), Toast.LENGTH_SHORT).show();
+                                SettingsMain.showAlertDialog(getBaseContext(), response.get("message").toString());
                             }
                         }
                         SettingsMain.hideDilog();
@@ -259,70 +319,13 @@ public class StripePayment extends AppCompatActivity {
         }
     }
 
-    private void adforest_checkoutStripe() {
 
-        String cvcNo = stripeWidget.getCard().getCVC();
-        String cardNo = stripeWidget.getCard().getNumber();
-        Integer month = stripeWidget.getCard().getExpMonth();
-        Integer year = stripeWidget.getCard().getExpYear();
-
-        Card card = new Card(cardNo, month, year, cvcNo);
-
-        boolean validation = card.validateCard();
-        if (validation) {
-            if (SettingsMain.isConnectingToInternet(StripePayment.this)) {
-
-//                SettingsMain.showDilog(StripePayment.this);
-
-                Stripe stripe = new Stripe(StripePayment.this, PUBLISHABLE_KEY);
-                stripe.createToken(
-                        card,
-                        new TokenCallback() {
-                            public void onSuccess(Token token) {
-                                // Send token to your server
-                                Log.e("token success", token.toString());
-                                Log.e("token success", token.getId());
-
-                                adforest_Checkout(id, token);
-                            }
-
-                            public void onError(Exception error) {
-                                // Show localized error message
-                                Log.e("token fail", error.getLocalizedMessage());
-                                loadingLayout.setVisibility(View.GONE);
-                                handleError(error.getLocalizedMessage());
-                                SettingsMain.hideDilog();
-                            }
-                        }
-                );
-            } else {
-                loadingLayout.setVisibility(View.GONE);
-                Snackbar.make(findViewById(android.R.id.content), settingsMain.getAlertDialogMessage("internetMessage"), Snackbar.LENGTH_LONG).show();
-            }
-        } else if (!card.validateNumber()) {
-            loadingLayout.setVisibility(View.GONE);
-            handleError("Invalid Card");
-        } else if (!card.validateExpiryDate()) {
-            loadingLayout.setVisibility(View.GONE);
-            handleError("Invalid ExpiryDate");
-        } else if (!card.validateCVC()) {
-            loadingLayout.setVisibility(View.GONE);
-            handleError("Invalid CVC");
-        } else {
-            loadingLayout.setVisibility(View.GONE);
-            handleError("Invalid ExpiryYear");
-        }
-    }
-
-    private void adforest_Checkout(String id, Token token) {
+    private void adforest_Checkout() {
 
         if (SettingsMain.isConnectingToInternet(StripePayment.this)) {
 
             JsonObject params = new JsonObject();
-            if(token != null) {
-                params.addProperty("source_token", token.getId());
-                params.addProperty("isAddCard", checkAddCard.isChecked());
-            }
+            params.addProperty("payment", strPaymentMethod);
             User_Cart_DB user_cart_db = new User_Cart_DB();
             params.addProperty("product_ids", user_cart_db.getCartItemsForInvoice().toString());
             boolean shipping = mIntent.getBooleanExtra("shipping", false);
@@ -396,27 +399,6 @@ public class StripePayment extends AppCompatActivity {
             SettingsMain.hideDilog();
             Toast.makeText(StripePayment.this, settingsMain.getAlertDialogTitle("error"), Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private Integer getInteger(Spinner spinner) {
-        try {
-            return Integer.parseInt(spinner.getSelectedItem().toString());
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
-
-    private void handleError(String error) {
-        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle(settingsMain.getAlertDialogTitle("error"));
-        alert.setMessage(error);
-        alert.setPositiveButton(settingsMain.getAlertOkText(), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-            }
-        });
-        alert.show();
     }
 
     @Override

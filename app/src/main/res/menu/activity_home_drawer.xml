@@ -26,8 +26,13 @@
         <item
             android:id="@+id/withdraw"
             android:icon="@drawable/ic_price_tag"
+            android:visible="true"
+            android:title="Withdraw" />
+        <item
+            android:id="@+id/balance"
+            android:icon="@drawable/ic_price_tag"
+            android:visible="false"
             android:title="Balance" />
-
 
         <item
             android:id="@+id/coin_deposit"

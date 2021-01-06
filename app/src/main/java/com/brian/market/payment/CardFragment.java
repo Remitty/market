@@ -74,19 +74,13 @@ public class CardFragment extends Fragment {
 
         if(mCard.getData() != null) {
             if(mCard.getBrand().equals("Visa"))
-                Picasso.with(getContext()).load(R.drawable.ic_visa)
-                        .error(R.drawable.ic_cards)
-                        .placeholder(R.drawable.ic_cards)
-                        .into(cardLogo);
+                cardLogo.setImageDrawable(getActivity().getDrawable(R.drawable.ic_visa));
             else
-                Picasso.with(getContext()).load(R.drawable.ic_mastercard)
-                        .error(R.drawable.ic_cards)
-                        .placeholder(R.drawable.ic_cards)
-                        .into(cardLogo);
+                cardLogo.setImageDrawable(getActivity().getDrawable(R.drawable.ic_mastercard));
 
             cardId.setText("XXXX-XXXX-XXXX-" + mCard.getLastFour());
 
-            btnCard.setText("Edit");
+            btnCard.setText("Change");
             btnCardDelete.setVisibility(View.VISIBLE);
         }
 
@@ -142,7 +136,16 @@ public class CardFragment extends Fragment {
                             JSONObject response = new JSONObject(responseObj.body().string());
 
                             Toast.makeText(getContext(), response.get("message").toString(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getActivity(), PaymentActivity.class));
+
+                            //restart activity
+                            Intent intent = getActivity().getIntent();
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                                    | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            getActivity().overridePendingTransition(0, 0);
+                            getActivity().finish();
+
+                            getActivity().overridePendingTransition(0, 0);
+                            startActivity(intent);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

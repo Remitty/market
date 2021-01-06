@@ -76,9 +76,6 @@ public class MyOrderActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
         tabLayout.setBackgroundColor(Color.parseColor(settingsMain.getMainColor()));
 
-
-
-
         loadAllOrders();
     }
 
