@@ -75,6 +75,8 @@ public abstract class EndlessRecyclerViewScrollListener extends RecyclerView.OnS
         Log.d("on scroll changed dy", dy+"");
         int lastVisibleItemPosition = 0;
         int totalItemCount = mLayoutManager.getItemCount();
+        int visibleItemCount = mLayoutManager.getChildCount();
+        Log.d("visibleItemCount", visibleItemCount+"");
         if (mLayoutManager instanceof StaggeredGridLayoutManager) {
             int[] lastVisibleItemPositions = ((StaggeredGridLayoutManager) mLayoutManager).findLastCompletelyVisibleItemPositions(null);
             // get maximum element within the list
