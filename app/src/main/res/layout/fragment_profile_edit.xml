@@ -300,7 +300,7 @@
                                 android:background="@drawable/rounded_corners_edittext_dark"
                                 android:gravity="center_vertical"
                                 android:hint=""
-                                android:inputType="phone"
+                                android:inputType="number"
                                 android:padding="10dp"
                                 android:textSize="14sp" />
 

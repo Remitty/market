@@ -10,22 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_paypal_sdk_paypal_android_sdk_2_13_3_aar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/proguard-rules.pro" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaypalAddFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaypalAddFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaypalFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaypalFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WalletFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WalletFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/PaypalPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/PaypalPagerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/WalletPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/WalletPageAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/signinorup/Login_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/signinorup/Login_Fragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/signinorup/SignUp_Fragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/signinorup/SignUp_Fragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_paypal_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_paypal_add.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/login_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/login_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_profile_complete.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_profile_complete.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_profile_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_profile_edit.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -247,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609935106167</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add paypal widget to pay">
+      <created>1609969739546</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1609969739546</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -272,6 +266,7 @@
     <MESSAGE value="add load more logic" />
     <MESSAGE value="add search more logic" />
     <MESSAGE value="add paypal withdraw" />
-    <option name="LAST_COMMIT_MESSAGE" value="add paypal withdraw" />
+    <MESSAGE value="add paypal widget to pay" />
+    <option name="LAST_COMMIT_MESSAGE" value="add paypal widget to pay" />
   </component>
 </project>

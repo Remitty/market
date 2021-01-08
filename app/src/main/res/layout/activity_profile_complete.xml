@@ -496,7 +496,7 @@
                                         android:padding="5dp"
                                         android:layout_toRightOf="@+id/ll_cc"
                                         android:digits="0123456789"
-                                        android:inputType="phone"
+                                        android:inputType="number"
                                         android:background="@drawable/rounded_corners_edittext_dark"
                                         />
 
