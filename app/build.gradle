@@ -8,7 +8,7 @@ android {
         applicationId "com.brian.market"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 10
+        versionCode 11
         multiDexEnabled true
         versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
