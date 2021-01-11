@@ -35,7 +35,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".alipay.AlipayActivity"></activity>
+        <activity android:name=".wxapi.WXPayEntryActivity" android:exported="true"></activity>
         <activity android:name=".payment.BalanceActivity" />
         <activity android:name=".payment.PaymentActivity" />
         <activity
@@ -233,11 +233,11 @@
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:exported="false"
-            android:screenOrientation="behind"></activity>
+            android:screenOrientation="behind" />
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:exported="false"
-            android:screenOrientation="behind"></activity>
+            android:screenOrientation="behind" />
 
         <meta-data
             android:name="com.plaid.link.public_key"

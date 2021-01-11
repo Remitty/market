@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Mackirel </string>
     <string name="featured_list">Hot Deals</string>
+    <string name="wechat_app_id">677054746152369</string>
     <string name="facebook_app_id">677054746152369</string>
     <string name="fb_login_protocol_scheme">fb677054746152369</string>
 

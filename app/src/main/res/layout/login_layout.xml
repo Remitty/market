@@ -114,12 +114,24 @@
                             android:layout_marginHorizontal="20dp"
                             android:text="Log In"
                             android:textColor="@color/white" />
+
+                        <Button
+                            android:id="@+id/btn_wechat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginHorizontal="20dp"
+                            android:backgroundTint="@color/green"
+                            android:drawableLeft="@drawable/ic_wechat"
+                            android:text="Log In by Wechat"
+                            android:textColor="@color/white" />
                         <Button
                             android:id="@+id/startExplore"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginHorizontal="20dp"
+                            android:backgroundTint="@color/colorPrimaryDark"
                             android:text="Explore"
                             android:textColor="@color/white" />
                         <Button

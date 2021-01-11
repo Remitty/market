@@ -10,12 +10,14 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 //import com.google.android.gms.ads.MobileAds;
 import com.google.android.libraries.places.api.Places;
 
-import com.brian.market.R;
 import com.brian.market.helper.LocaleHelper;
 import com.brian.market.utills.NoInternet.AppLifeCycleManager;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 public class App extends Application {
     private static Context context;
+    public IWXAPI iwxAPI;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -33,6 +35,9 @@ public class App extends Application {
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), apiKey);
         }
+
+        iwxAPI = WXAPIFactory.createWXAPI(this, getString(R.string.wechat_app_id), true);
+        iwxAPI.registerApp(getString(R.string.wechat_app_id));
     }
 
     @Override

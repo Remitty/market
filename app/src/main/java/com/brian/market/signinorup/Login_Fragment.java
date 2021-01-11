@@ -35,6 +35,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.brian.market.App;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -74,6 +75,9 @@ import com.brian.market.utills.CustomBorderDrawable;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.brian.market.R.anim;
@@ -89,7 +93,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
     View view;
     Activity activity;
     EditText emailid, password;
-    Button loginButton, startExplore, fbloginButton;
+    Button loginButton, startExplore, fbloginButton, btnWechat;
     private SignInButton gmailLoginButton;
     TextView forgotPassword, signUp;
     LinearLayout loginLayout;
@@ -141,6 +145,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
         emailid.setText(settingsMain.getUserEmail());
         password = view.findViewById(id.login_password);
         loginButton = view.findViewById(id.loginBtn);
+        btnWechat = view.findViewById(id.btn_wechat);
         forgotPassword = view.findViewById(id.forgot_password);
         signUp = view.findViewById(id.createAccount);
         fbloginButton = view.findViewById(id.fbLogin);
@@ -210,6 +215,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
         signUp.setOnClickListener(this);
         gmailLoginButton.setOnClickListener(this);
         startExplore.setOnClickListener(this);
+        btnWechat.setOnClickListener(this);
     }
 
     @Override
@@ -225,7 +231,9 @@ public class Login_Fragment extends Fragment implements OnClickListener,
                 InputMethodManager inputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputManager.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 break;
-
+            case id.btn_wechat:
+                loginByWechat();
+                break;
             case id.forgot_password:
 
                 // Replace forgot password fragment with animation
@@ -260,6 +268,13 @@ public class Login_Fragment extends Fragment implements OnClickListener,
                 settingsMain.setUserImage("");
                 break;
         }
+    }
+
+    private void loginByWechat() {
+//        App app = new App();
+//        IWXAPI iwxAPI = app.iwxAPI;
+//        iwxAPI.sendReq(new SendAuth.Req());
+        Toast.makeText(activity, "Not approved still", Toast.LENGTH_SHORT).show();
     }
 
 
