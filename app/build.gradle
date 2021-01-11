@@ -8,11 +8,11 @@ android {
         applicationId "com.brian.market"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 11
+        versionCode 12
         multiDexEnabled true
         versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         resValue "string", "places_api_key", (project.findProperty("AIzaSyBl2lwQ1zOgrJ3-HY2WsxqqCuODdomQ4Fg") ?: "AIzaSyBl2lwQ1zOgrJ3-HY2WsxqqCuODdomQ4Fg")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -146,6 +146,8 @@ dependencies {
     implementation project(":android-stripe-connect")
     implementation project(":PhoneVerification")
     implementation project(":bottom-nav-bar")
+
+    implementation(name: 'alipaySdk-15.7.4-20200228192259', ext: 'aar')
 
 }
 apply plugin: 'com.google.gms.google-services'

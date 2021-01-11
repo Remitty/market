@@ -57,15 +57,19 @@ public class CoinInfo {
     }
 
     public String getCoinIcon() {
+        String path = "";
         try {
-            String str = data.getString("coin_icon");
-            if(!str.startsWith("http"))
-                str = UrlController.IP_ADDRESS + str;
-            return str;
+            path = data.getString("coin_icon");
+            if(path.equals("") || path.equals("null")) {
+                path = data.getString("icon");
+            }
+            if(!path.startsWith("http"))
+                path = UrlController.IP_ADDRESS + path;
         } catch (JSONException e) {
             e.printStackTrace();
-            return null;
         }
+
+        return path;
     }
 
     public JSONObject getCoinWallet() {

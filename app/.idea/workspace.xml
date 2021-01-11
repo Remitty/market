@@ -9,12 +9,19 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="">
+    <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="fix phoenumber input type">
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/login_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/login_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/signup_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/signup_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/CoinInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/CoinInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaymentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaymentActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/ShippingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/ShippingActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_stripe_payment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_stripe_payment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../build.gradle" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +85,7 @@
       <recent name="com.brian.market.auction.adapter" />
     </key>
     <key name="android.template.packageName">
+      <recent name="com.brian.market.alipay" />
       <recent name="com.brian.market.payment" />
       <recent name="com.brian.market.bitcoin" />
       <recent name="com.brian.market.auction" />

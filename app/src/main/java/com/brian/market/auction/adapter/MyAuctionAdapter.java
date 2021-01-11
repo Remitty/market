@@ -77,7 +77,7 @@ public class MyAuctionAdapter extends RecyclerView.Adapter<MyAuctionAdapter.MyVi
 
         holder.layout.setOnClickListener(listener);
 
-        if(feedItem.getStatus().equals("COMPLETED") || feedItem.getStatus().equals("FINISHED")) {
+        if(feedItem.getStatus().equals("COMPLETED")) {
             if(auction_type == 1) {
                 holder.winnerLayout.setVisibility(View.VISIBLE);
                 if(feedItem.isShipping())

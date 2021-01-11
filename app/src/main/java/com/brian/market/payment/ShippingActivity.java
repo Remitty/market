@@ -103,21 +103,23 @@ public class ShippingActivity extends AppCompatActivity {
 
 //                                    mEditState.setText(address.optString("state_country"));
                                         if (response.optBoolean("hasDefault")) {
-                                            mAddressAutoTextView.setText(address.optString("state_country"));
-                                            mEditStreet.setText(address.optString("street"));
-                                            mEditApartment.setText(address.optString("apartment"));
-                                            mEditPostalCode.setText(address.optString("postal_code"));
+                                            mAddressAutoTextView.setText(address.getString("state_country"));
+                                            mEditStreet.setText(address.getString("street"));
+                                            if(!address.getString("apartment").equals("null"))
+                                                mEditApartment.setText(address.getString("apartment"));
+                                            mEditPostalCode.setText(address.getString("postal_code"));
                                             checkBoxDefaultShippingAddress.setChecked(true);
                                         }
                                         else {
-                                            mAddressAutoTextView.setText(address.optString("state"));
-                                            mEditStreet.setText(address.optString("address"));
-                                            mEditApartment.setText(address.optString("address2"));
-                                            mEditPostalCode.setText(address.optString("postalcode"));
+                                            mAddressAutoTextView.setText(address.getString("state"));
+                                            mEditStreet.setText(address.getString("address"));
+                                            if(!address.getString("address2").equals("null"))
+                                                mEditApartment.setText(address.getString("address2"));
+                                            mEditPostalCode.setText(address.getString("postalcode"));
                                         }
 
-                                        mEditMobile.setText(address.optString("mobile"));
-                                        mEditContactName.setText(address.optString("contact_name"));
+                                        mEditMobile.setText(address.getString("mobile"));
+                                        mEditContactName.setText(address.getString("contact_name"));
 
                                     }
 //                                }

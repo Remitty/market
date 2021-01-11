@@ -24,6 +24,14 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 # This is added for okhttp 3.1.2 bug fix as shown at https://github.com/square/okhttp/issues/2323
+#paypal
     -keepclassmembers class * implements javax.net.ssl.SSLSocketFactory {
          private javax.net.ssl.SSLSocketFactory delegate;
     }
+#alipay
+    -libraryjars libs/alipaySDK-(Date).jar -keep class com.alipay.android.app.IAlixPay{*;}
+    -keep class com.alipay.android.app.IAlixPay$Stub{*;}
+    -keep class com.alipay.android.app.IRemoteServiceCallback{*;}
+    -keep class com.alipay.android.app.IRemoteServiceCallback$Stub{*;}
+    -keep class com.alipay.sdk.app.PayTask{ public *;}
+    -keep class com.alipay.sdk.app.AuthTask{ public *;}

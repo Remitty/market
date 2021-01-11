@@ -323,6 +323,44 @@
                                     android:src="@drawable/ic_check_circle_black_24dp" />
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_alipay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:cardElevation="5dp"
+                            app:cardCornerRadius="45dp"
+                            card_view:cardUseCompatPadding="true"
+                            >
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="60dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/alipay"
+                                    />
+                                <TextView
+                                    android:id="@+id/alipay_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center_horizontal"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:textSize="20dp"
+                                    android:text="Alipay"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/check4"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/ic_check_circle_black_24dp" />
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
                 </LinearLayout>

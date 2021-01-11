@@ -5,19 +5,26 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.alipay.sdk.app.EnvUtils;
+import com.alipay.sdk.app.PayTask;
 import com.brian.market.databases.User_Cart_DB;
 import com.brian.market.home.HomeActivity;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.os.Handler;
+import android.os.Message;
+import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -41,9 +48,17 @@ import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.squareup.picasso.Picasso;
+import com.stripe.android.SourceCallback;
 import com.stripe.android.Stripe;
 import com.stripe.android.TokenCallback;
+import com.stripe.android.exception.APIConnectionException;
+import com.stripe.android.exception.APIException;
+import com.stripe.android.exception.AuthenticationException;
+import com.stripe.android.exception.CardException;
+import com.stripe.android.exception.InvalidRequestException;
 import com.stripe.android.model.Card;
+import com.stripe.android.model.Source;
+import com.stripe.android.model.SourceParams;
 import com.stripe.android.model.Token;
 
 import org.json.JSONArray;
@@ -56,6 +71,7 @@ import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 import okhttp3.ResponseBody;
@@ -77,7 +93,7 @@ public class StripePayment extends AppCompatActivity {
     Button chkout, cancel;
     TextView tvSubTotal, tvTax, tvShipping, tvTotal;
     TextView tvWalletBalance, tvPaypal, tvCardId;
-    ImageView check1, check2, check3, imgCard;
+    ImageView check1, check2, check3, check4, imgCard;
 
     private CreditCard mCard = new CreditCard();
     private String mPaypal="";
@@ -91,6 +107,11 @@ public class StripePayment extends AppCompatActivity {
     private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
     String paymentId="";
 
+    private static final int SDK_PAY_FLAG = 2;
+    private static final int SDK_AUTH_FLAG = 3;
+    private String PUBLISHABLE_KEY="";
+    private int START_ALIPAY_REQUEST = 0;
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +121,10 @@ public class StripePayment extends AppCompatActivity {
         settingsMain = new SettingsMain(this);
 
         mIntent = getIntent();
+
+        if(mIntent.getData() != null) {
+            adforest_Checkout();
+        }
 
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -152,6 +177,7 @@ public class StripePayment extends AppCompatActivity {
                 check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
                 check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
             }
         });
 
@@ -168,6 +194,7 @@ public class StripePayment extends AppCompatActivity {
                 check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
                 check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
             }
         });
 
@@ -184,6 +211,20 @@ public class StripePayment extends AppCompatActivity {
                 check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
+                check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+            }
+        });
+
+        check4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(strPaymentMethod.equals("Alipay"))
+                    return;
+                strPaymentMethod = "Alipay";
+                check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
             }
         });
 
@@ -222,10 +263,15 @@ public class StripePayment extends AppCompatActivity {
         builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                showLoading();
                 if(strPaymentMethod.equals("Paypal")) handlePaypal();
-                else
-                adforest_Checkout();
+                else if(strPaymentMethod.equals("Alipay")) {
+                    dialog.dismiss();
+                    showLoading();
+                    handleAlipay();
+                }
+                else {
+                    adforest_Checkout();
+                }
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -253,6 +299,7 @@ public class StripePayment extends AppCompatActivity {
         check1 = findViewById(R.id.check1);
         check2 = findViewById(R.id.check2);
         check3 = findViewById(R.id.check3);
+        check4 = findViewById(R.id.check4);
         imgCard = findViewById(R.id.card_logo);
 
     }
@@ -302,8 +349,8 @@ public class StripePayment extends AppCompatActivity {
                                     else imgCard.setImageDrawable(getDrawable(R.drawable.ic_mastercard));
                                 }
 
-                                if(!mPaypal.equals("null") && !mPaypal.equals(""))
-                                    tvPaypal.setText(mPaypal);
+//                                if(!mPaypal.equals("null") && !mPaypal.equals(""))
+//                                    tvPaypal.setText(mPaypal);
 
                             } else {
                                 SettingsMain.showAlertDialog(getBaseContext(), response.get("message").toString());
@@ -337,10 +384,10 @@ public class StripePayment extends AppCompatActivity {
     private void adforest_Checkout() {
 
         if (SettingsMain.isConnectingToInternet(StripePayment.this)) {
-
+            showLoading();
             JsonObject params = new JsonObject();
             params.addProperty("payment", strPaymentMethod);
-            if(strPaymentMethod.equals("Paypal")) {
+            if(strPaymentMethod.equals("Paypal") || strPaymentMethod.equals("Alipay")) {
                 params.addProperty("payment_id", paymentId);
                 params.addProperty("total_price", strTotal);
             }
@@ -413,7 +460,6 @@ public class StripePayment extends AppCompatActivity {
                 }
             });
         } else {
-            loadingLayout.setVisibility(View.GONE);
             Toast.makeText(StripePayment.this, settingsMain.getAlertDialogTitle("error"), Toast.LENGTH_SHORT).show();
         }
     }
@@ -460,6 +506,121 @@ public class StripePayment extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(android.os.Message msg) {
+            loadingLayout.setVisibility(View.GONE);
+            switch (msg.what) {
+                case SDK_PAY_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    Map<String, String> answer = (Map<String, String>) msg.obj;
+                    // The result info contains other information about the transaction
+                    String resultInfo = answer.get("result");
+                    String resultStatus = answer.get("resultStatus");
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        Toast.makeText(getBaseContext(), "success", Toast.LENGTH_SHORT).show();
+                    } else {
+                        String memo = answer.get("memo");
+                        Toast.makeText(getBaseContext(), memo, Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+                case SDK_AUTH_FLAG: {
+//                    @SuppressWarnings("unchecked")
+//                    Map<String, String> answer = (Map<String, String>) msg.obj;
+//                    // The result info contains other information about the transaction
+//                    String resultInfo = answer.get("result");
+//                    String resultStatus = answer.get("resultStatus");
+//                    if (TextUtils.equals(resultStatus, "9000")) {
+//                        Toast.makeText(getBaseContext(), "success", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(getBaseContext(), "failed", Toast.LENGTH_SHORT).show();
+//                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        };
+    };
+
+    @SuppressLint("WrongConstant")
+    private void handleAlipay() {
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
+        PUBLISHABLE_KEY = settingsMain.getKey("stripeKey");
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+        int total =  (int)(Double.parseDouble(strTotal)*100);
+        SourceParams alipayParams = SourceParams.createAlipaySingleUseParams(Long.parseLong(String.format("%d", total)), "USD", "Sample", "sample@sample.com", "remitty://alipay");
+//        SourceParams alipayParams = SourceParams.createAlipayReusableParams("USD", "Sample", "sample@sample.com", "remitty://alipay");
+        Stripe stripe = new Stripe(StripePayment.this, PUBLISHABLE_KEY);
+        //            Source source = stripe.createSourceSynchronous(alipayParams);
+//                    invokeAlipayNative(source);
+//            invokeAlipayWeb(source);
+//            invokeAlipayNativeReusable(source);
+        stripe.createSource(alipayParams, new SourceCallback() {
+            @Override
+            public void onError(Exception error) {
+                loadingLayout.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onSuccess(Source source) {
+                loadingLayout.setVisibility(View.GONE);
+//                invokeAlipayNative(source);
+                invokeAlipayWeb(source);
+//              invokeAlipayNativeReusable(source);
+            }
+        });
+
+
+    }
+
+    private void invokeAlipayNative(Source source) {
+        Map<String, Object> alipayParams = source.getSourceTypeData();
+        final String dataString = (String) alipayParams.get("data_string");
+
+        Runnable payRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // The PayTask class is from the Alipay SDK. Do not run this function
+                // on the main thread.
+                PayTask alipay = new PayTask(StripePayment.this);
+                // Invoking this function immediately takes the user to the Alipay
+                // app, if in stalled. If not, the user is sent to the browser.
+                Map<String, String> result = alipay.payV2(dataString, true);
+//                Map<String, String> result = alipay.payV2(dataString.toString(), true);
+
+                // Once you get the result, communicate it back to the main thread
+                Message msg = new Message();
+                msg.what = SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
+    private void invokeAlipayNativeReusable(Source source) {
+        Map<String, Object> alipayParams = source.getSourceTypeData();
+        String dataString = (String) alipayParams.get("native_url");
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(dataString));
+        // Start the activity with your choice of integer request code,
+        // here denoted as START_ALIPAY_REQUEST
+        startActivityForResult(intent, START_ALIPAY_REQUEST);
+    }
+
+    private void invokeAlipayWeb(Source source) {
+        String redirectUrl = source.getRedirect().getUrl();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(redirectUrl));
+        startActivity(intent);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         //If the result is from paypal
@@ -480,7 +641,6 @@ public class StripePayment extends AppCompatActivity {
                         Log.i("paymentExample", paymentDetails);
                         paymentId = confirm.toJSONObject()
                                 .getJSONObject("response").getString("id");
-
                         adforest_Checkout();
 
                     } catch (JSONException e) {
@@ -496,7 +656,14 @@ public class StripePayment extends AppCompatActivity {
             }
         }
 
-
+        if (requestCode == START_ALIPAY_REQUEST) {
+            if (resultCode == Activity.RESULT_CANCELED) {
+                // Do not use the source
+            } else {
+                // The source was approved.
+                adforest_Checkout();
+            }
+        }
     }
 
     @Override

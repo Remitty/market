@@ -15,8 +15,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -33,7 +35,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".payment.BalanceActivity"></activity>
+        <activity android:name=".alipay.AlipayActivity"></activity>
+        <activity android:name=".payment.BalanceActivity" />
         <activity android:name=".payment.PaymentActivity" />
         <activity
             android:name=".SplashScreen"
@@ -156,7 +159,18 @@
         </activity>
         <activity
             android:name=".payment.StripePayment"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="alipay"
+                    android:scheme="remitty" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".payment.InAppPurchaseActivity"
             android:screenOrientation="portrait" />
@@ -216,6 +230,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" /> <!-- Full screen image Viewer -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:exported="false"
+            android:screenOrientation="behind"></activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:exported="false"
+            android:screenOrientation="behind"></activity>
+
         <meta-data
             android:name="com.plaid.link.public_key"
             android:value="9631b048a502739144d719f9e69973" />
