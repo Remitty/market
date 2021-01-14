@@ -93,7 +93,7 @@ public class StripePayment extends AppCompatActivity {
     Button chkout, cancel;
     TextView tvSubTotal, tvTax, tvShipping, tvTotal;
     TextView tvWalletBalance, tvPaypal, tvCardId;
-    ImageView check1, check2, check3, check4, imgCard;
+    ImageView check1, check2, check3, check4, check5, imgCard;
 
     private CreditCard mCard = new CreditCard();
     private String mPaypal="";
@@ -178,6 +178,7 @@ public class StripePayment extends AppCompatActivity {
                 check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check5.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
             }
         });
 
@@ -195,6 +196,7 @@ public class StripePayment extends AppCompatActivity {
                 check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
                 check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check5.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
             }
         });
 
@@ -212,6 +214,7 @@ public class StripePayment extends AppCompatActivity {
                 check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
                 check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check5.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
             }
         });
 
@@ -225,6 +228,21 @@ public class StripePayment extends AppCompatActivity {
                 check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
+                check5.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
+            }
+        });
+
+        check5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(strPaymentMethod.equals("wechatpay"))
+                    return;
+                strPaymentMethod = "wechatpay";
+                check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+                check5.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
             }
         });
 
@@ -269,6 +287,10 @@ public class StripePayment extends AppCompatActivity {
                     showLoading();
                     handleAlipay();
                 }
+                else if(strPaymentMethod.equals("wechatpay")) {
+                    dialog.dismiss();
+                    handleWecahtpay();
+                }
                 else {
                     adforest_Checkout();
                 }
@@ -300,6 +322,7 @@ public class StripePayment extends AppCompatActivity {
         check2 = findViewById(R.id.check2);
         check3 = findViewById(R.id.check3);
         check4 = findViewById(R.id.check4);
+        check5 = findViewById(R.id.check5);
         imgCard = findViewById(R.id.card_logo);
 
     }
@@ -619,6 +642,10 @@ public class StripePayment extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(redirectUrl));
         startActivity(intent);
+    }
+
+    private void handleWecahtpay() {
+
     }
 
     @Override
