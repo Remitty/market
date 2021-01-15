@@ -18,7 +18,10 @@ import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.brian.market.databases.User_Cart_DB;
 import com.brian.market.home.HomeActivity;
+import com.brian.market.wxapi.WXPayEntryActivity;
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -48,9 +51,8 @@ import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.squareup.picasso.Picasso;
-import com.stripe.android.SourceCallback;
+import com.stripe.android.ApiResultCallback;
 import com.stripe.android.Stripe;
-import com.stripe.android.TokenCallback;
 import com.stripe.android.exception.APIConnectionException;
 import com.stripe.android.exception.APIException;
 import com.stripe.android.exception.AuthenticationException;
@@ -82,9 +84,13 @@ import com.brian.market.R;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
+import com.stripe.android.model.WeChat;
 import com.stripe.android.view.CardInputWidget;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-public class StripePayment extends AppCompatActivity {
+public class StripePayment extends WXPayEntryActivity {
 
     SettingsMain settingsMain;
     FrameLayout loadingLayout;
@@ -119,6 +125,7 @@ public class StripePayment extends AppCompatActivity {
         setContentView(R.layout.activity_stripe_payment);
 
         settingsMain = new SettingsMain(this);
+        PUBLISHABLE_KEY = settingsMain.getKey("stripeKey");
 
         mIntent = getIntent();
 
@@ -289,7 +296,7 @@ public class StripePayment extends AppCompatActivity {
                 }
                 else if(strPaymentMethod.equals("wechatpay")) {
                     dialog.dismiss();
-                    handleWecahtpay();
+                    handleWechatPay();
                 }
                 else {
                     adforest_Checkout();
@@ -399,7 +406,7 @@ public class StripePayment extends AppCompatActivity {
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(StripePayment.this, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(StripePayment.this, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -572,7 +579,7 @@ public class StripePayment extends AppCompatActivity {
     private void handleAlipay() {
 //        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 //        StrictMode.setThreadPolicy(policy);
-        PUBLISHABLE_KEY = settingsMain.getKey("stripeKey");
+
         EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         int total =  (int)(Double.parseDouble(strTotal)*100);
         SourceParams alipayParams = SourceParams.createAlipaySingleUseParams(Long.parseLong(String.format("%d", total)), "USD", "Sample", "sample@sample.com", "remitty://alipay");
@@ -582,7 +589,7 @@ public class StripePayment extends AppCompatActivity {
 //                    invokeAlipayNative(source);
 //            invokeAlipayWeb(source);
 //            invokeAlipayNativeReusable(source);
-        stripe.createSource(alipayParams, new SourceCallback() {
+        stripe.createSource(alipayParams, new ApiResultCallback<Source>() {
             @Override
             public void onError(Exception error) {
                 loadingLayout.setVisibility(View.GONE);
@@ -644,8 +651,30 @@ public class StripePayment extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void handleWecahtpay() {
+    private void handleWechatPay() {
+        SourceParams wechatParam = SourceParams.createWeChatPayParams((long)(Double.parseDouble(strTotal)*100), "USD", getString(R.string.wechat_app_id), "");
+        Stripe stripe = new Stripe(StripePayment.this, PUBLISHABLE_KEY);
+        stripe.createSource(wechatParam, new ApiResultCallback<Source>() {
+            @Override
+            public void onSuccess(@NonNull Source result) {
+                WeChat weChat = result.getWeChat();
+                IWXAPI weChatApi = WXAPIFactory.createWXAPI(StripePayment.this, getString(R.string.wechat_app_id), true);
+                PayReq payReq = new PayReq();
+                payReq.appId = weChat.getAppId();
+                payReq.partnerId = weChat.getPartnerId();
+                payReq.packageValue = weChat.getPackageValue();
+                payReq.nonceStr = weChat.getNonce();
+                payReq.timeStamp = weChat.getTimestamp();
+                payReq.sign = weChat.getSign();
+                weChatApi.sendReq(payReq);
+//                loadingLayout.setVisibility(View.GONE);
+            }
 
+            @Override
+            public void onError(@NonNull Exception e) {
+                loadingLayout.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -710,6 +739,16 @@ public class StripePayment extends AppCompatActivity {
         super.onResume();
     }
 
+    @Override
+    public void wechatLoginSuccess() {
+
+    }
+
+    @Override
+    public void wechatPaySuccess() {
+        loadingLayout.setVisibility(View.GONE);
+    }
+
     public void adforest_getDataForThankYou() {
         Intent intent = new Intent(StripePayment.this, Thankyou.class);
 //                                intent.putExtra("data", responseData.getString("data"));
@@ -763,7 +802,7 @@ public class StripePayment extends AppCompatActivity {
 //            });
 //        } else {
 //            SettingsMain.hideDilog();
-//            Toast.makeText(StripePayment.this, "Internet error", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(StripePayment.this, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
 //        }
     }
 
@@ -773,5 +812,6 @@ public class StripePayment extends AppCompatActivity {
         loadingLayout.setBackground(drawable);
         loadingLayout.setVisibility(View.VISIBLE);
     }
+
 }
 

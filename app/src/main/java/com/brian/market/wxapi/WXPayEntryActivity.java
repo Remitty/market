@@ -4,15 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.brian.market.App;
+import com.brian.market.R;
+import com.brian.market.payment.StripePayment;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.modelpay.PayResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
-public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEventHandler {
+public abstract class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEventHandler {
     private IWXAPI iwxAPI;
     private String code = "";
     private BaseResp resp = null;
@@ -20,8 +26,7 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        App app = new App();
-        iwxAPI = app.iwxAPI;
+        iwxAPI = WXAPIFactory.createWXAPI(WXPayEntryActivity.this, getString(R.string.wechat_app_id), true);
 
     }
 
@@ -41,16 +46,38 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
     public void onResp(BaseResp baseResp) {
         if(baseResp != null) {
             resp = baseResp;
-            SendAuth.Resp temp = (SendAuth.Resp)baseResp;
-            code = temp.code;
-        }
-        switch (baseResp.errCode) {
-            case BaseResp.ErrCode.ERR_OK:
-                break;
-            case BaseResp.ErrCode.ERR_AUTH_DENIED:
-            case BaseResp.ErrCode.ERR_USER_CANCEL:
-                finish();
-                break;
+            SendAuth.Resp authResp = new SendAuth.Resp();
+            PayResp payResp = new PayResp();
+
+            if(baseResp.equals(authResp)) {
+               authResp = (SendAuth.Resp)baseResp;
+                code = authResp.code;
+                switch (baseResp.errCode) {
+                    case BaseResp.ErrCode.ERR_OK:
+                        wechatLoginSuccess();
+                        break;
+                    case BaseResp.ErrCode.ERR_AUTH_DENIED:
+                    case BaseResp.ErrCode.ERR_USER_CANCEL:
+                        finish();
+                        break;
+                }
+
+            }else if(baseResp.equals(payResp)) {
+                payResp = (PayResp)baseResp;
+                switch (payResp.errCode) {
+                    case 0:
+                        Toast.makeText(this, "Payment successful!", Toast.LENGTH_SHORT).show();
+                        wechatPaySuccess();
+                        break;
+                    case -1:
+                        Toast.makeText(this, "Error during payment", Toast.LENGTH_SHORT).show();
+                        break;
+                    case -2:
+                        Toast.makeText(this, "Unknown result", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+
         }
     }
 
@@ -72,4 +99,7 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
         observeSuccess();
         observeError();
     }
+
+    public abstract void wechatLoginSuccess();
+    public abstract void wechatPaySuccess();
 }
