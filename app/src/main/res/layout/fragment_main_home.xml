@@ -366,7 +366,7 @@
                     android:paddingBottom="4dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
-                    android:text="New Arrivals"
+                    android:text="@string/latest_list"
                     android:textStyle="bold"
                     android:background="@color/green"
                     android:textColor="@color/white"
@@ -400,7 +400,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="No Products in your city"
+            android:text="@string/no_product"
             android:textStyle="bold"
             android:textSize="30dp"
             android:textColor="@color/black"/>

@@ -5,16 +5,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:facebook="http://schemas.android.com/tools">
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SIGN IN"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
-        android:gravity="right"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:paddingHorizontal="20dp"
+            android:background="@color/white">
+            <TextView
+                android:id="@+id/tx_en"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="EN"
+                android:textSize="20dp"
+                android:textColor="@color/colorRedCrayon"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="|"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/tx_ch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="CH"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/signin"
+                android:textAllCaps="true"
+                android:layout_marginRight="30dp"
+                android:gravity="right"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -65,7 +119,7 @@
                             android:drawableStart="@drawable/ic_mail_outline"
                             android:drawablePadding="8dp"
                             android:gravity="center_vertical"
-                            android:hint="Email"
+                            android:hint="@string/email"
                             android:inputType="textEmailAddress"
                             android:maxLines="1"
                             android:padding="10dp"
@@ -80,7 +134,7 @@
                             android:drawableStart="@drawable/ic_lock_outline"
                             android:drawablePadding="8dp"
                             android:gravity="center_vertical"
-                            android:hint="Password"
+                            android:hint="@string/password"
                             android:inputType="textPassword"
                             android:maxLines="1"
                             android:padding="10dp"
@@ -100,7 +154,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="left"
                                 android:padding="5dp"
-                                android:text="Forgot Password"
+                                android:text="@string/forgot_password"
                                 android:textColor="@color/colorRedCrayon"
                                 android:textSize="14sp"
                                 android:visibility="visible" />
@@ -112,7 +166,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_marginHorizontal="20dp"
-                            android:text="Log In"
+                            android:text="@string/login"
                             android:textColor="@color/white" />
 
                         <Button
@@ -123,7 +177,7 @@
                             android:layout_marginHorizontal="20dp"
                             android:backgroundTint="@color/green"
                             android:drawableLeft="@drawable/ic_wechat"
-                            android:text="Log In by Wechat"
+                            android:text="@string/login_wechat"
                             android:textColor="@color/white" />
                         <Button
                             android:id="@+id/startExplore"
@@ -132,7 +186,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginHorizontal="20dp"
                             android:backgroundTint="@color/colorPrimaryDark"
-                            android:text="Explore"
+                            android:text="@string/explore"
                             android:textColor="@color/white" />
                         <Button
                             android:id="@+id/fbLogin"
@@ -161,7 +215,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
                             android:padding="10dp"
-                            android:text="Don't have an account"
+                            android:text="@string/have_not_account"
                             android:textColor="@color/black"
                             android:textSize="15sp" />
 
@@ -171,7 +225,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
                             android:padding="10dp"
-                            android:text="Sign up"
+                            android:text="@string/signup"
                             android:textColor="@color/colorRedCrayon"
                             android:textSize="20dp" />
 

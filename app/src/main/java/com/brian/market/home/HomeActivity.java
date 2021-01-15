@@ -1000,7 +1000,7 @@ public class HomeActivity extends AppCompatActivity
                 updatfrag.updatefrag(nearby_latitude, nearby_longitude, nearby_distance, currentLocationText.getText().toString());
             }
         } else {
-            Toast.makeText(this, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -146,7 +146,7 @@ public class PostAuctionFragment extends Fragment implements RuntimePermissionHe
                 }
             });
         } else {
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -246,7 +246,7 @@ public class PostAuctionFragment extends Fragment implements RuntimePermissionHe
 
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
             getActivity().finish();
         }
     }

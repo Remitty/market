@@ -438,7 +438,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -448,7 +448,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener
             LoginManager.getInstance().logInWithReadPermissions(this,
                     Arrays.asList("public_profile", "email"));
         } else {
-            Toast.makeText(activity, "Sorry .No internet connectivity found.",
+            Toast.makeText(activity, getString(R.string.internet_error),
                     Toast.LENGTH_LONG).show();
         }
     }
@@ -554,7 +554,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener
 //                registerAPI();
             } else {
                 // If mobile number is not verified successfully You can hendle according to your requirement.
-                Toast.makeText(getActivity(),"Verification Faild",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),getString(R.string.message_verify_failed),Toast.LENGTH_SHORT).show();
 //                    Intent goToLogin = new Intent(RegisterActivity.this, WelcomeScreenActivity.class);
 //                    goToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                    startActivity(goToLogin);
@@ -709,7 +709,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
 
     }

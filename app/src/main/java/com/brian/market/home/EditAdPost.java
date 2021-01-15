@@ -921,7 +921,7 @@ public class EditAdPost extends AppCompatActivity implements OnMapReadyCallback,
 //            });
 //        } else {
 //            SettingsMain.hideDilog();
-//            Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
 //        }
     }
 
@@ -1648,7 +1648,7 @@ public class EditAdPost extends AppCompatActivity implements OnMapReadyCallback,
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
     @Override
@@ -1923,7 +1923,7 @@ public class EditAdPost extends AppCompatActivity implements OnMapReadyCallback,
 
                                         } else {
                                             SettingsMain.hideDilog();
-                                            Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
                                         }
                                         spinnerTouched = false;
                                     }
@@ -2263,7 +2263,7 @@ public class EditAdPost extends AppCompatActivity implements OnMapReadyCallback,
                                         });
                                     } else {
                                         SettingsMain.hideDilog();
-                                        Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
                                     }
                                     spinnerTouched = false;
                                 }
@@ -2682,7 +2682,7 @@ public class EditAdPost extends AppCompatActivity implements OnMapReadyCallback,
                         }
                     } else {
                         SettingsMain.hideDilog();
-                        Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -2847,7 +2847,7 @@ public class EditAdPost extends AppCompatActivity implements OnMapReadyCallback,
                     }
                 });
             } else {
-                Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
             }
 
 
@@ -3498,7 +3498,7 @@ public class EditAdPost extends AppCompatActivity implements OnMapReadyCallback,
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 

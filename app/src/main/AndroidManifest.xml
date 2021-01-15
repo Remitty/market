@@ -49,7 +49,8 @@
         </activity>
         <activity
             android:name=".signinorup.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:configChanges="locale">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 

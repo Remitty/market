@@ -195,7 +195,7 @@ public class ProductOrderPage extends Fragment implements Serializable, RuntimeP
 
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
             getActivity().finish();
         }
     }

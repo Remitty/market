@@ -495,7 +495,7 @@ public class ProfileCompleteActivity extends AppCompatActivity implements Google
 
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(this, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -665,7 +665,7 @@ public class ProfileCompleteActivity extends AppCompatActivity implements Google
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(this, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
 
 

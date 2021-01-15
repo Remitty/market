@@ -206,7 +206,7 @@ public class InAppPurchaseActivity extends AppCompatActivity implements BillingP
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(InAppPurchaseActivity.this, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(InAppPurchaseActivity.this, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 

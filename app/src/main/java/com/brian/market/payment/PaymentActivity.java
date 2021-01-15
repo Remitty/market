@@ -216,8 +216,6 @@ public class PaymentActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (APIConnectionException e) {
             e.printStackTrace();
-        } catch (CardException e) {
-            e.printStackTrace();
         } catch (APIException e) {
             e.printStackTrace();
         }

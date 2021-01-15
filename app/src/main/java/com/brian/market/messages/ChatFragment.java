@@ -305,7 +305,7 @@ sendButton.setBackground(drawable);*/
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -409,7 +409,7 @@ sendButton.setBackground(drawable);*/
             });
         } else {
             swipeRefreshLayout.setRefreshing(false);
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
 
 
@@ -509,7 +509,7 @@ sendButton.setBackground(drawable);*/
                 });
             } else {
                 SettingsMain.hideDilog();
-                Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
             }
 
 

@@ -431,7 +431,7 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -896,7 +896,7 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -1803,7 +1803,7 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
                         }
                     } else {
                         SettingsMain.hideDilog();
-                        Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -2015,7 +2015,7 @@ public class AddNewAuctionPost extends AppCompatActivity implements OnMapReadyCa
 
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(context, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 

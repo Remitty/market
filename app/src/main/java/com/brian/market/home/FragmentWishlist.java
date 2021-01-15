@@ -190,7 +190,7 @@ public class FragmentWishlist extends Fragment {
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getContext(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 }

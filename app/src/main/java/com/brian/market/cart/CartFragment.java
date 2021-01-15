@@ -201,7 +201,7 @@ public class CartFragment extends Fragment {
 
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 

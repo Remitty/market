@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.graphics.Color;
 import android.os.Build;
@@ -15,9 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -36,6 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brian.market.App;
+import com.brian.market.wxapi.WXPayEntryActivity;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -62,6 +67,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -100,7 +106,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
     SettingsMain settingsMain;
     LinearLayout linearLayoutLogo;
     ImageView imageViewLogo;
-    TextView textViewWelcome, textViewOR;
+    TextView textViewWelcome, textViewOR, txEn, txCH;
     LinearLayout guestLayout;
     RelativeLayout leftSideAttributLayout;
     boolean is_verify_on = false;
@@ -159,6 +165,11 @@ public class Login_Fragment extends Fragment implements OnClickListener,
 //        textViewOR = view.findViewById(id.or);
         textViewWelcome = view.findViewById(id.welcomeTV);
         imageViewLogo = view.findViewById(id.logoimage);
+
+        txCH = view.findViewById(R.id.tx_ch);
+        txEn = view.findViewById(R.id.tx_en);
+
+        imageViewLogo = view.findViewById(id.logoimage);
 //        linearLayoutLogo = view.findViewById(id.logo);
 //        linearLayoutLogo.setBackgroundColor(Color.parseColor(SettingsMain.getMainColor()));
 //        startExplore.setTextColor(Color.parseColor(SettingsMain.getMainColor()));
@@ -194,7 +205,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
 //
 //        } else {
 //            SettingsMain.hideDilog();
-//            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
 //        }
 
         Log.d("joiint open", settingsMain.getAppOpen()+"");
@@ -216,6 +227,8 @@ public class Login_Fragment extends Fragment implements OnClickListener,
         gmailLoginButton.setOnClickListener(this);
         startExplore.setOnClickListener(this);
         btnWechat.setOnClickListener(this);
+        txCH.setOnClickListener(this);
+        txEn.setOnClickListener(this);
     }
 
     @Override
@@ -244,6 +257,16 @@ public class Login_Fragment extends Fragment implements OnClickListener,
                                 new ForgotPassword_Fragment(),
                                 Utils.ForgotPassword_Fragment).commit();
                 break;
+            case id.tx_ch:
+                txCH.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorRedCrayon));
+                txEn.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+                switchLang("zh_CN");
+                break;
+            case id.tx_en:
+                txEn.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorRedCrayon));
+                txCH.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
+                switchLang("en");
+                break;
             case id.createAccount:
 
                 // Replace signup frgament with animation
@@ -270,10 +293,23 @@ public class Login_Fragment extends Fragment implements OnClickListener,
         }
     }
 
+    private void switchLang(String lang) {
+        Locale myLocale = new Locale(lang);
+        Locale.setDefault(myLocale);
+        Resources res = getActivity().getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        conf.setLayoutDirection(myLocale);
+        res.updateConfiguration(conf, dm);
+//        Intent refresh = new Intent(getActivity(), MainActivity.class);
+//        getActivity().finish();
+//        startActivity(refresh);
+    }
+
     private void loginByWechat() {
-//        App app = new App();
-//        IWXAPI iwxAPI = app.iwxAPI;
-//        iwxAPI.sendReq(new SendAuth.Req());
+        IWXAPI iwxAPI = WXAPIFactory.createWXAPI(getActivity(), getString(R.string.wechat_app_id), true);
+        iwxAPI.sendReq(new SendAuth.Req());
         Toast.makeText(activity, "Not approved still", Toast.LENGTH_SHORT).show();
     }
 
@@ -414,7 +450,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -425,7 +461,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
             LoginManager.getInstance().logInWithReadPermissions(this,
                     Arrays.asList("public_profile", "email"));
         } else {
-            Toast.makeText(activity, "Sorry .No internet connectivity found.",
+            Toast.makeText(activity, getString(R.string.internet_error),
                     Toast.LENGTH_LONG).show();
         }
     }
@@ -528,7 +564,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
 
     private void backPressed() {
         if (!back_pressed) {
-            Toast.makeText(getContext(), "Press Again To Exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.message_press_again_exit), Toast.LENGTH_SHORT).show();
             back_pressed = true;
             android.os.Handler mHandler = new android.os.Handler();
             mHandler.postDelayed(new Runnable() {
@@ -544,7 +580,7 @@ public class Login_Fragment extends Fragment implements OnClickListener,
             AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
             alert.setTitle(settingsMain.getAlertDialogTitle("info"));
             alert.setCancelable(false);
-            alert.setMessage("Are you sure you want to exit?");
+            alert.setMessage(getString(R.string.message_exit));
             alert.setPositiveButton(settingsMain.getAlertOkText(), (dialog, which) -> {
                 getActivity().finishAffinity();
                 dialog.dismiss();
@@ -705,9 +741,22 @@ public class Login_Fragment extends Fragment implements OnClickListener,
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getActivity(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    class WechatActivy extends WXPayEntryActivity {
+
+        @Override
+        public void wechatLoginSuccess() {
+
+        }
+
+        @Override
+        public void wechatPaySuccess() {
+
+        }
     }
 
 }

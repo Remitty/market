@@ -21,9 +21,11 @@ import com.brian.market.R;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
+import com.stripe.android.ApiResultCallback;
 import com.stripe.android.Stripe;
-import com.stripe.android.TokenCallback;
 import com.stripe.android.model.Card;
+import com.stripe.android.model.Source;
+import com.stripe.android.model.SourceParams;
 import com.stripe.android.model.Token;
 import com.stripe.android.view.CardInputWidget;
 
@@ -34,6 +36,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.concurrent.TimeoutException;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -108,50 +111,62 @@ public class AddCard extends Fragment {
         cardNo = stripeWidget.getCard().getNumber();
         month = stripeWidget.getCard().getExpMonth();
         year = stripeWidget.getCard().getExpYear();
-
-        Card card = new Card(cardNo, month, year, cvcNo);
-
-        boolean validation = card.validateCard();
-        if (validation) {
-            if (SettingsMain.isConnectingToInternet(getActivity())) {
-
-                Stripe stripe = new Stripe(getActivity(), PUBLISHABLE_KEY);
-                stripe.createToken(
-                        card,
-                        new TokenCallback() {
-                            public void onSuccess(Token token) {
-                                // Send token to your server
-                                Log.e("token success", token.toString());
-                                Log.e("token success", token.getId());
-
-                                sendAddCard(token);
-                            }
-
-                            public void onError(Exception error) {
-                                // Show localized error message
-                                Log.e("token fail", error.getLocalizedMessage());
-                                loadingLayout.setVisibility(View.GONE);
-                                handleError(error.getLocalizedMessage());
-                            }
-                        }
-                );
-            } else {
-                loadingLayout.setVisibility(View.GONE);
-                Snackbar.make(getView().findViewById(android.R.id.content), settingsMain.getAlertDialogMessage("internetMessage"), Snackbar.LENGTH_LONG).show();
+//        Card.Builder cardBuilder = new Card.Builder(cardNo, month, year, cvcNo);
+//        Card card = new Card(cardBuilder);
+        Stripe stripe = new Stripe(getActivity(), PUBLISHABLE_KEY);
+        Card card = stripeWidget.getCard();
+        stripe.createToken(card, new ApiResultCallback<Token>() {
+            @Override
+            public void onSuccess(@NonNull Token token) {
+                sendAddCard(token);
             }
-        } else if (!card.validateNumber()) {
-            loadingLayout.setVisibility(View.GONE);
-            handleError("Invalidate Card");
-        } else if (!card.validateExpiryDate()) {
-            loadingLayout.setVisibility(View.GONE);
-            handleError(stringExpiryError);
-        } else if (!card.validateCVC()) {
-            loadingLayout.setVisibility(View.GONE);
-            handleError(stringCVCError);
-        } else {
-            loadingLayout.setVisibility(View.GONE);
-            handleError(stringInvalidCard);
-        }
+
+            @Override
+            public void onError(@NonNull Exception e) {
+
+            }
+        });
+//        boolean validation = card.validateCard();
+//        if (validation) {
+//            if (SettingsMain.isConnectingToInternet(getActivity())) {
+//
+//
+//                stripe.createToken(
+//                        card,
+//                        new TokenCallback() {
+//                            public void onSuccess(Token token) {
+//                                // Send token to your server
+//                                Log.e("token success", token.toString());
+//                                Log.e("token success", token.getId());
+//
+//                                sendAddCard(token);
+//                            }
+//
+//                            public void onError(Exception error) {
+//                                // Show localized error message
+//                                Log.e("token fail", error.getLocalizedMessage());
+//                                loadingLayout.setVisibility(View.GONE);
+//                                handleError(error.getLocalizedMessage());
+//                            }
+//                        }
+//                );
+//            } else {
+//                loadingLayout.setVisibility(View.GONE);
+//                Snackbar.make(getView().findViewById(android.R.id.content), settingsMain.getAlertDialogMessage("internetMessage"), Snackbar.LENGTH_LONG).show();
+//            }
+//        } else if (!card.validateNumber()) {
+//            loadingLayout.setVisibility(View.GONE);
+//            handleError("Invalidate Card");
+//        } else if (!card.validateExpiryDate()) {
+//            loadingLayout.setVisibility(View.GONE);
+//            handleError(stringExpiryError);
+//        } else if (!card.validateCVC()) {
+//            loadingLayout.setVisibility(View.GONE);
+//            handleError(stringCVCError);
+//        } else {
+//            loadingLayout.setVisibility(View.GONE);
+//            handleError(stringInvalidCard);
+//        }
     }
 
     private void sendAddCard(Token token) {

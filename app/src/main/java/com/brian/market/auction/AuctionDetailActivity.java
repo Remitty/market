@@ -257,7 +257,7 @@ public class AuctionDetailActivity extends AppCompatActivity {
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getBaseContext(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -313,7 +313,7 @@ public class AuctionDetailActivity extends AppCompatActivity {
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getBaseContext(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -365,7 +365,7 @@ public class AuctionDetailActivity extends AppCompatActivity {
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(getBaseContext(), "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 

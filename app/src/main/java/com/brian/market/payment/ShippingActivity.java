@@ -147,7 +147,7 @@ public class ShippingActivity extends AppCompatActivity {
             });
         } else {
             SettingsMain.hideDilog();
-            Toast.makeText(ShippingActivity.this, "Internet error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ShippingActivity.this, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
     }
 
