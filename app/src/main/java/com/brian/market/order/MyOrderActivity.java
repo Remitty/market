@@ -64,7 +64,7 @@ public class MyOrderActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(Color.parseColor(getMainColor()));
-        toolbar.setTitle("My Orders");
+        toolbar.setTitle(getString(R.string.my_order));
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null)

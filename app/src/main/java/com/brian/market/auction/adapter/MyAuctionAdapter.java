@@ -59,7 +59,7 @@ public class MyAuctionAdapter extends RecyclerView.Adapter<MyAuctionAdapter.MyVi
         holder.betPriceTV.setText(feedItem.getHighPrice() +  feedItem.getCurrency());
         holder.statusTV.setText(feedItem.getStatus());
         holder.locationTV.setText(feedItem.getLocation());
-        holder.bidderTV.setText(feedItem.getBidders()+" Bidders");
+        holder.bidderTV.setText(feedItem.getBidders()+" " + context.getString(R.string.bidders));
         if (!TextUtils.isEmpty(feedItem.getImageResourceId(0))) {
             Picasso.with(context).load(feedItem.getImageResourceId(0))
                     .resize(250, 250).centerCrop()
@@ -87,7 +87,7 @@ public class MyAuctionAdapter extends RecyclerView.Adapter<MyAuctionAdapter.MyVi
                 holder.winnerLayout.setVisibility(View.VISIBLE);
             }
             if(feedItem.getWinner().equals(settingsMain.getUserName()))
-                holder.winnerName.setText("You");
+                holder.winnerName.setText(context.getString(R.string.you));
             else holder.winnerName.setText(feedItem.getWinner());
 
             holder.countDown.start(0);

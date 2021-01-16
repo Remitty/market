@@ -70,7 +70,7 @@ public class ShippingActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.parseColor(settingsMain.getMainColor()));
         }
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(settingsMain.getMainColor())));
-        getSupportActionBar().setTitle("Add Shipping Address");
+        getSupportActionBar().setTitle(getString(R.string.add_shipping_address));
 
         placesClient = com.google.android.libraries.places.api.Places.createClient(this);
 

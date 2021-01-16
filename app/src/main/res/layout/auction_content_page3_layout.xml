@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Title"
+            android:hint="@string/title"
             android:padding="10dp"
             android:background="@drawable/imageview_border"
             android:inputType="textPersonName" />
@@ -39,7 +39,7 @@
             android:layout_marginTop="10dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:scrollHorizontally="false"
-            android:hint="Description (255 characters)"
+            android:hint="@string/description"
             />
         <Spinner
             android:id="@+id/cat_spinner"
@@ -98,7 +98,7 @@
                 android:inputType="numberDecimal"
                 android:background="@drawable/imageview_border"
                 android:ems="10"
-                android:hint="Start price"
+                android:hint="@string/start_price"
                 />
             <LinearLayout
                 android:layout_width="150dp"
@@ -108,7 +108,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Select currency"
+                    android:text="@string/select_currency"
                     android:visibility="visible"
                     />
                 <LinearLayout
@@ -132,7 +132,7 @@
             android:id="@+id/location_autoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="City/State/Country"
+            android:hint="@string/city_state_country"
             android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
             android:maxLines="1"
             android:layout_weight="1" />
@@ -236,7 +236,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
 
-                    android:text="Select Delivery Method"
+                    android:text="@string/select_delivery_method"
                     android:textColor="@color/white" />
             </LinearLayout>
             <RadioGroup
@@ -249,7 +249,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textColor="@color/black"
-                    android:text="Local PickUp"
+                    android:text="@string/local_pickup"
                     android:layout_height="wrap_content"/>
                 <RadioButton
                     android:id="@+id/rdb_shipping"
@@ -257,7 +257,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="Shipping"/>
+                    android:text="@string/shipping"/>
 
             </RadioGroup>
             <EditText
@@ -267,7 +267,7 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:visibility="gone"
-                android:hint="Shipping Price"/>
+                android:hint="@string/shipping_fee"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -299,7 +299,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="25dp"
                 android:paddingBottom="10dp"
-                android:text="Post"
+                android:text="@string/post"
                 android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>

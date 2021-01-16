@@ -81,7 +81,7 @@ public class WithdrawActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(Color.parseColor(getMainColor()));
-        toolbar.setTitle("Wallet");
+        toolbar.setTitle(getString(R.string.wallet));
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null)

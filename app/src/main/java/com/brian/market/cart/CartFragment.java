@@ -139,11 +139,11 @@ public class CartFragment extends Fragment {
                         proceedCheckout();
                     }
                     else{
-                        Toast.makeText(context, "You didn't add any product into cart.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, getString(R.string.message_no_product_into_cart), Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{
-                    Toast.makeText(context, "You can't order. Please login.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, getString(R.string.message_cant_order), Toast.LENGTH_SHORT).show();
                 }
             }
         });

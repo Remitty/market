@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.brian.vacation.messages.SendOffers">
+    tools:context="com.brian.market.messages.SendOffers">
 
     <androidx.recyclerview.widget.RecyclerView
 
@@ -32,7 +32,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="No chat"
+            android:text="@string/no_chat"
             android:textStyle="bold"
             android:textSize="30dp"
             android:textColor="@color/black"/>

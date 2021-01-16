@@ -39,7 +39,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="No Wishlist"
+            android:text="@string/no_wish_list"
             android:textStyle="bold"
             android:textSize="30dp"
             android:textColor="@color/black"/>

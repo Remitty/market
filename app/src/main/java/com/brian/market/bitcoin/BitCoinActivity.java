@@ -55,7 +55,7 @@ public class BitCoinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bit_coin);
 
         if(getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Coin Deposit");
+            getSupportActionBar().setTitle(getString(R.string.coin_deposit));
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -202,8 +202,7 @@ public class BitCoinActivity extends AppCompatActivity {
             @Override
             public void onOk() {
 //                mContentDialog.dismiss();
-                Toast.makeText(getBaseContext(), "Copied successfully", Toast.LENGTH_SHORT);
-                displayMessage("Copied successfully");
+                displayMessage(getString(R.string.message_copied));
             }
 
             @Override

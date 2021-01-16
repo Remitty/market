@@ -97,13 +97,13 @@ public class WalletFragment extends Fragment {
                             .setIcon(R.mipmap.ic_launcher)
                             .setMessage("Are you sure you want to withdraw $ " + editCashAmount.getText() + " via bank?");
                     builder.setCancelable(true);
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             requestWithdraw("Bank");
                         }
                     });
-                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -130,13 +130,13 @@ public class WalletFragment extends Fragment {
                             .setIcon(R.mipmap.ic_launcher)
                             .setMessage("Are you sure you want to withdraw $ " + editCashAmount.getText() + " to " + paypal +" ?");
                     builder.setCancelable(true);
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             requestWithdraw("Paypal");
                         }
                     });
-                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();

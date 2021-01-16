@@ -77,7 +77,7 @@ public class MyAuctionActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("My Auction");
+            getSupportActionBar().setTitle(getString(R.string.my_auction));
         }
 
         fabPlus = findViewById(R.id.fab_plus_auction);

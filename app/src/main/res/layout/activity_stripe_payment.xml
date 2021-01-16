@@ -39,7 +39,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Invoice"
+                        android:text="@string/invoice"
                         android:textSize="16sp"
                         android:textColor="@color/black"
                         android:padding="5dp"
@@ -61,7 +61,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
-                                android:text="Subtotal"
+                                android:text="@string/subtotal"
                                 android:textSize="14sp"
                                 android:textColor="@color/textColorSecondary" />
 
@@ -89,7 +89,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
-                                android:text="Tax"
+                                android:text="@string/tax"
                                 android:textSize="14sp"
                                 android:textColor="@color/textColorSecondary" />
 
@@ -117,7 +117,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
-                                android:text="Shipping"
+                                android:text="@string/shipping"
                                 android:textSize="14sp"
                                 android:textColor="@color/textColorSecondary" />
 
@@ -145,7 +145,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
-                                android:text="Total"
+                                android:text="@string/total_price"
                                 android:textSize="14sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/black" />
@@ -235,7 +235,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
-                                        android:text="Balance"
+                                        android:text="@string/balance"
                                         android:textSize="20dp"
                                         android:textColor="@color/black"
                                         android:textStyle="bold"

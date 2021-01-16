@@ -17,7 +17,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="No Product"
+            android:text="@string/no_product"
             android:textStyle="bold"
             android:textSize="30dp"
             android:textColor="@color/black"/>
@@ -55,7 +55,7 @@
                     android:paddingBottom="4dp"
                     android:paddingTop="4dp"
                     android:textColor="@color/black"
-                    android:text="My Featured List"
+                    android:text="@string/my_featured_list"
                     android:textSize="18sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -87,7 +87,7 @@
                     android:layout_weight="1.5"
                     android:gravity="fill_vertical"
                     android:maxLines="1"
-                    android:text="Product List"
+                    android:text="@string/product_list"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 

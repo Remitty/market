@@ -100,10 +100,10 @@ public class CardAddFragment extends Fragment {
             }
         });
 
-        stringCardError = "Invalidate Card";
-        stringExpiryError = "Invalidate Expiry";
-        stringCVCError = "Invalidate CVC";
-        stringInvalidCard = "Invalidate Card";
+        stringCardError = getString(R.string.invalidate_card);
+        stringExpiryError = getString(R.string.invalidate_expiry);
+        stringCVCError = getString(R.string.invalidate_cvc);
+        stringInvalidCard = stringCardError;
 
         return view;
     }

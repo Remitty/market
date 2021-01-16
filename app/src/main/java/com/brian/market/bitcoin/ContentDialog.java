@@ -69,7 +69,7 @@ public class ContentDialog extends DialogFragment {
         coinname = view.findViewById(R.id.tv_coin_name);
         registerForContextMenu(address);
         address.setText(mAddress);
-        coinname.setText(mCoinName);
+        coinname.setText(" "+mCoinName+" ");
         builder.setView(view);
         // Add action buttons
 //                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -95,14 +95,13 @@ public class ContentDialog extends DialogFragment {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
-        menu.add(0, v.getId(),0, "Copy");
-        menu.setHeaderTitle("Copy Text");
+        menu.add(0, v.getId(),0, getString(R.string.copy));
+        menu.setHeaderTitle(getString(R.string.message_copy_text));
         TextView textView = (TextView) v;
         ClipboardManager manager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("text", textView.getText());
         manager.setPrimaryClip(clipData);
 
-        Toast.makeText(getContext(), "Copied text", Toast.LENGTH_SHORT);
     }
 
 

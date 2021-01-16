@@ -175,10 +175,10 @@ public class ItemSearchFeatureAdsAdapter extends RecyclerView.Adapter<ItemSearch
                             .placeholder(R.drawable.ic_cart_empty)
                             .into(holder.cartImage);
                     v.setVisibility(View.GONE);
-                    Toast.makeText(mContext, "Added the product to cart successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, mContext.getString(R.string.message_added_product_into_cart), Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(mContext, "Added the product to cart already", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, mContext.getString(R.string.message_added_product_into_cart_already), Toast.LENGTH_SHORT).show();
                 }
             }
         });

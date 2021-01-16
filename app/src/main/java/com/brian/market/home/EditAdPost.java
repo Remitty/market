@@ -1197,7 +1197,7 @@ public class EditAdPost extends AppCompatActivity implements OnMapReadyCallback,
             }
             placesContainer.setText(stringBuilder.toString());
         } else {
-            Toast.makeText(EditAdPost.this, "Failed To Get Address. Please Try Again", Toast.LENGTH_SHORT).show();
+            Toast.makeText(EditAdPost.this, getString(R.string.message_failed_get_address), Toast.LENGTH_SHORT).show();
         }
 
 
@@ -1353,7 +1353,7 @@ public class EditAdPost extends AppCompatActivity implements OnMapReadyCallback,
                                 }
                                 placesContainer.setText(result.toString());
                             } else {
-                                Toast.makeText(EditAdPost.this, "Failed To Get Address. Please Try Again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditAdPost.this, getString(R.string.message_failed_get_address), Toast.LENGTH_SHORT).show();
                             }
                         }
                     } else {

@@ -236,9 +236,9 @@ public class SplashScreen extends AppCompatActivity {
         Location_popupModel.setSlider_number(0);
         Location_popupModel.setSlider_step(10);
 //        Location_popupModel.setLocation(jsonObjectLocationPopup.getString("location"));
-        Location_popupModel.setText("or Distance (mile)");
-        Location_popupModel.setBtn_submit("OK");
-        Location_popupModel.setBtn_clear("Cancel");
+        Location_popupModel.setText(getString(R.string.or_distance));
+        Location_popupModel.setBtn_submit(getString(R.string.yes));
+        Location_popupModel.setBtn_clear(getString(R.string.cancel));
         setting.setLocationPopupModel(Location_popupModel);
     }
 

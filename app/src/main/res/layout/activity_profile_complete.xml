@@ -257,7 +257,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginRight="5dp"
-                                android:text="Street Address"
+                                android:text="@string/street_address"
                                 android:gravity="right"
                                 android:layout_weight="1"/>
 
@@ -292,7 +292,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginRight="5dp"
-                                android:text="Apt/suit"
+                                android:text="@string/apt_suit"
                                 android:gravity="right"
                                 android:layout_weight="1"/>
 
@@ -328,7 +328,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginRight="5dp"
-                                android:text="City, state, country"
+                                android:text="@string/city_state_country"
                                 android:gravity="right"
                                 android:layout_weight="1"/>
 
@@ -400,7 +400,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginRight="5dp"
-                                android:text="Zip/PostalCode"
+                                android:text="@string/zip_postalcode"
                                 android:gravity="right"
                                 android:layout_weight="1"/>
 
@@ -437,7 +437,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:gravity="right"
-                                android:text="Phone"
+                                android:text="@string/phone"
                                 android:layout_marginRight="5dp"
                                 android:layout_weight="1"/>
 
@@ -515,7 +515,7 @@
                             <TextView
                                 android:id="@+id/textViewSetImage"
                                 android:layout_width="0dp"
-                                android:text="Upload"
+                                android:text="@string/upload"
                                 android:gravity="right"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -624,7 +624,7 @@
                                     android:background="@drawable/loginbutton_fb"
                                     android:gravity="center"
                                     android:padding="10dp"
-                                    android:text="Save"
+                                    android:text="@string/save"
                                     android:textColor="@color/white" />
                             </LinearLayout>
 

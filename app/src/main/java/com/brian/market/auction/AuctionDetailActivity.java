@@ -84,7 +84,7 @@ public class AuctionDetailActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Auction Detail");
+            getSupportActionBar().setTitle(getString(R.string.auction_detail));
         }
 
         myId = getIntent().getStringExtra("post_id");
@@ -120,7 +120,7 @@ public class AuctionDetailActivity extends AppCompatActivity {
                     if(settingsMain.getAppOpen())
                         bet();
                     else
-                        Toast.makeText(getBaseContext(), "Please login to bid your offer", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), getString(R.string.message_login_to_bid_offer), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -129,10 +129,10 @@ public class AuctionDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(AuctionDetailActivity.this);
-                alert.setTitle("Confirm cancel auction")
+                alert.setTitle(getString(R.string.message_confirm_cancel_auction_title))
                         .setIcon(R.mipmap.ic_launcher_round)
-                        .setMessage("Are you sure you want to cancel the auction?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setMessage(getString(R.string.message_cancel_auction))
+                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 sendCancel();

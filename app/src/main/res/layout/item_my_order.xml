@@ -61,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="No.Products"/>
+                    android:text="@string/count_products"/>
                 <TextView
                     android:id="@+id/tv_no_products"
                     android:layout_weight="1"
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="Kind"/>
+                    android:text="@string/kind"/>
                 <TextView
                     android:id="@+id/tv_product_kind"
                     android:layout_weight="1"
@@ -99,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="Total Price"/>
+                    android:text="@string/total_price"/>
                 <TextView
                     android:id="@+id/tv_total_price"
                     android:layout_weight="1"
@@ -118,7 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="Status"/>
+                    android:text="@string/status"/>
                 <TextView
                     android:id="@+id/tv_order_status"
                     android:layout_weight="1"
@@ -137,7 +137,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="Date"/>
+                    android:text="@string/date"/>
                 <TextView
                     android:id="@+id/tv_order_date"
                     android:layout_weight="1"
@@ -165,7 +165,7 @@
                 android:background="@color/textColorGreen"
                 android:textColor="@color/white"
                 android:textSize="10dp"
-                android:text="Confirm"/>
+                android:text="@string/confirm"/>
             <Button
                 android:id="@+id/btn_book_edit"
                 android:layout_weight="1"
@@ -177,7 +177,7 @@
                 android:textColor="@color/white"
                 android:textSize="10dp"
                 android:visibility="gone"
-                android:text="Edit"/>
+                android:text="@string/edit"/>
             <Button
                 android:layout_weight="1"
                 android:id="@+id/btn_book_cancel"
@@ -188,7 +188,7 @@
                 android:textColor="@color/white"
 
                 android:textSize="10dp"
-                android:text="Cancel"/>
+                android:text="@string/cancel"/>
         </LinearLayout>
     </LinearLayout>
 

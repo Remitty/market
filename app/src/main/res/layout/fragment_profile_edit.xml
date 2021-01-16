@@ -147,7 +147,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Edit Profile"
+                            android:text="@string/edit_profile"
                             android:textSize="17sp" />
 
                         <LinearLayout
@@ -162,7 +162,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:textSize="13sp"
-                                android:text="Change Password"
+                                android:text="@string/change_password"
                                 android:textStyle="bold" />
 
                         </LinearLayout>
@@ -179,7 +179,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
-                            android:text="First Name"
+                            android:text="@string/first_name"
                             android:layout_marginRight="5dp"
                             android:gravity="right"/>
 
@@ -215,7 +215,7 @@
                             android:layout_weight="1"
                             android:gravity="right"
                             android:layout_marginRight="5dp"
-                            android:text="Last Name"
+                            android:text="@string/last_name"
                             />
 
                         <LinearLayout
@@ -250,7 +250,7 @@
                             android:gravity="right"
                             android:layout_weight="1"
                             android:layout_marginRight="5dp"
-                            android:text="Email"
+                            android:text="@string/email"
                             />
 
                         <LinearLayout
@@ -283,7 +283,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:gravity="right"
-                            android:text="Phone"
+                            android:text="@string/phone"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"/>
 
@@ -396,7 +396,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="5dp"
-                            android:text="Street Address"
+                            android:text="@string/street_address"
                             android:gravity="right"
                             android:layout_weight="1"/>
 
@@ -431,7 +431,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="5dp"
-                            android:text="Apt/suit"
+                            android:text="@string/apt_suit"
                             android:gravity="right"
                             android:layout_weight="1"/>
 
@@ -467,7 +467,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="5dp"
-                            android:text="City, state, country"
+                            android:text="@string/city_state_country"
                             android:gravity="right"
                             android:layout_weight="1"/>
 
@@ -539,7 +539,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="5dp"
-                            android:text="Zip/PostalCode"
+                            android:text="@string/zip_postalcode"
                             android:gravity="right"
                             android:layout_weight="1"/>
 
@@ -663,7 +663,7 @@
                                 android:background="@drawable/loginbutton_gmail"
                                 android:gravity="center"
                                 android:padding="10dp"
-                                android:text="Cancel"
+                                android:text="@string/cancel"
                                 android:visibility="gone"
                                 android:textColor="@color/white" />
 
@@ -680,7 +680,7 @@
                                 android:background="@drawable/loginbutton_fb"
                                 android:gravity="center"
                                 android:padding="10dp"
-                                android:text="Next"
+                                android:text="@string/next"
                                 android:textColor="@color/white" />
                         </LinearLayout>
 
@@ -722,7 +722,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="Bank Name"
+                            android:text="@string/bank_name"
                             />
 
                         <LinearLayout
@@ -757,7 +757,7 @@
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="Account Number"
+                            android:text="@string/account_number"
                             />
 
                         <LinearLayout
@@ -799,7 +799,7 @@
                             android:gravity="right"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
-                            android:text="Routing Number"
+                            android:text="@string/routing_number"
                             />
 
                         <LinearLayout
@@ -829,7 +829,7 @@
                         android:layout_marginHorizontal="50dp"
                         android:background="@drawable/rounded_corners_button_red"
                         android:layout_height="30dp"
-                        android:text="Save"
+                        android:text="@string/save"
                         android:textSize="16dp"
                         android:textColor="@color/white"
                         android:layout_width="match_parent"/>

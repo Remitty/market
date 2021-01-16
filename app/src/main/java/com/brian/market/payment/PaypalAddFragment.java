@@ -75,7 +75,7 @@ public class PaypalAddFragment extends Fragment {
                 Pattern p = Pattern.compile("\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\b");
                 Matcher m = p.matcher(paypal.getText().toString());
                 if (!m.find()) {
-                    paypal.setError("Invalid email");
+                    paypal.setError(getString(R.string.invalid_email));
                     return;
                 }
                 sendPaypal(paypal.getText().toString());

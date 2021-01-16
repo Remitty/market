@@ -142,7 +142,7 @@ public class StripePayment extends WXPayEntryActivity {
             window.setStatusBarColor(Color.parseColor(settingsMain.getMainColor()));
         }
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(settingsMain.getMainColor())));
-        getSupportActionBar().setTitle("Check Out");
+        getSupportActionBar().setTitle(getString(R.string.checkout));
 
         initComponents();
 
@@ -161,7 +161,7 @@ public class StripePayment extends WXPayEntryActivity {
             @Override
             public void onClick(View v) {
                 if(strPaymentMethod.equals("")) {
-                    Toast.makeText(getBaseContext(), "Please select payment option.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.message_select_payment_option), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 confirmOrder();
@@ -193,7 +193,7 @@ public class StripePayment extends WXPayEntryActivity {
             @Override
             public void onClick(View v) {
                 if(mCard.getData() == null) {
-                    Toast.makeText(getBaseContext(), "No card.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), getString(R.string.no_card), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(strPaymentMethod.equals("Card"))
@@ -285,7 +285,7 @@ public class StripePayment extends WXPayEntryActivity {
 
         builder.setCancelable(true);
         builder.setView(alertview);
-        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if(strPaymentMethod.equals("Paypal")) handlePaypal();
@@ -303,7 +303,7 @@ public class StripePayment extends WXPayEntryActivity {
                 }
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

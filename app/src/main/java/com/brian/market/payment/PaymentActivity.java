@@ -67,7 +67,7 @@ public class PaymentActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setTitle("Payment");
+            getSupportActionBar().setTitle(getString(R.string.payment));
         }
 
         settingsMain = new SettingsMain(this);

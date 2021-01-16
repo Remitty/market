@@ -80,7 +80,7 @@ public class PaypalFragment extends Fragment {
 
         if(!mPaypal.equals("") && !mPaypal.equals("null")) {
             paypal.setText(mPaypal);
-            btnPaypal.setText("Change");
+            btnPaypal.setText(getString(R.string.change));
             btnPaypalDelete.setVisibility(View.VISIBLE);
         }
 
@@ -97,15 +97,15 @@ public class PaypalFragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(getContext().getResources().getString(R.string.app_name))
                         .setIcon(R.mipmap.ic_launcher)
-                        .setMessage("Are you sure you want to delete this paypal?");
+                        .setMessage(getString(R.string.message_cancel_paypal));
                 builder.setCancelable(true);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         sendPaypalDeleteRequest();
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

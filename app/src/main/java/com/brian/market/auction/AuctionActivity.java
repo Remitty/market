@@ -74,7 +74,7 @@ public class AuctionActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Auction");
+            getSupportActionBar().setTitle(getString(R.string.auction));
         }
 
         auctionAdapter = new AuctionAdapter(AuctionActivity.this, auctionList, 2);

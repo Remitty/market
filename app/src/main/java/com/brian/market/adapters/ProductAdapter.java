@@ -283,10 +283,10 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                     v.setVisibility(View.GONE);
 
-                    Toast.makeText(context, "Added the product to cart successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, context.getString(R.string.message_added_product_into_cart), Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(context, "Added the product to cart already", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, context.getString(R.string.message_added_product_into_cart_already), Toast.LENGTH_SHORT).show();
                 }
             }
         });

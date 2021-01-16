@@ -28,7 +28,7 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Chat");
+        toolbar.setTitle(getString(R.string.chat));
         setSupportActionBar(toolbar);
         settingsMain = new SettingsMain(this);
 

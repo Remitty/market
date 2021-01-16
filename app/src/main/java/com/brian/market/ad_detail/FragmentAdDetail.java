@@ -482,15 +482,15 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(getContext().getResources().getString(R.string.app_name))
                         .setIcon(R.mipmap.ic_launcher)
-                        .setMessage("Are you sure you want to to cancel this book?");
+                        .setMessage(getString(R.string.message_cancel_book));
                 builder.setCancelable(true);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         requestCancelBook();
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -517,15 +517,15 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle(getContext().getResources().getString(R.string.app_name))
                         .setIcon(R.mipmap.ic_launcher)
-                        .setMessage("Are you sure you want to to delete this product?");
+                        .setMessage(getString(R.string.message_delete_product));
                 builder.setCancelable(true);
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         requestDeletePost();
                     }
                 });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -546,10 +546,10 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
                     product.setCustomersBasketQuantity(1);
                     product.setTotalPrice(product.getPrice());
                     v.setVisibility(View.GONE);
-                    Toast.makeText(getContext(), "Added the product to cart successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.message_added_product_into_cart), Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getContext(), "Added the product to cart already", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getString(R.string.message_added_product_into_cart_already), Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Title"
+            android:hint="@string/title"
             android:padding="10dp"
             android:background="@drawable/imageview_border"
             android:inputType="textPersonName" />
@@ -39,7 +39,7 @@
             android:layout_marginTop="10dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:scrollHorizontally="false"
-            android:hint="Description"
+            android:hint="@string/description"
              />
 
         <Spinner
@@ -90,7 +90,7 @@
                 android:inputType="numberDecimal"
                 android:background="@drawable/imageview_border"
                 android:ems="10"
-                android:hint="Price"
+                android:hint="@string/price"
                 />
             <LinearLayout
                 android:layout_width="150dp"
@@ -100,7 +100,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Select currency"
+                    android:text="@string/select_currency"
                     android:visibility="visible"
                     />
                 <LinearLayout
@@ -134,7 +134,7 @@
                 android:inputType="numberSigned"
                 android:background="@drawable/imageview_border"
                 android:ems="10"
-                android:hint="Count"
+                android:hint="@string/count"
                 />
         </LinearLayout>
         <AutoCompleteTextView
@@ -150,7 +150,7 @@
             android:id="@+id/edit_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Address"/>
+            android:hint="@string/address"/>
 
         <AutoCompleteTextView
             android:id="@+id/address_autoCompleteTextView"
@@ -254,7 +254,7 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp"
 
-                    android:text="Select Delivery Method"
+                    android:text="@string/select_delivery_method"
                     android:textColor="@color/white" />
             </LinearLayout>
             <RadioGroup
@@ -267,7 +267,7 @@
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textColor="@color/black"
-                    android:text="Local PickUp"
+                    android:text="@string/local_pickup"
                     android:layout_height="wrap_content"/>
                 <RadioButton
                     android:id="@+id/rdb_shipping"
@@ -275,7 +275,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="Shipping"/>
+                    android:text="@string/shipping"/>
 
             </RadioGroup>
             <EditText
@@ -284,7 +284,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:visibility="gone"
-                android:hint="Shipping fee: 0.0"/>
+                android:hint="@string/shipping_fee"/>
         </LinearLayout>
         <RelativeLayout
             android:id="@+id/featureAdLayout"
@@ -305,7 +305,7 @@
                 android:layout_toStartOf="@+id/featureAdChkBox"
                 android:drawableStart="@drawable/ic_info_outline_black_24dp"
                 android:drawablePadding="10dp"
-                android:text="Add into feature product(optional)"
+                android:text="@string/add_into_feature_product"
                 android:textColor="@color/white" />
 
             <CheckBox
@@ -354,20 +354,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="$.8 / 1 day"/>
+                    android:text="@string/feature_1_day"/>
                 <RadioButton
                     android:id="@+id/rdb_featured_2"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textColor="@color/black"
-                    android:text="$2.5 / 3days"
+                    android:text="@string/feature_3_day"
                     android:layout_height="wrap_content"/>
                 <RadioButton
                     android:id="@+id/rdb_featured_3"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:textColor="@color/black"
-                    android:text="$5 / 1 week"
+                    android:text="@string/feature_1_week"
                     android:layout_height="wrap_content"/>
             </RadioGroup>
         </LinearLayout>
@@ -402,7 +402,7 @@
                 android:paddingTop="10dp"
                 android:paddingEnd="25dp"
                 android:paddingBottom="10dp"
-                android:text="Post"
+                android:text="@string/post"
                 android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>

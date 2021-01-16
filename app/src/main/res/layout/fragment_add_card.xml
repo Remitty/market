@@ -34,7 +34,7 @@
             android:background="@drawable/loginbutton_fb"
             android:gravity="center"
             android:layout_marginHorizontal="50dp"
-            android:text="Add CARD"
+            android:text="@string/add_card"
             android:textColor="@color/white" />
     </LinearLayout>
     <FrameLayout

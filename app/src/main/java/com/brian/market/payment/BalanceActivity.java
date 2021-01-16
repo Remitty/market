@@ -18,7 +18,7 @@ public class BalanceActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setTitle("Balance");
+            getSupportActionBar().setTitle(getString(R.string.balance));
         }
 
 

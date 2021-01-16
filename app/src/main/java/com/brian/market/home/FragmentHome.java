@@ -509,7 +509,7 @@ public class FragmentHome extends Fragment {
 
     private void backPressed() {
         if (!back_pressed) {
-            Toast.makeText(getContext(), "Press Again To Exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.message_press_again_exit), Toast.LENGTH_SHORT).show();
             back_pressed = true;
             android.os.Handler mHandler = new android.os.Handler();
             mHandler.postDelayed(new Runnable() {
@@ -520,7 +520,7 @@ public class FragmentHome extends Fragment {
             }, 2000L);
         } else {
             ViewDialog viewDialog = new ViewDialog();
-            viewDialog.showDialog(getActivity(), "Are you sure you want to exit?");
+            viewDialog.showDialog(getActivity(), getString(R.string.message_exit));
 //            this.finishAffinity();
         }
     }

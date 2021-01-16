@@ -188,7 +188,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         cartFragment.updateCart();
                     }
                     else {
-                        Toast.makeText(getContext(), "Here is max.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), context.getString(R.string.here_is_max), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -235,9 +235,9 @@ public class CartItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle(context.getResources().getString(R.string.app_name))
                             .setIcon(R.mipmap.ic_launcher)
-                            .setMessage("Are you sure you want to to delete this product?");
+                            .setMessage(context.getString(R.string.message_delete_product));
                     builder.setCancelable(true);
-                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(context.getString(R.string.yes), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             holder.cart_item_removeBtn.setClickable(false);
@@ -259,7 +259,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             cartFragment.updateCartView(getItemCount());
                         }
                     });
-                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(context.getString(R.string.no), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();

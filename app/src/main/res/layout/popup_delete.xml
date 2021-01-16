@@ -31,7 +31,7 @@
                 android:background="@color/background_color"
                 android:textColor="@color/white"
                 android:textAllCaps="false"
-                android:text="Yes"
+                android:text=getString(R.string.yes)
                 android:textSize="11sp"
                 android:id="@+id/btn_confirm"/>
             <View
@@ -45,7 +45,7 @@
                 android:textColor="@color/black"
                 android:textAllCaps="false"
                 android:textSize="11sp"
-                android:text="No"
+                android:text=getString(R.string.no)
 
                 android:id="@+id/btn_close"/>
         </LinearLayout>

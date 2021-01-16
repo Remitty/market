@@ -72,7 +72,8 @@
                             android:gravity="bottom"
                             android:background="@color/colorPrimary"
                             android:textColor="@color/white"
-                            android:text="EDIT"
+                            android:text="@string/edit"
+                            android:textAllCaps="true"
                             android:textSize="12sp" />
 
                     </LinearLayout>

@@ -77,7 +77,7 @@ public class ResetPasswordFragment extends Fragment {
 
         if(!editOTP.getText().toString().equals(this.otp)){
             validate = false;
-            editOTP.setError("Not match!");
+            editOTP.setError(getString(R.string.message_not_match));
         }
 
         if(editNewPW.getText().toString().equals("")){
@@ -87,7 +87,7 @@ public class ResetPasswordFragment extends Fragment {
 
         if(editNewPW.getText().toString().length() < 6){
             validate = false;
-            editNewPW.setError("At least 6 characters");
+            editNewPW.setError(getString(R.string.message_at_least_cha));
         }
 
         if(editConfirmNewPW.getText().toString().equals("")){
@@ -127,7 +127,7 @@ public class ResetPasswordFragment extends Fragment {
 
 //                            JSONObject response = new JSONObject(responseObj.body().string());
 
-                                Toast.makeText(getActivity(), "Password Updated", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), getString(R.string.message_password_update), Toast.LENGTH_LONG).show();
                                 SettingsMain.hideDilog();
                                 startActivity(new Intent(getActivity(), MainActivity.class));
                         }

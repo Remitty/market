@@ -271,11 +271,12 @@ public class AddNewProductPost extends AppCompatActivity implements OnMapReadyCa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_new_ad_post);
+
         runtimePermissionHelper = new RuntimePermissionHelper(this, this);
         Mapbox.getInstance(this, getString(R.string.access_token));
-        setContentView(R.layout.activity_add_new_ad_post);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Post New Product");
+        toolbar.setTitle(getString(R.string.post_new_product));
         setSupportActionBar(toolbar);
         displayLocationSettingsRequest(this);
         placesClient = com.google.android.libraries.places.api.Places.createClient(this);
@@ -351,7 +352,7 @@ public class AddNewProductPost extends AppCompatActivity implements OnMapReadyCa
         });
 
         if(myId != null){
-            setTitle("Edit Product");
+            setTitle(getString(R.string.edit_product));
             getPostDetail();// for update
         }
     }
@@ -625,7 +626,7 @@ public class AddNewProductPost extends AppCompatActivity implements OnMapReadyCa
 
             if(rdbShipping.isChecked() && editShippingPrice.getText().toString().equals("")){
                 b = true;
-                editShippingPrice.setError("Please input shipping price");
+                editShippingPrice.setError(getString(R.string.message_input_shipping_price));
             }
 
             if (b) {
@@ -641,13 +642,13 @@ public class AddNewProductPost extends AppCompatActivity implements OnMapReadyCa
                 if (catSpinner.getSelectedItemPosition() == 0) {
                     setSpinnerError(catSpinner);
                     catSpinner.requestFocus();
-                    Toast.makeText(context, "Please select category", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, getString(R.string.message_select_category), Toast.LENGTH_SHORT).show();
                 }
 
                 if (currencySpinner.getSelectedItemPosition() == 0) {
                     setSpinnerError(currencySpinner);
                     currencySpinner.requestFocus();
-                    Toast.makeText(context, "Please select currency", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, getString(R.string.message_select_currency), Toast.LENGTH_SHORT).show();
                 }
 
             } else {
@@ -1193,7 +1194,7 @@ public class AddNewProductPost extends AppCompatActivity implements OnMapReadyCa
     public Uri getImageUri(Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(getContentResolver(), inImage, "Title", null);
+        String path = MediaStore.Images.Media.insertImage(getContentResolver(), inImage, getString(R.string.title), null);
         return Uri.parse(path);
     }
 
@@ -1210,7 +1211,7 @@ public class AddNewProductPost extends AppCompatActivity implements OnMapReadyCa
         if (selectedView != null && selectedView instanceof TextView) {
             spinner.requestFocus();
             TextView selectedTextView = (TextView) selectedView;
-            selectedTextView.setError("Required!");
+            selectedTextView.setError("!");
             selectedTextView.setTextColor(Color.RED);
         }
     }
@@ -1356,7 +1357,7 @@ public class AddNewProductPost extends AppCompatActivity implements OnMapReadyCa
                 locationEngine.removeLocationUpdates(this);
             return;
         } else {
-            Toast.makeText(AddNewProductPost.this, "Failed To Get Address. Please Try Again", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddNewProductPost.this, getString(R.string.message_failed_get_address), Toast.LENGTH_SHORT).show();
         }
 
         // Create a Toast which displays the new location's coordinates
@@ -1404,7 +1405,7 @@ public class AddNewProductPost extends AppCompatActivity implements OnMapReadyCa
 
     @Override
     public void onExplanationNeeded(List<String> permissionsToExplain) {
-        Toast.makeText(this, "Explanation Needed",
+        Toast.makeText(this, getString(R.string.message_explanation_needed),
                 Toast.LENGTH_LONG).show();
     }
 
@@ -1563,7 +1564,7 @@ public class AddNewProductPost extends AppCompatActivity implements OnMapReadyCa
 //                        }
 //                        placesContainer.setText(result.toString());
 //                    } else {
-//                        Toast.makeText(AddNewAdPost.this, "Failed To Get Address. Please Try Again", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(AddNewAdPost.this, getString(R.string.message_failed_get_address), Toast.LENGTH_SHORT).show();
 //                    }
                 }
             } else {

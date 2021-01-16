@@ -115,7 +115,7 @@
                 android:paddingBottom="6dp"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/white"
-                android:text="Get Direction"
+                android:text="@string/get_direction"
                 android:textSize="14sp" />
 
             <cn.iwgang.countdownview.CountdownView
@@ -474,7 +474,7 @@
                         android:paddingRight="10dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:text="Description"
+                        android:text="@string/description"
                         android:textSize="16sp" />
 
                     <LinearLayout
@@ -1161,7 +1161,7 @@
                     android:paddingRight="20dp"
                     android:paddingBottom="10dp"
                     android:textColor="@color/white"
-                    android:text="Edit"
+                    android:text="@string/edit"
                     android:textSize="14sp" />
                 <TextView
                     android:id="@+id/btnBookCancel"
@@ -1178,7 +1178,7 @@
                     android:paddingRight="20dp"
                     android:paddingBottom="10dp"
                     android:textColor="@color/white"
-                    android:text="Cancel"
+                    android:text="@string/cancel"
                     android:textSize="14sp" />
             </LinearLayout>
             <LinearLayout
@@ -1206,7 +1206,7 @@
                     android:paddingRight="20dp"
                     android:paddingBottom="10dp"
                     android:textColor="@color/white"
-                    android:text="Edit"
+                    android:text="@string/edit"
                     android:textSize="14sp" />
                 <TextView
                     android:id="@+id/btnPostCancel"
@@ -1223,7 +1223,7 @@
                     android:paddingRight="20dp"
                     android:paddingBottom="10dp"
                     android:textColor="@color/white"
-                    android:text="Delete"
+                    android:text="@string/delete"
                     android:textSize="14sp" />
             </LinearLayout>
 

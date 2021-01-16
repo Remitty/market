@@ -709,7 +709,7 @@ public class HomeActivity extends AppCompatActivity
 
     private void backPressed() {
         if (!back_pressed) {
-            Toast.makeText(HomeActivity.this, "Press Again To Exit", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HomeActivity.this, getString(R.string.message_press_again_exit), Toast.LENGTH_SHORT).show();
             back_pressed = true;
             android.os.Handler mHandler = new android.os.Handler();
             mHandler.postDelayed(new Runnable() {
@@ -724,7 +724,7 @@ public class HomeActivity extends AppCompatActivity
             AlertDialog.Builder alert = new AlertDialog.Builder(HomeActivity.this);
             alert.setTitle(settingsMain.getAlertDialogTitle("info"));
             alert.setCancelable(false);
-            alert.setMessage("Are you sure you want to exit?");
+            alert.setMessage(getString(R.string.message_exit));
             alert.setPositiveButton(settingsMain.getAlertOkText(), (dialog, which) -> {
                 HomeActivity.this.finishAffinity();
                 dialog.dismiss();

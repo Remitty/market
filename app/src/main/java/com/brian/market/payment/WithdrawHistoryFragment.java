@@ -19,16 +19,16 @@ import java.util.ArrayList;
 
 public class WithdrawHistoryFragment extends Fragment {
 
-    private ArrayList<WithdrawTransaction> auctionList = new ArrayList<>();
+    private ArrayList<WithdrawTransaction> withdrawList = new ArrayList<>();
     RecyclerView recyclerView;
 
-    TransactionAdapter auctionAdapter;
+    TransactionAdapter withdrawAdapter;
 
     LinearLayout emptyLayout;
 
     public WithdrawHistoryFragment(ArrayList<WithdrawTransaction> history) {
         // Required empty public constructor
-        this.auctionList = history;
+        this.withdrawList = history;
     }
 
     public static WithdrawHistoryFragment newInstance(ArrayList<WithdrawTransaction> history) {
@@ -47,14 +47,14 @@ public class WithdrawHistoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_withdraw_history, container, false);
 
-        auctionAdapter = new TransactionAdapter(auctionList);
+        withdrawAdapter = new TransactionAdapter(withdrawList);
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(auctionAdapter);
+        recyclerView.setAdapter(withdrawAdapter);
 
         emptyLayout = view.findViewById(R.id.empty);
-        if(auctionList.size() == 0)
+        if(withdrawList.size() == 0)
             emptyLayout.setVisibility(View.VISIBLE);
 
         return view;
