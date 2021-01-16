@@ -34,7 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.parseColor(settingsMain.getMainColor()));
         }
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(settingsMain.getMainColor())));
-        getSupportActionBar().setTitle("Profile");
+        getSupportActionBar().setTitle(getString(R.string.profile));
 
         Fragment profileFragment = new FragmentProfile();
 //        overridePendingTransition(R.anim.right_enter, R.anim.left_out);

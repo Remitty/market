@@ -317,10 +317,10 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void initBottomNavigation() {
-        NavigationPage page1 = new NavigationPage("Home", ContextCompat.getDrawable(this, R.drawable.ic_home_black_24dp), FragmentHome.newInstance());
-        NavigationPage page2 = new NavigationPage("Wishlist", ContextCompat.getDrawable(this, R.drawable.ic_favorite_border), FragmentWishlist.newInstance());
-        NavigationPage page3 = new NavigationPage("My Cart", ContextCompat.getDrawable(this, R.drawable.ic_shopping_bag), CartFragment.newInstance());
-        NavigationPage page4 = new NavigationPage("Sell", ContextCompat.getDrawable(this, R.drawable.ic_photo_camera), AddNewProductFragment.newInstance());
+        NavigationPage page1 = new NavigationPage(getString(R.string.home), ContextCompat.getDrawable(this, R.drawable.ic_home_black_24dp), FragmentHome.newInstance());
+        NavigationPage page2 = new NavigationPage(getString(R.string.wish_list), ContextCompat.getDrawable(this, R.drawable.ic_favorite_border), FragmentWishlist.newInstance());
+        NavigationPage page3 = new NavigationPage(getString(R.string.my_cart), ContextCompat.getDrawable(this, R.drawable.ic_shopping_bag), CartFragment.newInstance());
+        NavigationPage page4 = new NavigationPage(getString(R.string.sell), ContextCompat.getDrawable(this, R.drawable.ic_photo_camera), AddNewProductFragment.newInstance());
 
         navigationPages = new ArrayList<>();
         navigationPages.add(page1);
@@ -581,7 +581,6 @@ public class HomeActivity extends AppCompatActivity
             currentLocationText = dialog.findViewById(R.id.et_location);
 
             placesClient = com.google.android.libraries.places.api.Places.createClient(this);
-            currentLocationText.setHint("Please input city");
             currentLocationText.setOnItemClickListener(this);
             currentLocationText.addTextChangedListener(new TextWatcher() {
 
@@ -602,12 +601,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             });
 
-            Send.setText("Search");
-            Cancel.setText(Location_popupModel.getBtn_clear());
             locationText.setText(Location_popupModel.getText());
-
-            Send.setBackgroundColor(Color.parseColor(getMainColor()));
-            Cancel.setBackgroundColor(Color.parseColor(getMainColor()));
 
             Send.setOnClickListener(v -> {
                 adforest_changeNearByStatus(Double.toString(latitude), Double.toString(longitude),
@@ -638,12 +632,12 @@ public class HomeActivity extends AppCompatActivity
             case BottomNavigationBar.MENU_BAR_2:
                 fragment = mNavigationPageList.get(1).getFragment();
                 tag="FragmentWishlist";
-                toolbar.setTitle("Wishlist");
+                toolbar.setTitle(getString(R.string.wish_list));
                 break;
             case BottomNavigationBar.MENU_BAR_3:
                 fragment = mNavigationPageList.get(2).getFragment();
                 tag="CartFragment";
-                toolbar.setTitle("My Cart");
+                toolbar.setTitle(getString(R.string.my_cart));
                 break;
             case BottomNavigationBar.MENU_BAR_4:
 //                fragment = mNavigationPageList.get(3).getFragment();
@@ -654,7 +648,7 @@ public class HomeActivity extends AppCompatActivity
                     AlertDialog.Builder alert = new AlertDialog.Builder(HomeActivity.this);
                     alert.setTitle(settingsMain.getAlertDialogTitle("info"));
                     alert.setCancelable(false);
-                    alert.setMessage("You can't post now. please signin into app.");
+                    alert.setMessage(getString(R.string.message_cannot_post));
                     alert.setPositiveButton(settingsMain.getAlertOkText(), (dialog, which) -> {
 //                    FragmentProfile fragmentProfile = new FragmentProfile();
 //                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -817,8 +811,8 @@ public class HomeActivity extends AppCompatActivity
                 alert.setTitle(getBaseContext().getResources().getString(R.string.app_name));
                 alert.setCancelable(false);
                 alert.setIcon(R.mipmap.ic_launcher);
-                alert.setMessage("Do you want to logout?");
-                alert.setPositiveButton(settingsMain.getAlertOkText(), (dialog, which) -> {
+                alert.setMessage(getString(R.string.message_logout));
+                alert.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
                     settingsMain.setUserLogin("0");
 //                    settingsMain.setUserEmail("");
                     settingsMain.setUserName("");
@@ -834,7 +828,7 @@ public class HomeActivity extends AppCompatActivity
                     settingsMain.setAppOpen(false);
                     dialog.dismiss();
                 });
-                alert.setNegativeButton(settingsMain.getAlertCancelText(), (dialogInterface, i) -> dialogInterface.dismiss());
+                alert.setNegativeButton(R.string.no, (dialogInterface, i) -> dialogInterface.dismiss());
                 alert.show();
                 break;
         }

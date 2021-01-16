@@ -125,7 +125,7 @@ public class WithdrawActivity extends AppCompatActivity {
                                 }
                             }
 
-                            mPageAdapter = new WalletPageAdapter(getSupportFragmentManager(), wallet, paypal, list);
+                            mPageAdapter = new WalletPageAdapter(getBaseContext(), getSupportFragmentManager(), wallet, paypal, list);
                             mViewPager.setAdapter(mPageAdapter);
                             mViewPager.setCurrentItem(0);
                             mPageAdapter.notifyDataSetChanged();

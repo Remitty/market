@@ -11,6 +11,7 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="300dp"
             android:layout_height="30dp"
             android:orientation="horizontal"

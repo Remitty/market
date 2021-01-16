@@ -152,7 +152,7 @@ public class MyAuctionActivity extends AppCompatActivity {
                                     }
                                 }
 
-                                mAuctionPagerAdapter = new MyAuctionPageAdapter(getSupportFragmentManager(), postList, bidList, winList);
+                                mAuctionPagerAdapter = new MyAuctionPageAdapter(getBaseContext(), getSupportFragmentManager(), postList, bidList, winList);
                                 mViewPager.setAdapter(mAuctionPagerAdapter);
                                 mViewPager.setCurrentItem(0);
                                 mAuctionPagerAdapter.notifyDataSetChanged();

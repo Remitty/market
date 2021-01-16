@@ -6,66 +6,66 @@
         <item
             android:id="@+id/home"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Shop locally" />
+            android:title="@string/shop_locally" />
 
         <item
             android:id="@+id/category"
             android:icon="@drawable/ic_categories"
             android:visible="false"
-            android:title="Categories" />
+            android:title="@string/categories" />
 
         <item
             android:id="@+id/auctions"
             android:icon="@drawable/auction"
-            android:title="Shop Auction sales" />
+            android:title="@string/shop_auction_sales" />
         <item
             android:id="@+id/payment"
             android:icon="@drawable/credit_card"
-            android:title="Payment" />
+            android:title="@string/payment" />
 
         <item
             android:id="@+id/withdraw"
             android:icon="@drawable/ic_price_tag"
             android:visible="true"
-            android:title="Withdraw" />
+            android:title="@string/withdraw" />
         <item
             android:id="@+id/balance"
             android:icon="@drawable/ic_price_tag"
             android:visible="false"
-            android:title="Balance" />
+            android:title="@string/balance" />
 
         <item
             android:id="@+id/coin_deposit"
             android:icon="@drawable/coin_bitcoin"
-            android:title="Deposit cryptos" />
+            android:title="@string/deposit_cryptos" />
         <item
             android:id="@+id/myOrders"
             android:icon="@drawable/ic_shopping_bag"
-            android:title="My Orders" />
+            android:title="@string/my_orders" />
         <item
             android:id="@+id/myProducts"
             android:icon="@drawable/ic_storage_black_24dp"
-            android:title="My Listings" />
+            android:title="@string/my_lists" />
 
         <item
             android:id="@+id/myAuction"
             android:icon="@drawable/win"
-            android:title="My Auctions" />
+            android:title="@string/my_auctions" />
 
         <item
             android:id="@+id/message"
             android:icon="@drawable/ic_chat_bubble"
-            android:title="Message" />
+            android:title="@string/message" />
         <item
             android:id="@+id/profile"
             android:icon="@drawable/ic_person_outline"
             android:visible="false"
-            android:title="Profile" />
+            android:title="@string/profile" />
         <item
             android:id="@+id/nav_log_out"
             android:checkableBehavior="single"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
-            android:title="Logout" />
+            android:title="@string/logout" />
         <item
             android:id="@+id/nav_log_in"
             android:checkableBehavior="single"

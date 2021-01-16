@@ -1,5 +1,8 @@
 package com.brian.market.profile.adapter;
 
+import android.content.Context;
+
+import com.brian.market.R;
 import com.brian.market.modelsList.OrderDetail;
 import com.brian.market.modelsList.ProductDetails;
 import com.brian.market.profile.ProductOrderHistoryPage;
@@ -21,13 +24,14 @@ public class MyProductPageAdapter extends FragmentPagerAdapter {
     private ArrayList<ProductDetails> myFeaturedProductList = new ArrayList<>();
     private ArrayList<OrderDetail> orderList = new ArrayList<>();
     private ArrayList<OrderDetail> OrderHistoryList = new ArrayList<>();
-
-    public MyProductPageAdapter(FragmentManager fm, ArrayList<ProductDetails> list, ArrayList<ProductDetails> featuredlist, ArrayList<OrderDetail> orders, ArrayList<OrderDetail> orderhistory) {
+    private Context context;
+    public MyProductPageAdapter(Context baseContext, FragmentManager fm, ArrayList<ProductDetails> list, ArrayList<ProductDetails> featuredlist, ArrayList<OrderDetail> orders, ArrayList<OrderDetail> orderhistory) {
         super(fm);
         this.myProductList = list;
         this.myFeaturedProductList = featuredlist;
         this.orderList = orders;
         this.OrderHistoryList = orderhistory;
+        this.context = baseContext;
     }
 
     @Override
@@ -55,11 +59,11 @@ public class MyProductPageAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Products";
+                return context.getString(R.string.products);
             case 1:
-                return "Orders";
+                return context.getString(R.string.orders);
             case 2:
-                return "Order History";
+                return context.getString(R.string.order_history);
         }
         return null;
     }

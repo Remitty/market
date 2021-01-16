@@ -9,85 +9,41 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="">
+    <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="add wechatpay working">
+      <change afterPath="$PROJECT_DIR$/src/main/res/values/arrays.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PhoneVerification/src/main/java/com/phonenumberui/countrycode/CountryUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PhoneVerification/src/main/java/com/phonenumberui/countrycode/CountryUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/SplashScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/SplashScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/ad_detail/FragmentAdDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/ad_detail/FragmentAdDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ItemSearchFeatureAdsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ItemSearchFeatureAdsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ProductAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AddNewAuctionPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AddNewAuctionPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionDetailActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/FragmentCatSubNSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/FragmentCatSubNSearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/MyAuctionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/MyAuctionActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/WinAuctionFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/WinAuctionFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/bitcoin/BitCoinActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/bitcoin/BitCoinActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/bitcoin/ContentDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/bitcoin/ContentDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartItemAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartItemAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/AddNewProductPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/AddNewProductPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/EditAdPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/EditAdPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionPageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/HomeActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/ChatActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/ChatActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/RecievedOffersList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/RecievedOffersList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/order/MyOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/order/MyOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/order/MyOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/order/MyOrderActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/AddCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/AddCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/BalanceActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/BalanceActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardAddFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardAddFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/order/adapter/MyOrderPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/order/adapter/MyOrderPageAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardListPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaymentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaymentActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaypalAddFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaypalAddFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaypalFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaypalFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/ShippingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/ShippingActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WalletFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WalletFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawHistoryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawHistoryFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/signinorup/ResetPasswordFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/signinorup/ResetPasswordFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_auction_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_auction_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_balance.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_balance.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_bit_coin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_bit_coin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_profile_complete.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_profile_complete.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_shipping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_shipping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/WalletPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/WalletPageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/EditProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/EditProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/MyProductActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/MyProductActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/ProfileActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/ProfileActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/MyProductPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/MyProductPageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_auction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_auction.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_stripe_payment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_stripe_payment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_thankyou.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_thankyou.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/auction_content_page2_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/auction_content_page2_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/auction_content_page3_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/auction_content_page3_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/cart_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/cart_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/content_page2_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/content_page2_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/content_page3_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/content_page3_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_coin_deposit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_coin_deposit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/content_ad_detail_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/content_ad_detail_activity.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_change_password.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_change_password.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_location_seekbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_location_seekbar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/dialogmaterial.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/dialogmaterial.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/forgotpassword_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/forgotpassword_layout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_ad_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_ad_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_add_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_add_card.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_bid_auction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_bid_auction.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_card_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_card_add.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_cart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_cart.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_my_order_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_my_order_history.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_paypal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_paypal.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_paypal_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_paypal_add.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_post_auction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_post_auction.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_profile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_profile.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_profile_edit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_profile_edit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_reset_password.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_reset_password.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_seller_product_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_seller_product_page.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_send_offers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_send_offers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_win_auction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_win_auction.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_wishlist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_wishlist.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_withdraw_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_withdraw_history.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/item_auction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/item_auction.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/item_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/item_card.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/item_my_order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/item_my_order.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/item_my_product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/item_my_product.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/item_transaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/item_transaction.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_card.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_seller_order_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_seller_order_page.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_wallet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_wallet.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/login_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/login_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/nav_header_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/nav_header_home.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/popup_delete.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/popup_delete.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values-zh-rCN/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values-zh-rCN/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/wallet_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/wallet_item_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/menu/activity_home_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/menu/activity_home_drawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values-zh-rCN/strings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -123,6 +79,7 @@
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>

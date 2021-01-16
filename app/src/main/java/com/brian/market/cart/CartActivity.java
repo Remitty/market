@@ -37,7 +37,7 @@ public class CartActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.parseColor(settingsMain.getMainColor()));
         }
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(settingsMain.getMainColor())));
-        getSupportActionBar().setTitle("My Cart");
+        getSupportActionBar().setTitle(getString(R.string.my_cart));
 
         Fragment cartFragment = new CartFragment();
         startFragment(cartFragment);

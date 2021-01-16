@@ -678,7 +678,7 @@ public class EditProfile extends Fragment implements GoogleApiClient.OnConnectio
                                 profile.setData(jsonObject);
 
                                 textViewUserName.setText(profile.getFirstName() + " " + profile.getLastName());
-                                getActivity().setTitle("Edit Profile");
+                                getActivity().setTitle(getString(R.string.edit_profile));
 
                                 Picasso.with(getContext()).load(settingsMain.getUserImage())
                                         .error(R.drawable.placeholder)
@@ -779,19 +779,9 @@ public class EditProfile extends Fragment implements GoogleApiClient.OnConnectio
         Button Send = dialog.findViewById(R.id.send_button);
         Button Cancel = dialog.findViewById(R.id.cancel_button);
 
-        Send.setBackgroundColor(Color.parseColor(settingsMain.getMainColor()));
-        Cancel.setBackgroundColor(Color.parseColor(settingsMain.getMainColor()));
-
         final EditText editTextOld = dialog.findViewById(R.id.editText);
         final EditText editTextNew = dialog.findViewById(R.id.editText2);
         final EditText editTextConfirm = dialog.findViewById(R.id.editText3);
-
-        Send.setText(btnSend.getText());
-        Cancel.setText(btnCancel.getText());
-
-        editTextOld.setHint("Old Password");
-        editTextNew.setHint("New Password");
-        editTextConfirm.setHint("Password Confirm");
 
         Send.setOnClickListener(new View.OnClickListener() {
             @Override

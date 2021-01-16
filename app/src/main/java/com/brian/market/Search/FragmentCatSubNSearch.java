@@ -141,7 +141,7 @@ public class FragmentCatSubNSearch extends Fragment {
 //        } else
 //            restService = UrlController.createService(RestService.class, settingsMain.getAuthToken(), getActivity());
 
-        getActivity().setTitle("Search");
+        getActivity().setTitle(getString(R.string.search));
 
         Bundle bundle = this.getArguments();
         if (bundle != null) {

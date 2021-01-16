@@ -114,7 +114,7 @@ public class MyOrderActivity extends AppCompatActivity {
 
                                     }
                                 }
-                                mSectionsPagerAdapter = new MyOrderPageAdapter(getSupportFragmentManager(), orderList, orderHistoryList);
+                                mSectionsPagerAdapter = new MyOrderPageAdapter(getBaseContext(), getSupportFragmentManager(), orderList, orderHistoryList);
                                 mViewPager.setAdapter(mSectionsPagerAdapter);
                                 mViewPager.setCurrentItem(0);
                                 mSectionsPagerAdapter.notifyDataSetChanged();

@@ -18,7 +18,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="No Orders"
+            android:text="@string/no_order"
             android:textStyle="bold"
             android:textSize="30dp"
             android:textColor="@color/black"/>

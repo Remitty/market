@@ -80,7 +80,7 @@ public class CardFragment extends Fragment {
 
             cardId.setText("XXXX-XXXX-XXXX-" + mCard.getLastFour());
 
-            btnCard.setText("Change");
+            btnCard.setText(getString(R.string.change));
             btnCardDelete.setVisibility(View.VISIBLE);
         }
 

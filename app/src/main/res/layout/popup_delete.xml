@@ -28,10 +28,9 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="@color/background_color"
                 android:textColor="@color/white"
                 android:textAllCaps="false"
-                android:text=getString(R.string.yes)
+                android:text="@string/yes"
                 android:textSize="11sp"
                 android:id="@+id/btn_confirm"/>
             <View
@@ -41,12 +40,11 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="@color/grey_200"
+                android:backgroundTint="@color/white_greyish"
                 android:textColor="@color/black"
                 android:textAllCaps="false"
                 android:textSize="11sp"
-                android:text=getString(R.string.no)
-
+                android:text="@string/no"
                 android:id="@+id/btn_close"/>
         </LinearLayout>
     </LinearLayout>

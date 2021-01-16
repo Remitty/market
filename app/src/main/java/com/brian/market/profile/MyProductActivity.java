@@ -66,7 +66,7 @@ public class MyProductActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(Color.parseColor(getMainColor()));
-        toolbar.setTitle("My Products");
+        toolbar.setTitle(getString(R.string.my_lists));
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null)
@@ -132,7 +132,7 @@ public class MyProductActivity extends AppCompatActivity {
                                     }
                                 }
 
-                                mSectionsPagerAdapter = new MyProductPageAdapter(getSupportFragmentManager(), myProductList, myFeaturedProductList, OrderList, OrderHistoryList);
+                                mSectionsPagerAdapter = new MyProductPageAdapter(getBaseContext(), getSupportFragmentManager(), myProductList, myFeaturedProductList, OrderList, OrderHistoryList);
                                 mViewPager.setAdapter(mSectionsPagerAdapter);
 
                                 mViewPager.setCurrentItem(0);

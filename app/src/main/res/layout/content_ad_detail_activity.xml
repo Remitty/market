@@ -48,7 +48,7 @@
                 android:paddingStart="30dp"
                 android:paddingTop="12dp"
                 android:textAlignment="center"
-                android:text="Make Offer"
+                android:text="@string/make_offer"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="15sp" />

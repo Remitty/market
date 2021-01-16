@@ -349,7 +349,7 @@ public class RecievedOffersList extends Fragment {
                         if (responseObj.isSuccessful()) {
 
                             JSONObject response = new JSONObject(responseObj.body().string());
-                            getActivity().setTitle("Chat List");
+                            getActivity().setTitle(getString(R.string.chat_list));
                             if (response.getBoolean("success")) {
                                 Log.d("info RecievedList obj", "" + response.getJSONArray("data"));
                                 adforest_initializeList(response.getJSONArray("data"));

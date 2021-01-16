@@ -340,7 +340,7 @@ public class CountryUtils {
                 return R.drawable.flag_niue;
             case "kp": //north korea
                 return R.drawable.flag_north_korea;
-            case getString(R.string.no): //norway
+            case "no": //norway
                 return R.drawable.flag_norway;
             case "om": //oman
                 return R.drawable.flag_oman;

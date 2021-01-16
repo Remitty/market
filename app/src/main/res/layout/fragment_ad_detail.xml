@@ -359,7 +359,7 @@
                                 android:gravity="start"
                                 android:paddingBottom="3dp"
                                 android:textColor="@color/green"
-                                android:text="Ships for "
+                                android:text="@string/ships_for"
                                 android:textSize="14sp" />
                             <TextView
                                 android:id="@+id/shipping"
@@ -1235,7 +1235,7 @@
                 android:layout_margin="5dp"
                 android:layout_marginTop="10dp"
                 android:padding="3dp"
-                android:text="Related Products"
+                android:text="@string/related_products"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="17sp" />

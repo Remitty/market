@@ -1,5 +1,8 @@
 package com.brian.market.payment.adapter;
 
+import android.content.Context;
+
+import com.brian.market.R;
 import com.brian.market.auction.BidAuctionFragment;
 import com.brian.market.auction.PostAuctionFragment;
 import com.brian.market.auction.WinAuctionFragment;
@@ -14,14 +17,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import okhttp3.ResponseBody;
+import retrofit2.Callback;
+
 public class WalletPageAdapter extends FragmentPagerAdapter {
     private ArrayList<WithdrawTransaction> history = new ArrayList<>();
     private String wallet, paypal;
-    public WalletPageAdapter(FragmentManager fm, String wallet, String paypal, ArrayList<WithdrawTransaction> list) {
+    private Context context;
+    public WalletPageAdapter(Context context, FragmentManager fm, String wallet, String paypal, ArrayList<WithdrawTransaction> list) {
         super(fm);
         this.history = list;
         this.wallet = wallet;
         this.paypal = paypal;
+        this.context = context;
     }
 
     @Override
@@ -46,9 +54,9 @@ public class WalletPageAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Wallet";
+                return this.context.getString(R.string.withdraw);
             case 1:
-                return "Withdraw History";
+                return this.context.getString(R.string.withdraw_history);
         }
         return null;
     }

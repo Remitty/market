@@ -197,7 +197,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Select Payment Option"
+                            android:text="@string/select_payment_option"
                             android:textSize="16sp"
                             android:textColor="@color/black" />
                     </RelativeLayout>
@@ -362,7 +362,7 @@
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/card_alipay"
+                            android:id="@+id/card_wechatpay"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -378,7 +378,7 @@
                                 <ImageView
                                     android:layout_width="60dp"
                                     android:layout_height="30dp"
-                                    android:src="@drawable/ic_wechat"
+                                    android:src="@drawable/wechatpay"
                                     />
 
                                 <TextView
@@ -454,7 +454,7 @@
             android:layout_weight=".5"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:textAllCaps="true"
             android:textSize="16sp"
             android:textColor="@color/white"
@@ -466,7 +466,7 @@
             android:layout_weight=".5"
             android:layout_width="0dip"
             android:layout_height="match_parent"
-            android:text="Order Now"
+            android:text="@string/order_now"
             android:textAllCaps="true"
             android:textSize="16sp"
             android:textColor="@color/white"

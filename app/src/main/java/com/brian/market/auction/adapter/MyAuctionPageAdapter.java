@@ -1,5 +1,8 @@
 package com.brian.market.auction.adapter;
 
+import android.content.Context;
+
+import com.brian.market.R;
 import com.brian.market.auction.BidAuctionFragment;
 import com.brian.market.auction.PostAuctionFragment;
 import com.brian.market.auction.WinAuctionFragment;
@@ -18,12 +21,13 @@ public class MyAuctionPageAdapter extends FragmentPagerAdapter {
     private ArrayList<Auction> postList = new ArrayList<>();
     private ArrayList<Auction> bidList = new ArrayList<>();
     private ArrayList<Auction> winList = new ArrayList<>();
-
-    public MyAuctionPageAdapter(FragmentManager fm, ArrayList<Auction> post, ArrayList<Auction> bid, ArrayList<Auction> win) {
+    private Context context;
+    public MyAuctionPageAdapter(Context baseContext, FragmentManager fm, ArrayList<Auction> post, ArrayList<Auction> bid, ArrayList<Auction> win) {
         super(fm);
         this.postList = post;
         this.bidList = bid;
         this.winList = win;
+        this.context = baseContext;
     }
 
     @Override
@@ -51,11 +55,11 @@ public class MyAuctionPageAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Post";
+                return context.getString(R.string.post);
             case 1:
-                return "Bid";
+                return context.getString(R.string.bid);
             case 2:
-                return "Win";
+                return context.getString(R.string.win);
         }
         return null;
     }

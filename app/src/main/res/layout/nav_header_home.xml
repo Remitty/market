@@ -63,5 +63,5 @@
         android:paddingEnd="5dp"
         android:paddingStart="5dp"
         android:textColor="@color/yellow"
-        android:text="View Profile" />
+        android:text="@string/view_profile" />
 </RelativeLayout>
