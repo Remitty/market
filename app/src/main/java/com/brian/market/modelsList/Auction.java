@@ -55,7 +55,7 @@ public class Auction {
 
     public String getCategory() {
         JSONObject category = data.optJSONObject("category");
-        return  category == null? "No category" : category.optString("cat_name");
+        return  category == null? "No category" : category.optString("cat_name_ch");
     }
 
     public int getCategoryId() {
