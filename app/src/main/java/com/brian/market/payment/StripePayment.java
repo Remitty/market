@@ -244,12 +244,14 @@ public class StripePayment extends WXPayEntryActivity {
             public void onClick(View v) {
                 if(strPaymentMethod.equals("wechatpay"))
                     return;
-                strPaymentMethod = "wechatpay";
-                check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
-                check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
-                check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
-                check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
-                check5.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
+                Toast.makeText(getBaseContext(), "Wechat pay doesn't support now.", Toast.LENGTH_SHORT).show();
+                return;
+//                strPaymentMethod = "wechatpay";
+//                check1.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+//                check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+//                check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+//                check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+//                check5.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
             }
         });
 
