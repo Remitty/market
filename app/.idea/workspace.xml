@@ -10,8 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="add wechatpay working">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_stripe_payment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_stripe_payment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/arrays.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/arrays.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +75,7 @@
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="C:/Android/sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CoinStockRailsbank/app" />
+    <property name="last_opened_file_path" value="F:/AndroidNative/jtest" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />

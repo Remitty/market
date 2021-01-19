@@ -10,7 +10,7 @@ android {
         targetSdkVersion 29
         versionCode 12
         multiDexEnabled true
-        versionName "2.2"
+        versionName "2.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
         resValue "string", "places_api_key", (project.findProperty("AIzaSyBl2lwQ1zOgrJ3-HY2WsxqqCuODdomQ4Fg") ?: "AIzaSyBl2lwQ1zOgrJ3-HY2WsxqqCuODdomQ4Fg")
