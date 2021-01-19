@@ -208,7 +208,7 @@ public class ItemPackagesAdapter extends RecyclerView.Adapter<ItemPackagesAdapte
                     try {
                         JSONObject jsonObject = feedItem.getAllowCatsValue().getJSONObject(j);
                         subcatDiloglist subDiloglist = new subcatDiloglist();
-                        subDiloglist.setName(jsonObject.getString("cat_name_ch"));
+                        subDiloglist.setName(jsonObject.getString("cat_name"));
                         listitems12.add(subDiloglist);
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -828,12 +828,12 @@ public class FragmentHome extends Fragment {
         categories.add("Select category");
         for (int i = 0; i < jsonArray.length(); i++) {
             homeCatListModel item = new homeCatListModel();
-            item.setTitle(jsonArray.optJSONObject(i).optString("cat_name_ch"));
+            item.setTitle(jsonArray.optJSONObject(i).optString("cat_name"));
             item.setThumbnail(jsonArray.optJSONObject(i).optString("cat_img"));
             item.setId(jsonArray.optJSONObject(i).optString("id"));
             item.setData(jsonArray.optJSONObject(i));
             listitems.add(item);
-            categories.add(jsonArray.optJSONObject(i).optString("cat_name_ch"));
+            categories.add(jsonArray.optJSONObject(i).optString("cat_name"));
         }
 
         settingsMain.setCategories(categories);

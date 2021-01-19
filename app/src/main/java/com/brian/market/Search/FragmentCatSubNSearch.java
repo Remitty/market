@@ -477,12 +477,12 @@ public class FragmentCatSubNSearch extends Fragment {
         categories.add("Select category");
         for (int i = 0; i < data.length(); i++) {
             homeCatListModel item = new homeCatListModel();
-            item.setTitle(data.optJSONObject(i).optString("cat_name_ch"));
+            item.setTitle(data.optJSONObject(i).optString("cat_name"));
             item.setThumbnail(data.optJSONObject(i).optString("cat_img"));
             item.setId(data.optJSONObject(i).optString("id"));
             item.setData(data.optJSONObject(i));
             listitems.add(item);
-            categories.add(data.optJSONObject(i).optString("cat_name_ch"));
+            categories.add(data.optJSONObject(i).optString("cat_name"));
         }
 
         settingsMain.setCategories(categories);

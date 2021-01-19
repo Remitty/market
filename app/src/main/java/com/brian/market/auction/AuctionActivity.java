@@ -148,7 +148,7 @@ public class AuctionActivity extends AppCompatActivity {
                                 if (cats != null && cats.length() > 0) {
                                     for (int i = 0; i < cats.length(); i++) {
                                         homeCatListModel item = new homeCatListModel();
-                                        item.setTitle(cats.optJSONObject(i).optString("cat_name_ch"));
+                                        item.setTitle(cats.optJSONObject(i).optString("cat_name"));
                                         item.setThumbnail(cats.optJSONObject(i).optString("cat_img"));
                                         item.setId(cats.optJSONObject(i).optString("id"));
                                         item.setData(cats.optJSONObject(i));
