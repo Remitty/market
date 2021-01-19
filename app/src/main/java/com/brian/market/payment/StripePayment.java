@@ -235,7 +235,7 @@ public class StripePayment extends WXPayEntryActivity {
                 check2.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check3.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
                 check4.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
-                check5.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
+                check5.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
             }
         });
 
