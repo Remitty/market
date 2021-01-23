@@ -164,7 +164,6 @@ public class WalletFragment extends Fragment {
     private void initStripeConnect() {
         mApp = new StripeApp(getActivity(), "StripeAccount", StripeData.CLIENT_ID,
                 settingsMain.getKey("stripeKey"), StripeData.CALLBACK_URL);
-
         mStripeButton = (StripeButton) mView.findViewById(R.id.btnStripeConnect);
         mStripeButton.setStripeApp(mApp);
         mStripeButton.addStripeConnectListener(new StripeConnectListener() {
