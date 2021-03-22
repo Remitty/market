@@ -37,6 +37,7 @@
         <item
             android:id="@+id/coin_deposit"
             android:icon="@drawable/coin_bitcoin"
+            android:visible="false"
             android:title="@string/deposit_cryptos" />
         <item
             android:id="@+id/myOrders"

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.douglasjunior:android-simple-tooltip:0.2.3@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/16d5a6a0de2ebce5d26f577b6e4179cc/jetified-android-simple-tooltip-0.2.3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/16d5a6a0de2ebce5d26f577b6e4179cc/jetified-android-simple-tooltip-0.2.3/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a0734c42bf4d6613d4beee9b4917f228/jetified-android-simple-tooltip-0.2.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a0734c42bf4d6613d4beee9b4917f228/jetified-android-simple-tooltip-0.2.3/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.douglasjunior/android-simple-tooltip/0.2.3/ecec0c314f495cb2e2f12d690331a4735b57e2cb/android-simple-tooltip-0.2.3-javadoc.jar!/" />
