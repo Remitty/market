@@ -1,7 +1,6 @@
 package com.brian.market.cart;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -13,13 +12,17 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.brian.market.R;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.utills.SettingsMain;
 
-import static com.brian.market.utills.SettingsMain.getMainColor;
+import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity {
 
     private SettingsMain settingsMain;
+
+    ArrayList<ProductDetails> cartItemsList = new ArrayList<>();
+    String shipId="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,12 @@ public class CartActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(settingsMain.getMainColor())));
         getSupportActionBar().setTitle(getString(R.string.my_cart));
 
-        Fragment cartFragment = new CartFragment();
+        if(getIntent() != null) {
+            cartItemsList = getIntent().getParcelableArrayListExtra("carts");
+            shipId = getIntent().getStringExtra("shipId");
+        }
+
+        Fragment cartFragment = CartFragment.newInstance(cartItemsList, shipId);
         startFragment(cartFragment);
 
     }

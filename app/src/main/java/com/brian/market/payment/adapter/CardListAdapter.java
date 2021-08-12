@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.CreditCard;
+import com.brian.market.models.CreditCard;
 
 import java.util.List;
 

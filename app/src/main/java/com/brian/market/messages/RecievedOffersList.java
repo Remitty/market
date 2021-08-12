@@ -35,7 +35,7 @@ import retrofit2.Response;
 import com.brian.market.R;
 import com.brian.market.helper.SendReciveONClickListner;
 import com.brian.market.messages.adapter.ItemSendRecMesageAdapter;
-import com.brian.market.modelsList.messageSentRecivModel;
+import com.brian.market.models.messageSentRecivModel;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;

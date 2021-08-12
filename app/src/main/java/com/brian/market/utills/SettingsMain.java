@@ -30,9 +30,6 @@ import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -54,7 +51,7 @@ import com.brian.market.home.helper.AdPostImageModel;
 import com.brian.market.home.helper.CalanderTextModel;
 import com.brian.market.home.helper.Location_popupModel;
 import com.brian.market.home.helper.ProgressModel;
-import com.brian.market.modelsList.permissionsModel;
+import com.brian.market.models.permissionsModel;
 import com.brian.market.utills.NoInternet.NetwordStateManager;
 
 public class SettingsMain {

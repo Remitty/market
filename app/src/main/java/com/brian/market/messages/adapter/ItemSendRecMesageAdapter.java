@@ -18,7 +18,7 @@ import java.util.List;
 
 import com.brian.market.R;
 import com.brian.market.helper.SendReciveONClickListner;
-import com.brian.market.modelsList.messageSentRecivModel;
+import com.brian.market.models.messageSentRecivModel;
 
 public class ItemSendRecMesageAdapter extends RecyclerView.Adapter<ItemSendRecMesageAdapter.CustomViewHolder> {
     private List<messageSentRecivModel> feedItemList;

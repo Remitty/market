@@ -3,12 +3,10 @@ package com.brian.market.payment.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.CreditCard;
-import com.brian.market.modelsList.WithdrawTransaction;
+import com.brian.market.models.WithdrawTransaction;
 
 import java.util.List;
 

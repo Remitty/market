@@ -1,7 +1,6 @@
 package com.brian.market.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
@@ -28,8 +27,7 @@ import java.util.ArrayList;
 
 import cn.iwgang.countdownview.CountdownView;
 import com.brian.market.R;
-import com.brian.market.helper.CatSubCatOnclicklinstener;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.utills.SettingsMain;
 
 public class ItemSearchFeatureAdsAdapter extends RecyclerView.Adapter<ItemSearchFeatureAdsAdapter.CustomViewHolder> {

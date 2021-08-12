@@ -10,11 +10,203 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93892e31-d2d0-4226-8f37-fbfecd3b6964" name="Default Changelist" comment="add wechatpay working">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/doba/DobaActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/doba/DobaProductActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/doba/DobaProductsActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/doba/adapters/DobaCatAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/doba/adapters/DobaGoodAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/doba/helper/DobaXmlParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/doba/models/DobaCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/doba/models/DobaProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/ShippingAddressModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/activity_doba.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/activity_doba_product.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/activity_doba_products.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_billing_address.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/item_doba_cat.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/item_doba_good.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_aminography_primedatepicker_1_0_15_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_aminography_primedatepicker_1_0_15_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_volley_volley_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_codemybrainsout_rating_ratingdialog_1_0_8_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_codemybrainsout_rating_ratingdialog_1_0_8_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crystal_crystalrangeseekbar_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_crystal_crystalrangeseekbar_1_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_droidninja_filepicker_2_1_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_droidninja_filepicker_2_1_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_applinks_5_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_applinks_5_9_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_common_5_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_common_5_9_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_core_5_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_core_5_9_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_login_5_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_login_5_9_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_marketing_5_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_marketing_5_9_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_share_5_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_share_5_9_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_drawee_1_11_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_drawee_1_11_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fbcore_1_11_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fbcore_1_11_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fresco_1_11_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fresco_1_11_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_1_11_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_1_11_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_base_1_11_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_base_1_11_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_geniusforapp_fancydialog_FancyDialog_0_1_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_geniusforapp_fancydialog_FancyDialog_0_1_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_Kunzisoft_Android_SwitchDateTimePicker_1_9_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_Kunzisoft_Android_SwitchDateTimePicker_1_9_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_6_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_6_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_6_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_6_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_douglasjunior_android_simple_tooltip_0_2_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_douglasjunior_android_simple_tooltip_0_2_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_victorminerva_AutoResizeEditText_0_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_victorminerva_AutoResizeEditText_0_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_vihtarb_tooltip_0_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_vihtarb_tooltip_0_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_11_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_11_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_11_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_11_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_11_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_11_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_11_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_11_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_11_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_11_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_19_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_19_3_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_components_16_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_components_16_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_19_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_19_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_iarcuschin_simpleratingbar_0_1_5_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_iarcuschin_simpleratingbar_0_1_5_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_timber_timber_4_7_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_timber_timber_4_7_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_karumi_dexter_5_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_karumi_dexter_5_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_accounts_0_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_accounts_0_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_core_1_3_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_core_1_3_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_gestures_0_5_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_gestures_0_5_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_plugin_places_v8_0_9_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_plugin_places_v8_0_9_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_sdk_8_4_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_sdk_8_4_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_telemetry_4_5_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_mapbox_mapboxsdk_mapbox_android_telemetry_4_5_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_prolificinteractive_material_calendarview_1_4_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_prolificinteractive_material_calendarview_1_4_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_romandanylyk_pageindicatorview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_romandanylyk_pageindicatorview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_shobhitpuri_custombuttons_google_signin_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_shobhitpuri_custombuttons_google_signin_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_logging_interceptor_4_10_0_RC1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_4_10_0_RC1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_ss_bannerslider_bannerslider_1_8_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_ss_bannerslider_bannerslider_1_8_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_wonshinhyo_dragrecyclerview_1_0_5_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_wonshinhyo_dragrecyclerview_1_0_5_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_xw_repo_bubbleseekbar_3_4_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_xw_repo_bubbleseekbar_3_4_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__de_hdodenhof_circleimageview_2_2_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__de_hdodenhof_circleimageview_2_2_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_4_10_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_4_10_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_4_10_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_4_10_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_sufficientlysecure_html_textview_3_5_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_sufficientlysecure_html_textview_3_5_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__pl_droidsonroids_gif_android_gif_drawable_1_2_15_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__pl_droidsonroids_gif_android_gif_drawable_1_2_15_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/FragmentCatSubNSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/FragmentCatSubNSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/adapter/ItemCatgorySubListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/Search/adapter/ItemCatgorySubListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/ad_detail/FragmentAdDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/ad_detail/FragmentAdDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ItemSearchFeatureAdsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ItemSearchFeatureAdsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/ProductAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/SpinnerAndListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/adapters/SpinnerAndListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AddNewAuctionPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AddNewAuctionPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/AuctionDetailActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/BidAuctionFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/BidAuctionFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/MyAuctionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/MyAuctionActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/PostAuctionFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/PostAuctionFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/WinAuctionFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/WinAuctionFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/AuctionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/AuctionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/auction/adapter/MyAuctionPageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/bitcoin/BitCoinActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/bitcoin/BitCoinActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/bitcoin/adapter/WalletAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/bitcoin/adapter/WalletAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartItemAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/cart/CartItemAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/databases/User_Cart_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/databases/User_Cart_DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/databases/User_Favorites_DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/databases/User_Favorites_DB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/BlogCommentOnclicklinstener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/BlogCommentOnclicklinstener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/BlogItemOnclicklinstener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/BlogItemOnclicklinstener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/CatSubCatOnclicklinstener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/CatSubCatOnclicklinstener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/MyProductOnclicklinstener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/MyProductOnclicklinstener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/OnAuctionItemClickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/OnAuctionItemClickListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/OnItemClickListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/OnItemClickListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/OnItemClickListener2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/OnItemClickListener2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/OnItemClickListenerPackages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/OnItemClickListenerPackages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/SendReciveONClickListner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/helper/SendReciveONClickListner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/AddNewProductPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/AddNewProductPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/EditAdPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/EditAdPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentAllCategories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentAllCategories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentAllLocations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentAllLocations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentAllLocationsPopUpHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentAllLocationsPopUpHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentTopLocations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentTopLocations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentWishlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/FragmentWishlist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/HomeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/HomeActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/WishlistActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/WishlistActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemEditImageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemEditImageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemHomeAllCategories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemHomeAllCategories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemMainAllCatAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemMainAllCatAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemMainAllLocationAds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemMainAllLocationAds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemMainAllLocationPoPUpHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemMainAllLocationPoPUpHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemMainCAT_Related_All.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/adapter/ItemMainCAT_Related_All.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/helper/CustomCategoriesFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/helper/CustomCategoriesFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/helper/CustomLocationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/helper/CustomLocationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/home/helper/CustomLocationFilterPopUP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/home/helper/CustomLocationFilterPopUP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/ChatFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/ChatFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/RecievedOffers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/RecievedOffers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/RecievedOffersList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/RecievedOffersList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/SendOffers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/SendOffers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/adapter/ChatAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/adapter/ChatAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/adapter/ItemSendRecMesageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/messages/adapter/ItemSendRecMesageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/Auction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/Auction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/ChatTyping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/ChatTyping.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/ChatUserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/ChatUserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/CoinInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/CoinInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/CreditCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/CreditCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/OrderDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/OrderDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/OrderProductDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/OrderProductDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/PackagesModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/PackagesModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/ProductDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/ProductDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/ProfileModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/ProfileModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/WithdrawTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/WithdrawTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/blockUserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/blockUserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/blogCommentsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/blogCommentsModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/blogModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/blogModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/homeCatListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/homeCatListModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/homeCatRelatedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/homeCatRelatedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/messageSentRecivModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/messageSentRecivModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/myAdsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/myAdsModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/permissionsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/permissionsModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/modelsList/subcatDiloglist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/models/subcatDiloglist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/order/MyOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/order/MyOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/order/MyOrderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/order/MyOrderActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/order/OrderHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/order/OrderHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/order/adapter/MyOrderAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/order/adapter/MyOrderAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/order/adapter/MyOrderPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/order/adapter/MyOrderPageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardListPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/CardsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PackagesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PackagesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaymentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/PaymentActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/ShippingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/ShippingActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawHistoryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/WithdrawHistoryFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/CardListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/CardListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/CardPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/CardPageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/CardPagerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/CardPagerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/ItemPackagesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/ItemPackagesAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/TransactionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/TransactionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/WalletPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/payment/adapter/WalletPageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/EditProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/EditProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/MyProductActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/MyProductActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/ProductOrderHistoryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/ProductOrderHistoryPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/ProductOrderPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/ProductOrderPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/ProductPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/ProductPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/MyProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/MyProductAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/MyProductPageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/MyProductPageAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/SellerOrderAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/SellerOrderAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/SellerOrderProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/profile/adapter/SellerOrderProductAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/public_profile/FragmentPublic_Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/public_profile/FragmentPublic_Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/public_profile/adapter/PublicProfileAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/public_profile/adapter/PublicProfileAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/Network/RestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/Network/RestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/RuntimePermissionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/RuntimePermissionHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/SettingsMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brian/market/utills/SettingsMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/bg_search_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/bg_search_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_shipping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_shipping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_stripe_payment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_stripe_payment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/arrays.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/arrays.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/content_ad_detail_activity.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/content_ad_detail_activity.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/dialog_message.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/dialog_message.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_ad_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_ad_detail.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/item_my_order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/item_my_order.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/menu/activity_home_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/menu/activity_home_drawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,7 +215,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="test1" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="test" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -48,9 +240,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="valueResourceFile" />
+        <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -70,7 +262,7 @@
     <property name="ApkExportedModule" value="app" />
     <property name="BundleExportedModule" value="app" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="test1" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-01-06T21:37:13.845Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-07-26T18:29:12.736Z" />
     <property name="ExportApk.ApkPath" value="F:\Brian\work\market" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -83,14 +275,16 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.brian.market.doba.helper" />
+      <recent name="com.brian.market.doba.models" />
       <recent name="com.brian.market.auction.adapter" />
     </key>
     <key name="android.template.packageName">
+      <recent name="com.brian.market.doba" />
       <recent name="com.brian.market.wxapi" />
       <recent name="com.brian.market.alipay" />
       <recent name="com.brian.market.payment" />
       <recent name="com.brian.market.bitcoin" />
-      <recent name="com.brian.market.auction" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -328,5 +522,16 @@
     <MESSAGE value="add alipay" />
     <MESSAGE value="add wechatpay working" />
     <option name="LAST_COMMIT_MESSAGE" value="add wechatpay working" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/brian/market/payment/StripePayment.java</url>
+          <line>773</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -12,17 +12,14 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 
-import com.brian.market.modelsList.OrderDetail;
+import com.brian.market.models.OrderDetail;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.OrderProductDetail;
+import com.brian.market.models.OrderProductDetail;
 import com.brian.market.utills.SettingsMain;
-
-import org.json.JSONArray;
 
 import static android.graphics.Color.BLACK;
 

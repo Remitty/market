@@ -46,7 +46,6 @@ import com.brian.market.messages.ChatActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -83,16 +82,15 @@ import com.brian.market.adapters.ProductAdapter;
 import com.brian.market.helper.OnItemClickListener2;
 import com.brian.market.home.EditAdPost;
 import com.brian.market.home.HomeActivity;
-import com.brian.market.modelsList.blogCommentsModel;
-import com.brian.market.modelsList.ProductDetails;
-import com.brian.market.modelsList.myAdsModel;
+import com.brian.market.models.blogCommentsModel;
+import com.brian.market.models.ProductDetails;
+import com.brian.market.models.myAdsModel;
 import com.brian.market.public_profile.FragmentPublic_Profile;
 import com.brian.market.utills.CustomBorderDrawable;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.RuntimePermissionHelper;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
-import com.squareup.picasso.Picasso;
 
 import ss.com.bannerslider.banners.Banner;
 import ss.com.bannerslider.banners.RemoteBanner;
@@ -1033,12 +1031,7 @@ public class FragmentAdDetail extends Fragment implements Serializable, RuntimeP
 
         final EditText message = dialog.findViewById(R.id.editText3);
 
-        Send.setBackgroundColor(Color.parseColor(settingsMain.getMainColor()));
-        Cancel.setBackgroundColor(Color.parseColor(settingsMain.getMainColor()));
-
-        Send.setText("Send");
         message.setHint("Please type");
-        Cancel.setText("Cancel");
 
         Send.setOnClickListener(v -> {
 

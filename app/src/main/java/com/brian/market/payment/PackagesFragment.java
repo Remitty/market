@@ -44,7 +44,7 @@ import retrofit2.Response;
 import com.brian.market.R;
 import com.brian.market.helper.OnItemClickListenerPackages;
 import com.brian.market.home.HomeActivity;
-import com.brian.market.modelsList.PackagesModel;
+import com.brian.market.models.PackagesModel;
 import com.brian.market.payment.adapter.ItemPackagesAdapter;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;

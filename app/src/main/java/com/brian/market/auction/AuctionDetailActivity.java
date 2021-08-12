@@ -31,14 +31,12 @@ import android.widget.Toast;
 
 import com.brian.market.R;
 import com.brian.market.ad_detail.full_screen_image.FullScreenViewActivity;
-import com.brian.market.modelsList.Auction;
+import com.brian.market.models.Auction;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
-import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

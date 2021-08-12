@@ -5,6 +5,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import ss.com.bannerslider.banners.RemoteBanner;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,10 +23,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.brian.market.R;
 import com.brian.market.databases.User_Cart_DB;
+import com.brian.market.doba.helper.Doba;
+import com.brian.market.doba.models.DobaProduct;
+import com.brian.market.models.ProductDetails;
+import com.brian.market.models.ShippingAddressModel;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
@@ -36,6 +42,7 @@ import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,15 +51,15 @@ import java.util.ArrayList;
 
 public class ShippingActivity extends AppCompatActivity {
 
-    EditText mEditContactName, mEditStreet, mEditApartment, mEditState, mEditPostalCode, mEditMobile;
+    EditText mEditContactName, mEditStreet, mEditApartment, mEditState, mEditCountry, mEditCity, mEditPostalCode, mEditMobile;
     CheckBox checkBoxDefaultShippingAddress;
     Button mBtnSkip, mBtnSaveAddress;
-    AutoCompleteTextView mAddressAutoTextView;
-    private PlacesClient placesClient;
-    ArrayList<String> places = new ArrayList<>();
-    ArrayList<String> ids = new ArrayList<>();
     private SettingsMain settingsMain;
     private RestService restService;
+
+    private boolean wholesaleflag;
+    ShippingAddressModel shipAddress;
+    static ArrayList<ProductDetails> cartItemsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,9 +79,12 @@ public class ShippingActivity extends AppCompatActivity {
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(settingsMain.getMainColor())));
         getSupportActionBar().setTitle(getString(R.string.add_shipping_address));
 
-        placesClient = com.google.android.libraries.places.api.Places.createClient(this);
-
         restService = UrlController.createService(RestService.class, settingsMain.getAuthToken(), this);
+
+        if(getIntent() != null) {
+            wholesaleflag = getIntent().getBooleanExtra("wholesaleflag", false);
+            if(wholesaleflag) cartItemsList = getIntent().getParcelableArrayListExtra("goods");
+        }
 
         initComponents();
         initListeners();
@@ -84,7 +94,6 @@ public class ShippingActivity extends AppCompatActivity {
 
     private void getDefaultShippingAddress() {
         if (SettingsMain.isConnectingToInternet(ShippingActivity.this)) {
-            User_Cart_DB user_cart_db = new User_Cart_DB();
             SettingsMain.showDilog(ShippingActivity.this);
 
             Call<ResponseBody> myCall = restService.getDefaultShippingAddress(UrlController.AddHeaders(this));
@@ -97,32 +106,19 @@ public class ShippingActivity extends AppCompatActivity {
 
                             JSONObject response = new JSONObject(responseObj.body().string());
                             if (response.getBoolean("success")) {
-//                                if(response.optBoolean("hasDefault")) {
-                                    JSONObject address = response.optJSONObject("address");
-                                    if(address != null) {
+                                JSONObject address = response.optJSONObject("address");
+                                shipAddress = new ShippingAddressModel(address);
 
-//                                    mEditState.setText(address.optString("state_country"));
-                                        if (response.optBoolean("hasDefault")) {
-                                            mAddressAutoTextView.setText(address.getString("state_country"));
-                                            mEditStreet.setText(address.getString("street"));
-                                            if(!address.getString("apartment").equals("null"))
-                                                mEditApartment.setText(address.getString("apartment"));
-                                            mEditPostalCode.setText(address.getString("postal_code"));
-                                            checkBoxDefaultShippingAddress.setChecked(true);
-                                        }
-                                        else {
-                                            mAddressAutoTextView.setText(address.getString("state"));
-                                            mEditStreet.setText(address.getString("address"));
-                                            if(!address.getString("address2").equals("null"))
-                                                mEditApartment.setText(address.getString("address2"));
-                                            mEditPostalCode.setText(address.getString("postalcode"));
-                                        }
+                                mEditContactName.setText(shipAddress.getName());
+                                mEditState.setText(shipAddress.getState());
+                                mEditCity.setText(shipAddress.getCity());
+                                mEditCountry.setText(shipAddress.getCountry());
+                                mEditStreet.setText(shipAddress.getAddress1());
+                                mEditApartment.setText(shipAddress.getAddress2());
+                                mEditPostalCode.setText(shipAddress.getPostalCode());
+                                mEditMobile.setText(shipAddress.getPhone());
+                                checkBoxDefaultShippingAddress.setChecked(response.optBoolean("hasDefault"));
 
-                                        mEditMobile.setText(address.getString("mobile"));
-                                        mEditContactName.setText(address.getString("contact_name"));
-
-                                    }
-//                                }
                             }
                             else
                                 Toast.makeText(getBaseContext(), response.optString("message"), Toast.LENGTH_SHORT).show();
@@ -149,6 +145,36 @@ public class ShippingActivity extends AppCompatActivity {
             SettingsMain.hideDilog();
             Toast.makeText(ShippingActivity.this, getString(R.string.internet_error), Toast.LENGTH_SHORT).show();
         }
+
+//        Doba doba = new Doba();
+//        okhttp3.Call mycall = doba.requestCountryList("US");
+//        mycall.enqueue(new okhttp3.Callback() {
+//            @Override
+//            public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
+//                settingsMain.hideDilog();
+//
+//                Log.d("doba here", "failed");
+//            }
+//
+//            @Override
+//            public void onResponse(okhttp3.@NotNull Call call, okhttp3.@NotNull Response response) throws IOException {
+//                settingsMain.hideDilog();
+//                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+//                String responseData = response.body().string();
+//                Log.e("doba country list onResponse:", responseData);
+//                JSONObject object = null;
+//                try {
+//                    object = new JSONObject(responseData);
+//                    if(object.getInt("responseCode") == 0) {
+//                        JSONObject bdata = object.getJSONObject("businessData");
+//                        JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//        });
     }
 
     private void initComponents() {
@@ -156,11 +182,10 @@ public class ShippingActivity extends AppCompatActivity {
         mEditStreet = findViewById(R.id.shipping_street_edit);
         mEditApartment = findViewById(R.id.shipping_apartment_edit);
         mEditState = findViewById(R.id.shipping_state_edit);
+        mEditCity = findViewById(R.id.shipping_city_edit);
+        mEditCountry = findViewById(R.id.shipping_country_edit);
         mEditMobile = findViewById(R.id.shipping_mobile_edit);
         mEditPostalCode = findViewById(R.id.shipping_postal_code_edit);
-
-        mAddressAutoTextView = (AutoCompleteTextView) findViewById(R.id
-                .address_autoCompleteTextView);
 
         checkBoxDefaultShippingAddress = findViewById(R.id.default_shipping_checkbox);
 
@@ -174,6 +199,7 @@ public class ShippingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ShippingActivity.this, StripePayment.class);
                 intent.putExtra("shipping", false);
+                intent.putExtra("wholesaleflag", wholesaleflag);
                 startActivity(intent);
             }
         });
@@ -184,14 +210,19 @@ public class ShippingActivity extends AppCompatActivity {
                 if(checkAddressValidation()) {
                     Intent intent = new Intent(ShippingActivity.this, StripePayment.class);
                     intent.putExtra("shipping", true);
-                    intent.putExtra("contact_name", mEditContactName.getText().toString());
-                    intent.putExtra("street", mEditStreet.getText().toString());
-                    intent.putExtra("apartment", mEditApartment.getText().toString());
-//                    intent.putExtra("state", mEditState.getText().toString());
-                    intent.putExtra("state", mAddressAutoTextView.getText().toString());
-                    intent.putExtra("postal_code", mEditPostalCode.getText().toString());
-                    intent.putExtra("mobile", mEditMobile.getText().toString());
+                    intent.putExtra("wholesaleflag", wholesaleflag);
+                    if(wholesaleflag) intent.putExtra("goods", cartItemsList);
+                    shipAddress.setAddress1(mEditStreet.getText().toString());
+                    shipAddress.setAddress2(mEditApartment.getText().toString());
+                    shipAddress.setCity(mEditCity.getText().toString());
+                    shipAddress.setState(mEditState.getText().toString());
+                    shipAddress.setCountry(mEditCountry.getText().toString());
+                    shipAddress.setName(mEditContactName.getText().toString());
+                    shipAddress.setPhone(mEditMobile.getText().toString());
+                    shipAddress.setPostalCode(mEditPostalCode.getText().toString());
+                    intent.putExtra("shipping_address", shipAddress);
                     intent.putExtra("set_default_address", checkBoxDefaultShippingAddress.isChecked());
+                    intent.putExtra("shipId", getIntent().getStringExtra("shipId"));
                     startActivity(intent);
                 }
                 else{
@@ -200,52 +231,6 @@ public class ShippingActivity extends AppCompatActivity {
             }
         });
 
-        mAddressAutoTextView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                manageAutoComplete(s.toString(), "address");
-            }
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void afterTextChanged(Editable s) {}
-        });
-    }
-
-    private void manageAutoComplete(String query, String type) {
-        AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
-
-        FindAutocompletePredictionsRequest.Builder request = FindAutocompletePredictionsRequest.builder();
-//        request.setCountry("US");
-        request.setTypeFilter(TypeFilter.REGIONS);
-        request.setSessionToken(token)
-                .setQuery(query);
-
-//        if(type.equals("address"))
-//            request.setTypeFilter(TypeFilter.ADDRESS);
-
-        placesClient.findAutocompletePredictions(request.build()).addOnSuccessListener((response) -> {
-
-            ids.clear();
-            places.clear();
-            for (AutocompletePrediction prediction : response.getAutocompletePredictions()) {
-                places.add(prediction.getFullText(null).toString());
-                ids.add(prediction.getPlaceId());
-                Log.i("Places", prediction.getPlaceId());
-                Log.i("Places", prediction.getFullText(null).toString());
-            }
-            String[] data = places.toArray(new String[places.size()]); // terms is a List<String>
-
-            ArrayAdapter<?> adapter = new ArrayAdapter<Object>(ShippingActivity.this, android.R.layout.simple_dropdown_item_1line, data);
-            mAddressAutoTextView.setAdapter(adapter);
-
-            adapter.notifyDataSetChanged();
-        }).addOnFailureListener((exception) -> {
-            if (exception instanceof ApiException) {
-                ApiException apiException = (ApiException) exception;
-                Log.e("Places", "Place not found: " + apiException.getStatusCode());
-            }
-        });
 
     }
 
@@ -263,12 +248,16 @@ public class ShippingActivity extends AppCompatActivity {
 //            mEditApartment.setError("!");
 //            valdate = false;
 //        }
-//        if(mEditState.getText().toString().equals("")) {
-//            mEditState.setError("!");
-//            valdate = false;
-//        }
-        if(mAddressAutoTextView.getText().toString().equals("")) {
-            mAddressAutoTextView.setError("!");
+        if(mEditState.getText().toString().length() != 2) {
+            mEditState.setError("!");
+            valdate = false;
+        }
+        if(mEditCountry.getText().toString().length() != 2) {
+            mEditCountry.setError("!");
+            valdate = false;
+        }
+        if(mEditCity.getText().toString().equals("")) {
+            mEditCity.setError("!");
             valdate = false;
         }
         if(mEditPostalCode.getText().toString().equals("")) {

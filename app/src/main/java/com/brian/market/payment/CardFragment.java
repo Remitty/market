@@ -1,7 +1,6 @@
 package com.brian.market.payment;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,19 +13,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.CreditCard;
-import com.brian.market.payment.adapter.CardPagerAdapter;
+import com.brian.market.models.CreditCard;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
 import com.google.gson.JsonObject;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;

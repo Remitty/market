@@ -34,7 +34,7 @@ public class User_Favorites_DB {
 
     //*********** Insert New Favorite Item ********//
 
-    public void insertFavoriteItem(int products_id) {
+    public void insertFavoriteItem(String products_id) {
         // get and open SQLiteDatabase Instance from static method of DB_Manager class
         SQLiteDatabase db = DB_Manager.getInstance().openDatabase();
 
@@ -96,7 +96,7 @@ public class User_Favorites_DB {
 
     //*********** Delete specific Favorite Item ********//
 
-    public void deleteFavoriteItem(int products_id){
+    public void deleteFavoriteItem(String products_id){
         // get and open SQLiteDatabase Instance from static method of DB_Manager class
         SQLiteDatabase db = DB_Manager.getInstance().openDatabase();
 

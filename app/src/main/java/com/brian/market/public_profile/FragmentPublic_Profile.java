@@ -1,7 +1,6 @@
 package com.brian.market.public_profile;
 
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
@@ -39,9 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import com.brian.market.R;
-import com.brian.market.ad_detail.Ad_detail_activity;
-import com.brian.market.helper.MyProductOnclicklinstener;
-import com.brian.market.modelsList.myAdsModel;
+import com.brian.market.models.myAdsModel;
 import com.brian.market.public_profile.adapter.PublicProfileAdapter;
 import com.brian.market.utills.CustomBorderDrawable;
 import com.brian.market.utills.NestedScroll;

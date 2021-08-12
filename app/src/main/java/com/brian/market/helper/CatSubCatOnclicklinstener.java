@@ -2,7 +2,7 @@ package com.brian.market.helper;
 
 import android.view.View;
 
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 
 public interface CatSubCatOnclicklinstener {
     void onItemClick(ProductDetails item);

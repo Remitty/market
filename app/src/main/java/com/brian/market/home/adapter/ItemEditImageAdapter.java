@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import com.brian.market.R;
 import com.brian.market.helper.MyProductOnclicklinstener;
-import com.brian.market.modelsList.myAdsModel;
+import com.brian.market.models.myAdsModel;
 
 public class ItemEditImageAdapter extends DragAdapter {
     private ArrayList<myAdsModel> list;

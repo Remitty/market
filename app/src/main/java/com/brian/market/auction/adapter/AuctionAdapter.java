@@ -7,18 +7,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.brian.market.helper.OnAuctionItemClickListener;
-import com.brian.market.modelsList.Auction;
+import com.brian.market.models.Auction;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import cn.iwgang.countdownview.CountdownView;
 import com.brian.market.R;
 import com.brian.market.utills.SettingsMain;
 

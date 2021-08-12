@@ -5,7 +5,7 @@ import android.widget.Filter;
 import java.util.ArrayList;
 
 import com.brian.market.home.adapter.ItemMainAllLocationPoPUpHome;
-import com.brian.market.modelsList.homeCatListModel;
+import com.brian.market.models.homeCatListModel;
 
 public class CustomLocationFilterPopUP extends Filter {
 

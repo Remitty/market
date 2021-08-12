@@ -4,13 +4,10 @@ import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-import android.graphics.Color;
 import android.text.TextUtils;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -19,7 +16,7 @@ import java.util.ArrayList;
 
 import com.brian.market.R;
 import com.brian.market.helper.OnItemClickListener;
-import com.brian.market.modelsList.homeCatListModel;
+import com.brian.market.models.homeCatListModel;
 
 public class ItemMainAllCatAdapter extends RecyclerView.Adapter<ItemMainAllCatAdapter.CustomViewHolder> {
     private ArrayList<homeCatListModel> feedItemList;

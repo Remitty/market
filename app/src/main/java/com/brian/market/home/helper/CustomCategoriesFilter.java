@@ -5,7 +5,7 @@ import android.widget.Filter;
 import java.util.ArrayList;
 
 import com.brian.market.home.adapter.ItemHomeAllCategories;
-import com.brian.market.modelsList.homeCatListModel;
+import com.brian.market.models.homeCatListModel;
 
 public class CustomCategoriesFilter extends Filter {
 

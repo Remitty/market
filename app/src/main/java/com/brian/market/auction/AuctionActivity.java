@@ -1,7 +1,6 @@
 package com.brian.market.auction;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +14,9 @@ import com.brian.market.auction.adapter.AuctionAdapter;
 import com.brian.market.helper.GridSpacingItemDecoration;
 import com.brian.market.helper.OnAuctionItemClickListener;
 import com.brian.market.home.adapter.ItemMainAllCatAdapter;
-import com.brian.market.modelsList.Auction;
+import com.brian.market.models.Auction;
 import com.brian.market.R;
-import com.brian.market.modelsList.homeCatListModel;
+import com.brian.market.models.homeCatListModel;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
@@ -31,10 +30,8 @@ import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeoutException;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.ViewPager;
@@ -42,8 +39,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.brian.market.utills.SettingsMain.getMainColor;
 
 public class AuctionActivity extends AppCompatActivity {
     SettingsMain settingsMain;

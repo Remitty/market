@@ -25,6 +25,7 @@ import com.brian.market.auction.MyAuctionActivity;
 import com.brian.market.bitcoin.BitCoinActivity;
 import com.brian.market.cart.CartActivity;
 import com.brian.market.cart.CartFragment;
+import com.brian.market.doba.DobaActivity;
 import com.brian.market.messages.ChatActivity;
 import com.brian.market.order.MyOrderActivity;
 import com.brian.market.payment.BalanceActivity;
@@ -756,6 +757,9 @@ public class HomeActivity extends AppCompatActivity
                 for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
                     fm.popBackStack();
                 }
+                break;
+            case R.id.shop_wholesale:
+                startActivity(new Intent(HomeActivity.this, DobaActivity.class));
                 break;
 
             case R.id.profile:

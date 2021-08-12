@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.utills.SettingsMain;
 
 

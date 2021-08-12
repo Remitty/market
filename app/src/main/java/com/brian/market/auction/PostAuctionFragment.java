@@ -25,7 +25,7 @@ import android.widget.Toast;
 import com.brian.market.R;
 import com.brian.market.auction.adapter.MyAuctionAdapter;
 import com.brian.market.helper.OnAuctionItemClickListener;
-import com.brian.market.modelsList.Auction;
+import com.brian.market.models.Auction;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.RuntimePermissionHelper;
 import com.brian.market.utills.SettingsMain;

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.brian.market.modelsList.OrderProductDetail;
+import com.brian.market.models.OrderProductDetail;
 import java.util.List;
 
 import com.brian.market.R;

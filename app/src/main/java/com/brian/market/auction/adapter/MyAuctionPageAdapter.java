@@ -6,12 +6,9 @@ import com.brian.market.R;
 import com.brian.market.auction.BidAuctionFragment;
 import com.brian.market.auction.PostAuctionFragment;
 import com.brian.market.auction.WinAuctionFragment;
-import com.brian.market.modelsList.Auction;
-import com.brian.market.order.MyOrder;
-import com.brian.market.order.OrderHistory;
+import com.brian.market.models.Auction;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

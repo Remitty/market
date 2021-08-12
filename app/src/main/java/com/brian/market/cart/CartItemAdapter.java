@@ -15,23 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.ProductDetails;
-import com.brian.market.signinorup.MainActivity;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.brian.market.models.ProductDetails;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static com.brian.market.App.getContext;
@@ -199,7 +190,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onClick(View v) {
 
-                    int productID = cartDetails.getId();
+                    String productID = cartDetails.getId();
 
                    /* // Get Product Info
                     Bundle itemInfo = new Bundle();
@@ -207,7 +198,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     // Get Product Info
                     Bundle itemInfo = new Bundle();
-                    itemInfo.putInt("itemID", productID);
+                    itemInfo.putString("itemID", productID);
 
 
                     // Navigate to Product_Description of selected Product

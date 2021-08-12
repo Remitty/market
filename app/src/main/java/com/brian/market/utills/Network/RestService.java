@@ -913,4 +913,14 @@ public interface RestService {
             @HeaderMap Map<String, String> headers
     );
 
+    @GET("doba/category")
+    Call<ResponseBody> getDobaCategories(
+    );
+
+    @POST("doba/confirm/systemPayment")
+    Call<ResponseBody> postDobaSystemPayment(
+            @Body JsonObject updateStatus,
+            @HeaderMap Map<String, String> headers
+    );
+
 }

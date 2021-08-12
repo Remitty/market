@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.WithdrawTransaction;
+import com.brian.market.models.WithdrawTransaction;
 import com.brian.market.payment.adapter.TransactionAdapter;
 
 import java.util.ArrayList;

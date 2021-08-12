@@ -8,15 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.brian.market.auction.adapter.MyAuctionPageAdapter;
-import com.brian.market.helper.OnAuctionItemClickListener;
 import com.brian.market.home.HomeActivity;
-import com.brian.market.modelsList.Auction;
+import com.brian.market.models.Auction;
 import com.brian.market.R;
-import com.brian.market.order.adapter.MyOrderPageAdapter;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
@@ -30,20 +27,15 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.brian.market.App.getContext;
 import static com.brian.market.utills.SettingsMain.getMainColor;
 
 public class MyAuctionActivity extends AppCompatActivity {

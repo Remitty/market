@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 import com.brian.market.R;
 import com.brian.market.home.adapter.ItemMainAllLocationAds;
-import com.brian.market.modelsList.homeCatListModel;
+import com.brian.market.models.homeCatListModel;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 

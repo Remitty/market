@@ -2,7 +2,6 @@ package com.brian.market.bitcoin.adapter;
 
 
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.CoinInfo;
+import com.brian.market.models.CoinInfo;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

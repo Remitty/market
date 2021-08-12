@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import com.brian.market.R;
 import com.brian.market.helper.MyProductOnclicklinstener;
-import com.brian.market.modelsList.myAdsModel;
+import com.brian.market.models.myAdsModel;
 import com.brian.market.utills.SettingsMain;
 
 /**

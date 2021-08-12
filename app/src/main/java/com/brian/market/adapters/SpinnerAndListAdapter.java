@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.subcatDiloglist;
+import com.brian.market.models.subcatDiloglist;
 
 public class SpinnerAndListAdapter extends BaseAdapter {
 

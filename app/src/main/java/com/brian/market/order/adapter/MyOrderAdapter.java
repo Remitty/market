@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.brian.market.modelsList.OrderDetail;
+import com.brian.market.models.OrderDetail;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -92,6 +92,8 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.CustomVi
 
         if(show) {
             customViewHolder.btnGroupLayout.setVisibility(View.VISIBLE);
+        } else {
+            customViewHolder.btnGroupLayout.setVisibility(View.GONE);
         }
 
     }

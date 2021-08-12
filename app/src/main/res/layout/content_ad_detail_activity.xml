@@ -51,7 +51,7 @@
                 android:text="@string/make_offer"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:textSize="15sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <View

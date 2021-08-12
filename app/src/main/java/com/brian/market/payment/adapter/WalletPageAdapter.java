@@ -3,11 +3,7 @@ package com.brian.market.payment.adapter;
 import android.content.Context;
 
 import com.brian.market.R;
-import com.brian.market.auction.BidAuctionFragment;
-import com.brian.market.auction.PostAuctionFragment;
-import com.brian.market.auction.WinAuctionFragment;
-import com.brian.market.modelsList.Auction;
-import com.brian.market.modelsList.WithdrawTransaction;
+import com.brian.market.models.WithdrawTransaction;
 import com.brian.market.payment.WalletFragment;
 import com.brian.market.payment.WithdrawHistoryFragment;
 
@@ -16,9 +12,6 @@ import java.util.ArrayList;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
-import okhttp3.ResponseBody;
-import retrofit2.Callback;
 
 public class WalletPageAdapter extends FragmentPagerAdapter {
     private ArrayList<WithdrawTransaction> history = new ArrayList<>();

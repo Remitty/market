@@ -18,8 +18,8 @@ import com.brian.market.ad_detail.Ad_detail_activity;
 import com.brian.market.adapters.ProductAdapter;
 import com.brian.market.helper.MyProductOnclicklinstener;
 import com.brian.market.helper.OnItemClickListener2;
-import com.brian.market.modelsList.ProductDetails;
-import com.brian.market.modelsList.homeCatRelatedList;
+import com.brian.market.models.ProductDetails;
+import com.brian.market.models.homeCatRelatedList;
 import com.brian.market.utills.CustomBorderDrawable;
 import com.brian.market.utills.SettingsMain;
 

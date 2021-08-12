@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import cn.iwgang.countdownview.CountdownView;
 import com.brian.market.R;
 import com.brian.market.helper.CatSubCatOnclicklinstener;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.utills.SettingsMain;
 
 public class ItemCatgorySubListAdapter extends RecyclerView.Adapter<ItemCatgorySubListAdapter.CustomViewHolder> {

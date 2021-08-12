@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.brian.market.modelsList.CreditCard;
+import com.brian.market.models.CreditCard;
 import com.brian.market.payment.CardAddFragment;
 import com.brian.market.payment.CardFragment;
 
