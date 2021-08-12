@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.brian.market.modelsList.OrderDetail;
+import com.brian.market.models.OrderDetail;
 import com.google.android.material.tabs.TabLayout;
 import com.brian.market.R;
 import com.brian.market.order.adapter.MyOrderPageAdapter;

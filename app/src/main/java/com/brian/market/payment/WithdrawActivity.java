@@ -1,40 +1,20 @@
 package com.brian.market.payment;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.brian.market.auction.adapter.MyAuctionPageAdapter;
-import com.brian.market.modelsList.Auction;
-import com.brian.market.modelsList.WithdrawTransaction;
+import com.brian.market.models.WithdrawTransaction;
 import com.brian.market.payment.adapter.WalletPageAdapter;
-import com.brian.market.utills.PlaidConnect;
-import com.github.thiagolocatelli.stripe.StripeApp;
-import com.github.thiagolocatelli.stripe.StripeButton;
-import com.github.thiagolocatelli.stripe.StripeConnectListener;
-import com.github.thiagolocatelli.stripe.StripeSession;
 import com.google.android.material.tabs.TabLayout;
-import com.google.gson.JsonObject;
 import com.brian.market.R;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
-import com.brian.market.utills.StripeData;
 import com.brian.market.utills.UrlController;
-import com.stripe.Stripe;
 
 import org.json.JSONArray;
 import org.json.JSONException;

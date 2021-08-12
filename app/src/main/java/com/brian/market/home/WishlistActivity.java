@@ -26,11 +26,9 @@ import android.widget.Toast;
 import com.brian.market.R;
 import com.brian.market.ad_detail.Ad_detail_activity;
 import com.brian.market.adapters.ProductAdapter;
-import com.brian.market.databases.User_Cart_DB;
 import com.brian.market.databases.User_Favorites_DB;
 import com.brian.market.helper.OnItemClickListener2;
-import com.brian.market.modelsList.ProductDetails;
-import com.brian.market.payment.ShippingActivity;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
@@ -42,7 +40,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 public class WishlistActivity extends AppCompatActivity {
 

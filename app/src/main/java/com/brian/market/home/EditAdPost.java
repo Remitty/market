@@ -32,7 +32,7 @@ import android.provider.MediaStore;
 
 import androidx.annotation.NonNull;
 
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -169,8 +169,8 @@ import com.brian.market.home.adapter.ItemEditImageAdapter;
 import com.brian.market.home.helper.AdPostImageModel;
 import com.brian.market.home.helper.CalanderTextModel;
 import com.brian.market.home.helper.ProgressModel;
-import com.brian.market.modelsList.myAdsModel;
-import com.brian.market.modelsList.subcatDiloglist;
+import com.brian.market.models.myAdsModel;
+import com.brian.market.models.subcatDiloglist;
 import com.brian.market.utills.CircularProgressBar;
 import com.brian.market.utills.GPSTracker;
 import com.brian.market.utills.Network.RestService;

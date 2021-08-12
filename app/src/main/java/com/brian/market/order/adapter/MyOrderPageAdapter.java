@@ -3,7 +3,7 @@ package com.brian.market.order.adapter;
 import android.content.Context;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.OrderDetail;
+import com.brian.market.models.OrderDetail;
 import com.brian.market.order.OrderHistory;
 import com.brian.market.order.MyOrder;
 

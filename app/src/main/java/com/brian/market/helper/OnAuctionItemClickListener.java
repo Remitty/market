@@ -1,6 +1,6 @@
 package com.brian.market.helper;
 
-import com.brian.market.modelsList.Auction;
+import com.brian.market.models.Auction;
 
 public interface OnAuctionItemClickListener {
     void onItemClick(Auction item);

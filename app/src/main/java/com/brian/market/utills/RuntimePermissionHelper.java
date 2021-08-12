@@ -21,7 +21,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.List;
 
-import com.brian.market.modelsList.permissionsModel;
+import com.brian.market.models.permissionsModel;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 

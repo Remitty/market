@@ -11,13 +11,15 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.OrderDetail;
+import com.brian.market.doba.helper.Doba;
+import com.brian.market.models.OrderDetail;
 import com.brian.market.order.adapter.MyOrderAdapter;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
 import com.google.gson.JsonObject;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -105,7 +107,9 @@ public class MyOrder extends Fragment {
                 builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        orderCancel();
+                        if(order.getPayment().equals("Token") || order.getPayment().equals("DobaCard"))
+                            dobaOrderCancel();
+                        else orderCancel();
                     }
                 });
                 builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
@@ -140,7 +144,9 @@ public class MyOrder extends Fragment {
                 builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        orderConfirm();
+                        if(order.getPayment().equals("Token") || order.getPayment().equals("DobaCard"))
+                            dobarOrderConfirm();
+                        else orderConfirm();
                     }
                 });
                 builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
@@ -156,6 +162,84 @@ public class MyOrder extends Fragment {
         });
         mAdapter.notifyDataSetChanged();
         return view;
+    }
+
+    private void dobarOrderConfirm() {
+        settingsMain.showDilog(getActivity());
+
+        Doba doba = new Doba();
+        okhttp3.Call mycall = doba.requestConfirmOrder(order.getOrderId());
+        mycall.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
+                settingsMain.hideDilog();
+
+                Log.d("doba here", "failed");
+            }
+
+            @Override
+            public void onResponse(okhttp3.@NotNull Call call, okhttp3.@NotNull Response response) throws IOException {
+                settingsMain.hideDilog();
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                String responseData = response.body().string();
+                Log.e("doba good onResponse:", responseData);
+                JSONObject object = null;
+                try {
+                    object = new JSONObject(responseData);
+                    if(object.getInt("responseCode") == 0) {
+                        JSONObject bdata = object.getJSONObject("businessData");
+                        JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
+                        orderConfirm();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                    }
+                });
+            }
+        });
+    }
+
+    private void dobaOrderCancel() {
+        settingsMain.showDilog(getActivity());
+
+        Doba doba = new Doba();
+        okhttp3.Call mycall = doba.requestCancelOrder(order.getOrderId(), "This was test");
+        mycall.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
+                settingsMain.hideDilog();
+
+                Log.d("doba here", "failed");
+            }
+
+            @Override
+            public void onResponse(okhttp3.@NotNull Call call, okhttp3.@NotNull Response response) throws IOException {
+                settingsMain.hideDilog();
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                String responseData = response.body().string();
+                Log.e("doba good onResponse:", responseData);
+                JSONObject object = null;
+                try {
+                    object = new JSONObject(responseData);
+                    if(object.getInt("responseCode") == 0) {
+                        JSONObject bdata = object.getJSONObject("businessData");
+                        JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
+                        orderCancel();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                    }
+                });
+            }
+        });
     }
 
     private void orderConfirm() {

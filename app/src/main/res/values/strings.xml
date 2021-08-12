@@ -104,7 +104,7 @@
     <string name="phone">Phone</string>
     <string name="street_address">Street Address</string>
     <string name="apt_suit">Apt/suit</string>
-    <string name="city_state_country">City, state, country</string>
+    <string name="city_state_country">City</string>
     <string name="zip_postalcode">Zip/PostalCode</string>
     <string name="bank_name">Bank Name</string>
     <string name="account_number">Account Number</string>
@@ -151,7 +151,9 @@
     <string name="complete_profile">Complete Profile</string>
 
     <string name="get_direction">Get Direction</string>
-    <string name="ships_for">Ships for</string>
+    <string name="ships_for">Ship for</string>
+    <string name="ships_to">Ship to:</string>
+    <string name="ships_method">Ship method:</string>
     <string name="related_products">Related Products</string>
 
     <string name="quantity">Quantity</string>
@@ -178,7 +180,7 @@
     <string name="payment">Payment</string>
     <string name="add_shipping_address">Add Shipping Address</string>
     <string name="save_shipping_address">Save Shipping Address</string>
-    <string name="contact_name">Contact Name</string>
+    <string name="contact_name">Full Name</string>
     <string name="set_as_default">Set as default</string>
     <string name="invoice">Invoice</string>
     <string name="tax">Tax</string>
@@ -194,7 +196,9 @@
 
     <string name="view_profile">View profile</string>
 
-    <string name="shop_locally">Shop locally</string>
+    <string name="shop_locally">Shop individual</string>
+    <string name="shop_ali">Shop locally</string>
+    <string name="shop_wholesale">Shop wholesale</string>
     <string name="categories">Categories</string>
     <string name="shop_auction_sales">Shop auction sales</string>
     <string name="withdraw">Withdraw</string>
@@ -228,7 +232,6 @@
 
     <string name="access_token">AIzaSyCnCBo4qiU3PuiLNvNstl8GadA4-E__NqA</string>
     <string name="Admob_app_id">Enter the admob app id here </string>
-
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

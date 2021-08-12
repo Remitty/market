@@ -1,11 +1,9 @@
 package com.brian.market.profile;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,10 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.OrderDetail;
-import com.brian.market.order.adapter.MyOrderAdapter;
-import com.brian.market.modelsList.ProductDetails;
-import com.brian.market.payment.StripePayment;
+import com.brian.market.models.OrderDetail;
 import com.brian.market.profile.adapter.SellerOrderAdapter;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.RuntimePermissionHelper;
@@ -27,14 +22,12 @@ import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
 import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;

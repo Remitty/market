@@ -11,15 +11,12 @@ import retrofit2.Response;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brian.market.R;
 import com.brian.market.bitcoin.adapter.WalletAdapter;
-import com.brian.market.modelsList.CoinInfo;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.CoinInfo;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;

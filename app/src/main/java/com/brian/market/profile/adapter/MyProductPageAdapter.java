@@ -3,16 +3,13 @@ package com.brian.market.profile.adapter;
 import android.content.Context;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.OrderDetail;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.OrderDetail;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.profile.ProductOrderHistoryPage;
 import com.brian.market.profile.ProductOrderPage;
 import com.brian.market.profile.ProductPage;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

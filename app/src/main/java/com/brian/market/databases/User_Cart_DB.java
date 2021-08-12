@@ -3,22 +3,11 @@ package com.brian.market.databases;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
-import java.lang.reflect.Array;
-import java.util.HashMap;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.brian.market.cart.CartDetails;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -68,7 +57,7 @@ public class User_Cart_DB {
         
         return "CREATE TABLE "+ TABLE_CART_IDS
                 + "("
-                + PRODUCT_ID    +" INTEGER,"
+                + PRODUCT_ID    +" TEXT,"
                 + PRODUCT_QUANTITY    +" INTEGER"
                 + ")";
     }
@@ -82,7 +71,7 @@ public class User_Cart_DB {
         ContentValues values = new ContentValues();
         
         values.put(PRODUCT_ID,          products_id);
-       values.put(PRODUCT_QUANTITY,     product_qty);
+        values.put(PRODUCT_QUANTITY,     product_qty);
         
         db.insert(TABLE_CART_IDS, null, values);
         
@@ -114,7 +103,7 @@ public class User_Cart_DB {
         return recents;
     }
     
-    public int getUserCartQty(int product_id){
+    public int getUserCartQty(String product_id){
         // get and open SQLiteDatabase Instance from static method of DB_Manager class
         SQLiteDatabase db = DB_Manager.getInstance().openDatabase();
     
@@ -136,7 +125,7 @@ public class User_Cart_DB {
     
     //*********** Update existing Recent Item ********//
     
-    public void updateCartItem(int products_id,int p_quantity) {
+    public void updateCartItem(String products_id, int p_quantity) {
         // get and open SQLiteDatabase Instance from static method of DB_Manager class
         SQLiteDatabase db = DB_Manager.getInstance().openDatabase();
         
@@ -144,7 +133,7 @@ public class User_Cart_DB {
         
         values.put(PRODUCT_QUANTITY, p_quantity);
         
-        db.update(TABLE_CART_IDS, values, PRODUCT_ID +" = ?", new String[]{String.valueOf(products_id)});
+        db.update(TABLE_CART_IDS, values, PRODUCT_ID +" = ?", new String[]{products_id});
         
         // close the Database
         DB_Manager.getInstance().closeDatabase();
@@ -152,11 +141,11 @@ public class User_Cart_DB {
 
     //*********** Delete specific Recent Item ********//
     
-    public void deleteCartItemID(int product_id){
+    public void deleteCartItemID(String product_id){
         // get and open SQLiteDatabase Instance from static method of DB_Manager class
         SQLiteDatabase db = DB_Manager.getInstance().openDatabase();
         
-        db.delete(TABLE_CART_IDS, PRODUCT_ID +" = ?", new String[]{String.valueOf(product_id)});
+        db.delete(TABLE_CART_IDS, PRODUCT_ID +" = ?", new String[]{product_id});
         
         // close the Database
         DB_Manager.getInstance().closeDatabase();
@@ -182,7 +171,7 @@ public class User_Cart_DB {
         return "CREATE TABLE "+ TABLE_CART +
                 "(" +
                     CART_ID                         + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    CART_PRODUCT_ID                 + " INTEGER," +
+                    CART_PRODUCT_ID                 + " TEXT," +
                     CART_PRODUCT_NAME               + " TEXT," +
                     CART_PRODUCT_IMAGE              + " TEXT," +
 //                    CART_PRODUCT_URL                + " TEXT," +
@@ -256,24 +245,24 @@ public class User_Cart_DB {
 
         int cartID = getLastCartID();
 
-        insertCartItem(product.getId(), 1);
+        insertCartItem(Integer.parseInt(product.getId()), 1);
         // close the Database
         DB_Manager.getInstance().closeDatabase();
     }
 
     //*********** Fetch All Recent Items ********//
     
-    public ArrayList<Integer> getCartItemsIDs() {
+    public ArrayList<String> getCartItemsIDs() {
         // get and open SQLiteDatabase Instance from static method of DB_Manager class
         SQLiteDatabase db = DB_Manager.getInstance().openDatabase();
         
-        ArrayList<Integer> cartIDs = new ArrayList<Integer>();
+        ArrayList<String> cartIDs = new ArrayList<String>();
         
         Cursor cursor =  db.rawQuery( "SELECT "+ CART_PRODUCT_ID +" FROM "+ TABLE_CART , null);
         
         if (cursor.moveToFirst()) {
             do {
-                cartIDs.add(cursor.getInt(0));
+                cartIDs.add(cursor.getString(0));
                 
             } while (cursor.moveToNext());
         }
@@ -300,7 +289,7 @@ public class User_Cart_DB {
                 CartDetails cart = new CartDetails();
                 ProductDetails product = new ProductDetails();
 
-                product.setId(cursor.getInt(1));
+                product.setId(cursor.getString(1));
 //                product.setSelectedVariationID(cursor.getInt(2));
                 product.setCardName(cursor.getString(2));
                 product.setImage(cursor.getString(3));
@@ -382,11 +371,11 @@ public class User_Cart_DB {
 
     //*********** Delete specific Item from Cart ********//
 
-    public void deleteCartItem(int product_id) {
+    public void deleteCartItem(String product_id) {
         // get and open SQLiteDatabase Instance from static method of DB_Manager class
         db = DB_Manager.getInstance().openDatabase();
 
-        db.delete(TABLE_CART, CART_PRODUCT_ID +" = ?", new String[]{String.valueOf(product_id)});
+        db.delete(TABLE_CART, CART_PRODUCT_ID +" = ?", new String[]{product_id});
 
         // close the Database
         DB_Manager.getInstance().closeDatabase();

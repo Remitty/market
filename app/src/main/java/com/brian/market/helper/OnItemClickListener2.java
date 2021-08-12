@@ -1,6 +1,6 @@
 package com.brian.market.helper;
 
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 
 public interface OnItemClickListener2 {
     void onItemClick(ProductDetails item);

@@ -17,7 +17,7 @@ import java.util.List;
 import com.brian.market.R;
 import com.brian.market.helper.OnItemClickListener;
 import com.brian.market.home.helper.CustomCategoriesFilter;
-import com.brian.market.modelsList.homeCatListModel;
+import com.brian.market.models.homeCatListModel;
 import com.brian.market.utills.SettingsMain;
 
 public class ItemHomeAllCategories extends RecyclerView.Adapter<ItemHomeAllCategories.CustomViewHolder>

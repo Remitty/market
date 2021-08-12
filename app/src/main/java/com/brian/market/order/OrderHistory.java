@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.OrderDetail;
+import com.brian.market.models.OrderDetail;
 import com.brian.market.order.adapter.MyOrderAdapter;
 
 import java.util.ArrayList;

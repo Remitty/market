@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.brian.market.modelsList.CreditCard;
+import com.brian.market.models.CreditCard;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.UrlController;
 import com.google.android.material.tabs.TabLayout;

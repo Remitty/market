@@ -1,9 +1,6 @@
 package com.brian.market.home;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.core.view.ViewCompat;
@@ -21,8 +18,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -31,7 +26,7 @@ import com.brian.market.ad_detail.Ad_detail_activity;
 import com.brian.market.adapters.ProductAdapter;
 import com.brian.market.databases.User_Favorites_DB;
 import com.brian.market.helper.OnItemClickListener2;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;

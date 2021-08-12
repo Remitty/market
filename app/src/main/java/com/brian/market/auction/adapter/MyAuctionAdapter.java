@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.brian.market.helper.OnAuctionItemClickListener;
-import com.brian.market.modelsList.Auction;
+import com.brian.market.models.Auction;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

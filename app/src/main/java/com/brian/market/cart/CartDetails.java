@@ -1,6 +1,6 @@
 package com.brian.market.cart;
 
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 
 public class CartDetails {
     private ProductDetails cartProduct;

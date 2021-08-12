@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
@@ -17,52 +16,42 @@ import android.os.Bundle;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.brian.market.databases.User_Cart_DB;
+import com.brian.market.doba.helper.Doba;
 import com.brian.market.home.HomeActivity;
+import com.brian.market.models.ProductDetails;
+import com.brian.market.models.ShippingAddressModel;
 import com.brian.market.wxapi.WXPayEntryActivity;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.os.Handler;
 import android.os.Message;
-import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
-import com.brian.market.modelsList.CreditCard;
+import com.brian.market.models.CreditCard;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
-import com.squareup.picasso.Picasso;
 import com.stripe.android.ApiResultCallback;
 import com.stripe.android.Stripe;
-import com.stripe.android.exception.APIConnectionException;
-import com.stripe.android.exception.APIException;
-import com.stripe.android.exception.AuthenticationException;
-import com.stripe.android.exception.CardException;
-import com.stripe.android.exception.InvalidRequestException;
-import com.stripe.android.model.Card;
 import com.stripe.android.model.Source;
 import com.stripe.android.model.SourceParams;
-import com.stripe.android.model.Token;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +61,6 @@ import java.math.BigDecimal;
 import java.net.SocketTimeoutException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
@@ -85,7 +73,6 @@ import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
 import com.stripe.android.model.WeChat;
-import com.stripe.android.view.CardInputWidget;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -99,13 +86,17 @@ public class StripePayment extends WXPayEntryActivity {
     Button chkout, cancel;
     TextView tvSubTotal, tvTax, tvShipping, tvTotal;
     TextView tvWalletBalance, tvPaypal, tvCardId;
-    ImageView check1, check2, check3, check4, check5, imgCard;
+    ImageView check1, check2, check3, check4, check5, imgCard, check6, check7;
+
+    EditText mEditContactName, mEditStreet, mEditApartment, mEditState, mEditCountry, mEditCity, mEditPostalCode, mEditMobile;
+
+    LinearLayout llPayment, llWhole;
 
     private CreditCard mCard = new CreditCard();
     private String mPaypal="";
     private JSONObject paypal;
 
-    private String id = "", strSubtotal, strTax, strShipping, strTotal, strPaymentMethod="";
+    private String id = "", strSubtotal, strTax="0", strShipping, strTotal, strPaymentMethod="";
     private boolean shipping, defaultshipping;
     private Intent mIntent;
 
@@ -113,10 +104,19 @@ public class StripePayment extends WXPayEntryActivity {
     private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
     String paymentId="";
 
+    private boolean wholesaleflag = false;
+    static ArrayList<ProductDetails> cartItemsList = new ArrayList<>();
+    ShippingAddressModel shipAddress;
+
+    private JSONObject billingAddress;
+
     private static final int SDK_PAY_FLAG = 2;
     private static final int SDK_AUTH_FLAG = 3;
+    private static final int START_DOBAPAY_REQUEST = 100;
     private String PUBLISHABLE_KEY="";
     private int START_ALIPAY_REQUEST = 0;
+    private String shipId="14";
+    private String orderId;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -129,8 +129,14 @@ public class StripePayment extends WXPayEntryActivity {
 
         mIntent = getIntent();
 
-        if(mIntent.getData() != null) {
-            adforest_Checkout();
+        if(mIntent != null) {
+//            Checkout();
+            wholesaleflag = mIntent.getBooleanExtra("wholesaleflag", false);
+            if(wholesaleflag) {
+                cartItemsList = mIntent.getParcelableArrayListExtra("goods");
+                shipId = mIntent.getStringExtra("shipId");
+            }
+            shipAddress = mIntent.getParcelableExtra("shipping_address");
         }
 
         if (getSupportActionBar() != null)
@@ -149,9 +155,22 @@ public class StripePayment extends WXPayEntryActivity {
         initListeners();
 
         restService = UrlController.createService(RestService.class, settingsMain.getAuthToken(), this);
-
-        getInvoiceData();
-
+        if(wholesaleflag) {
+            String price = cartItemsList.get(0).getPrice();
+            Integer qty = cartItemsList.get(0).getCustomersBasketQuantity();
+            strSubtotal = new DecimalFormat("#0.00").format(Double.parseDouble(price) * qty);
+            strTotal = strSubtotal;
+            tvSubTotal.setText("$"+strSubtotal);
+            tvTotal.setText("$"+strTotal);
+            getShipEstimateFeeForWholeSale();
+            llWhole.setVisibility(View.VISIBLE);
+            llPayment.setVisibility(View.GONE);
+        }
+        else {
+            getInvoiceData();
+            llPayment.setVisibility(View.VISIBLE);
+            llWhole.setVisibility(View.GONE);
+        }
 
 
     }
@@ -255,6 +274,106 @@ public class StripePayment extends WXPayEntryActivity {
             }
         });
 
+        check6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(strPaymentMethod.equals("DobaCard"))
+                    return;
+                strPaymentMethod = "DobaCard";
+                chkout.setEnabled(true);
+                check6.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
+                check7.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+            }
+        });
+
+        check7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(strPaymentMethod.equals("Token"))
+                    return;
+                strPaymentMethod = "Token";
+                check7.setImageDrawable(getDrawable(R.drawable.ic_check_circle_green_24dp));
+                check6.setImageDrawable(getDrawable(R.drawable.ic_check_circle_black_24dp));
+            }
+        });
+
+    }
+
+    private void getShipEstimateFeeForWholeSale() {
+        settingsMain.showDilog(this);
+        Doba doba = new Doba();
+        JSONObject good = new JSONObject();
+        JSONArray goods = new JSONArray();
+        try {
+            good.put("itemNo", cartItemsList.get(0).getId());
+            good.put("quantity", cartItemsList.get(0).getCustomersBasketQuantity());
+            goods.put(good);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        okhttp3.Call mycall = doba.requestShipFee(shipAddress, goods);
+        mycall.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
+                settingsMain.hideDilog();
+
+                Log.d("doba here", "failed");
+            }
+
+            @Override
+            public void onResponse(okhttp3.@NotNull Call call, okhttp3.@NotNull Response response) throws IOException {
+                settingsMain.hideDilog();
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                String responseData = response.body().string();
+                Log.e("doba good onResponse:", responseData);
+                JSONObject responseobject = null;
+                try {
+                    responseobject = new JSONObject(responseData);
+                    if(responseobject.getInt("responseCode") == 0) {
+                        JSONObject bdata = responseobject.getJSONArray("businessData").getJSONObject(0);
+                        if(bdata.getInt("businessStatus") == 0) {
+                            JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
+                            JSONArray costs = data.getJSONArray("costs");
+                            Double shipFee = costs.getJSONObject(0).getDouble("shipFee");
+                            shipId = costs.getJSONObject(0).getString("shipId");
+                            strShipping = String.valueOf(shipFee);
+
+                            strTotal = String.valueOf(Double.parseDouble(strSubtotal) + shipFee);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tvTotal.setText("$"+ strTotal);
+                                    tvShipping.setText("$" + strShipping);
+                                    chkout.setEnabled(true);
+                                }
+                            });
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getBaseContext(), bdata.optString("businessMessage"), Toast.LENGTH_SHORT).show();
+                                    chkout.setEnabled(false);
+                                }
+                            });
+                        }
+
+                    } else {
+                        JSONObject finalResponseobject = responseobject;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getBaseContext(), finalResponseobject.optString("responseMessage"), Toast.LENGTH_SHORT).show();
+                                chkout.setEnabled(false);
+                            }
+                        });
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
     }
 
     private void confirmOrder() {
@@ -268,12 +387,12 @@ public class StripePayment extends WXPayEntryActivity {
         TextView postalcode = alertview.findViewById(R.id.shipping_postal_code_edit);
         TextView mobile = alertview.findViewById(R.id.shipping_mobile_edit);
 
-        contact.setText(mIntent.getStringExtra("contact_name"));
-        street.setText(mIntent.getStringExtra("street"));
-        apartment.setText(mIntent.getStringExtra("apartment"));
-        state.setText(mIntent.getStringExtra("state"));
-        postalcode.setText(mIntent.getStringExtra("postal_code"));
-        mobile.setText(mIntent.getStringExtra("mobile"));
+        contact.setText(shipAddress.getName());
+        street.setText(shipAddress.getAddress1());
+        apartment.setText(shipAddress.getAddress2());
+        state.setText(shipAddress.getCity() + ", " + shipAddress.getState() + ", " + shipAddress.getCountry());
+        postalcode.setText(shipAddress.getPostalCode());
+        mobile.setText(shipAddress.getPhone());
 
         TextView subtotal = alertview.findViewById(R.id.checkout_subtotal);
         TextView tax = alertview.findViewById(R.id.checkout_tax);
@@ -290,18 +409,17 @@ public class StripePayment extends WXPayEntryActivity {
         builder.setPositiveButton(getString(R.string.confirm), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(strPaymentMethod.equals("Paypal")) handlePaypal();
-                else if(strPaymentMethod.equals("Alipay")) {
+                if (strPaymentMethod.equals("Paypal")) handlePaypal();
+                else if (strPaymentMethod.equals("Alipay")) {
                     dialog.dismiss();
                     showLoading();
                     handleAlipay();
-                }
-                else if(strPaymentMethod.equals("wechatpay")) {
+                } else if (strPaymentMethod.equals("wechatpay")) {
                     dialog.dismiss();
                     handleWechatPay();
-                }
-                else {
-                    adforest_Checkout();
+                } else {
+                    if(wholesaleflag) billingAddressDialog();
+                    else Checkout();
                 }
             }
         });
@@ -313,6 +431,112 @@ public class StripePayment extends WXPayEntryActivity {
         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void billingAddressDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(StripePayment.this);
+
+
+        View alertview = getLayoutInflater().inflate(R.layout.dialog_billing_address, null);
+        mEditContactName = alertview.findViewById(R.id.shipping_contact_edit);
+        mEditStreet = alertview.findViewById(R.id.shipping_street_edit);
+        mEditApartment = alertview.findViewById(R.id.shipping_apartment_edit);
+        mEditState = alertview.findViewById(R.id.shipping_state_edit);
+        mEditCity = alertview.findViewById(R.id.shipping_city_edit);
+        mEditCountry = alertview.findViewById(R.id.shipping_country_edit);
+        mEditMobile = alertview.findViewById(R.id.shipping_mobile_edit);
+        mEditPostalCode = alertview.findViewById(R.id.shipping_postal_code_edit);
+
+        Button mBtnSkip = alertview.findViewById(R.id.cancel_btn);
+        Button mBtnSaveAddress = alertview.findViewById(R.id.confirm_btn);
+
+        builder.setCancelable(true);
+        builder.setView(alertview);
+//        mBtnSkip.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                alert.dismiss();
+//            }
+//        });
+
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+//        mBtnSaveAddress.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+
+        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if(checkAddressValidation()) {
+                    billingAddress = new JSONObject();
+                    try {
+                        billingAddress.put("addr1", mEditStreet.getText().toString());
+                        billingAddress.put("addr2", mEditApartment.getText().toString());
+                        billingAddress.put("city", mEditCity.getText().toString());
+                        billingAddress.put("provinceCode", mEditState.getText().toString());
+                        billingAddress.put("countryCode", mEditCountry.getText().toString());
+                        billingAddress.put("name", mEditContactName.getText().toString());
+                        billingAddress.put("telephone", mEditMobile.getText().toString());
+                        billingAddress.put("zip", mEditPostalCode.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Checkout();
+                }
+                else{
+                    Toast.makeText(getBaseContext(), "Please input all fields.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private boolean checkAddressValidation() {
+        boolean valdate = true;
+        if(mEditContactName.getText().toString().equals("")) {
+            mEditContactName.setError("!");
+            valdate = false;
+        }
+        if(mEditStreet.getText().toString().equals("")) {
+            mEditStreet.setError("!");
+            valdate = false;
+        }
+//        if(mEditApartment.getText().toString().equals("")) {
+//            mEditApartment.setError("!");
+//            valdate = false;
+//        }
+        if(mEditState.getText().toString().length() != 2) {
+            mEditState.setError("!");
+            valdate = false;
+        }
+        if(mEditCountry.getText().toString().length() != 2) {
+            mEditCountry.setError("!");
+            valdate = false;
+        }
+        if(mEditCity.getText().toString().equals("")) {
+            mEditCity.setError("!");
+            valdate = false;
+        }
+        if(mEditPostalCode.getText().toString().equals("")) {
+            mEditPostalCode.setError("!");
+            valdate = false;
+        }
+        if(mEditMobile.getText().toString().equals("")) {
+            mEditMobile.setError("!");
+            valdate = false;
+        }
+        return valdate;
     }
 
     private void initComponents() {
@@ -333,6 +557,12 @@ public class StripePayment extends WXPayEntryActivity {
         check4 = findViewById(R.id.check4);
         check5 = findViewById(R.id.check5);
         imgCard = findViewById(R.id.card_logo);
+
+        check6 = findViewById(R.id.check6);
+        check7 = findViewById(R.id.check7);
+
+        llPayment = findViewById(R.id.ll_payment);
+        llWhole = findViewById(R.id.ll_whole);
 
     }
 
@@ -413,26 +643,36 @@ public class StripePayment extends WXPayEntryActivity {
     }
 
 
-    private void adforest_Checkout() {
+    private void Checkout() {
 
         if (SettingsMain.isConnectingToInternet(StripePayment.this)) {
             showLoading();
             JsonObject params = new JsonObject();
             params.addProperty("payment", strPaymentMethod);
+            params.addProperty("shop_type", wholesaleflag ? "Supplier" : "Individual");
             if(strPaymentMethod.equals("Paypal") || strPaymentMethod.equals("Alipay")) {
                 params.addProperty("payment_id", paymentId);
                 params.addProperty("total_price", strTotal);
             }
-            User_Cart_DB user_cart_db = new User_Cart_DB();
-            params.addProperty("product_ids", user_cart_db.getCartItemsForInvoice().toString());
+            if(!wholesaleflag) {
+                User_Cart_DB user_cart_db = new User_Cart_DB();
+                params.addProperty("product_ids", user_cart_db.getCartItemsForInvoice().toString());
+            } else {
+                params.addProperty("qty", cartItemsList.get(0).getCustomersBasketQuantity());
+                params.addProperty("subTotal", strSubtotal);
+                params.addProperty("shipping_price", strShipping);
+
+            }
             boolean shipping = mIntent.getBooleanExtra("shipping", false);
             if(shipping) {
-                params.addProperty("shipping_contact", mIntent.getStringExtra("contact_name"));
-                params.addProperty("shipping_street", mIntent.getStringExtra("street"));
-                params.addProperty("shipping_state", mIntent.getStringExtra("state"));
-                params.addProperty("shipping_apartment", mIntent.getStringExtra("apartment"));
-                params.addProperty("shipping_postal_code", mIntent.getStringExtra("postal_code"));
-                params.addProperty("shipping_mobile", mIntent.getStringExtra("mobile"));
+                params.addProperty("shipping_contact", shipAddress.getName());
+                params.addProperty("shipping_street", shipAddress.getAddress1());
+                params.addProperty("shipping_apartment", shipAddress.getAddress2());
+                params.addProperty("shipping_country", shipAddress.getCountry());
+                params.addProperty("shipping_state", shipAddress.getState());
+                params.addProperty("shipping_city", shipAddress.getCity());
+                params.addProperty("shipping_postal_code", shipAddress.getPostalCode());
+                params.addProperty("shipping_mobile", shipAddress.getPhone());
                 params.addProperty("shipping_default", mIntent.getBooleanExtra("set_default_address", false));
             }
             params.addProperty("shipping", shipping);
@@ -450,10 +690,236 @@ public class StripePayment extends WXPayEntryActivity {
                             JSONObject response = new JSONObject(responseObj.body().string());
                             Log.d("info Checkout object", "" + response.toString());
                             if (response.getBoolean("success")) {
-                                User_Cart_DB user_cart_db = new User_Cart_DB();
-                                user_cart_db.clearCart();
-                                settingsMain.setPaymentCompletedMessage(response.get("message").toString());
-                                adforest_getDataForThankYou();
+                                String orderId = response.getString("orderId");
+                                if(!wholesaleflag) {
+                                    User_Cart_DB user_cart_db = new User_Cart_DB();
+                                    user_cart_db.clearCart();
+                                    settingsMain.setPaymentCompletedMessage(response.get("message").toString());
+                                    getDataForThankYou();
+                                } else {
+                                    makeDobaPayment(orderId);
+                                }
+
+                            } else
+                                Toast.makeText(StripePayment.this, response.get("message").toString(), Toast.LENGTH_SHORT).show();
+
+                        } else {
+                            Log.e("checkout issue: ", responseObj.errorBody().string());
+                            Toast.makeText(getBaseContext(), responseObj.errorBody().string(), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        SettingsMain.hideDilog();
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        SettingsMain.hideDilog();
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    loadingLayout.setVisibility(View.GONE);
+                    if (t instanceof TimeoutException) {
+                        Toast.makeText(getApplicationContext(), settingsMain.getAlertDialogMessage("internetMessage"), Toast.LENGTH_SHORT).show();
+                        settingsMain.hideDilog();
+                    }
+                    if (t instanceof SocketTimeoutException || t instanceof NullPointerException) {
+
+                        Toast.makeText(getApplicationContext(), settingsMain.getAlertDialogMessage("internetMessage"), Toast.LENGTH_SHORT).show();
+                        settingsMain.hideDilog();
+                    }
+                    if (t instanceof NullPointerException || t instanceof UnknownError || t instanceof NumberFormatException) {
+                        Log.d("info Checkout ", "NullPointert Exception" + t.getLocalizedMessage());
+                        settingsMain.hideDilog();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Please try again", Toast.LENGTH_SHORT).show();
+                        SettingsMain.hideDilog();
+                        Log.d("info Checkout err", String.valueOf(t));
+                        Log.d("info Checkout err", String.valueOf(t.getMessage() + t.getCause() + t.fillInStackTrace()));
+                    }
+                }
+            });
+        } else {
+            Toast.makeText(StripePayment.this, settingsMain.getAlertDialogTitle("error"), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void makeDobaPayment(String orderId) {
+        this.orderId = orderId;
+        settingsMain.showDilog(this);
+
+        Doba doba = new Doba();
+        JSONArray list = new JSONArray();
+        for(int i =0; i < cartItemsList.size(); i ++) {
+            JSONObject object = new JSONObject();
+            try {
+                object.put("itemNo", cartItemsList.get(i).getId());
+                object.put("quantityOrdered", String.valueOf(cartItemsList.get(i).getCustomersBasketQuantity()));
+                object.put("shippingMethodId", shipId);
+                list.put(object);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        JSONObject detail = new JSONObject();
+        JSONArray orders = new JSONArray();
+        try {
+            detail.put("goodsDetailDTOList", list);
+            detail.put("shippingAddress", shipAddress.getDobaObject());
+            detail.put("orderNumber", orderId);
+            orders.put(detail);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        okhttp3.Call mycall = doba.requestImportOrder(billingAddress, orders);
+        mycall.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
+                settingsMain.hideDilog();
+
+                Log.d("doba here", "failed");
+            }
+
+            @Override
+            public void onResponse(okhttp3.@NotNull Call call, okhttp3.@NotNull Response response) throws IOException {
+                settingsMain.hideDilog();
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                String responseData = response.body().string();
+                Log.e("doba good onResponse:", responseData);
+                JSONObject object = null;
+                String orderPayUrl = "";
+                try {
+                    object = new JSONObject(responseData);
+                    if(object.getInt("responseCode") == 0) {
+                        JSONObject bdata = object.getJSONObject("businessData");
+                        if(bdata.getBoolean("successful")) {
+                            JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
+                            JSONArray resList = data.getJSONArray("orderSuccessResList");
+                            orderPayUrl = resList.getJSONObject(0).getString("orderPayURL");
+                            if(strPaymentMethod.equals("Token")) getDobaSystemCardId();
+                            else makeDobaCardPayment(orderPayUrl);
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getBaseContext(), bdata.optString("businessMessage"), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+    }
+
+    private void makeDobaCardPayment(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivityForResult(intent, START_DOBAPAY_REQUEST);
+    }
+
+    private void getDobaSystemCardId() {
+        settingsMain.showDilog(this);
+
+        Doba doba = new Doba();
+        okhttp3.Call mycall = doba.requestSystemCardId();
+        mycall.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
+                settingsMain.hideDilog();
+
+                Log.d("doba here", "failed");
+            }
+
+            @Override
+            public void onResponse(okhttp3.@NotNull Call call, okhttp3.@NotNull Response response) throws IOException {
+                settingsMain.hideDilog();
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                String responseData = response.body().string();
+                Log.e("doba good onResponse:", responseData);
+                JSONObject object = null;
+                try {
+                    object = new JSONObject(responseData);
+                    if(object.getInt("responseCode") == 0) {
+                        JSONObject bdata = object.getJSONObject("businessData");
+                        JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
+                        String cardId = data.getString("cardId");
+                        makeDobaSystemPayment(cardId);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
+    private void makeDobaSystemPayment(String cardId) {
+        settingsMain.showDilog(this);
+
+        Doba doba = new Doba();
+        okhttp3.Call mycall = doba.requestSystemPayment("spuId", cardId);
+        mycall.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
+                settingsMain.hideDilog();
+
+                Log.d("doba here", "failed");
+            }
+
+            @Override
+            public void onResponse(okhttp3.@NotNull Call call, okhttp3.@NotNull Response response) throws IOException {
+                settingsMain.hideDilog();
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                String responseData = response.body().string();
+                Log.e("doba good onResponse:", responseData);
+                JSONObject object = null;
+                try {
+                    object = new JSONObject(responseData);
+                    if(object.getInt("responseCode") == 0) {
+                        JSONObject bdata = object.getJSONObject("businessData");
+                        JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
+                        String totalPay = data.getString("totalPay");
+                        confirmDobaSystemPayment(totalPay);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                });
+            }
+        });
+    }
+
+    private void confirmDobaSystemPayment(String amount) {
+        if (SettingsMain.isConnectingToInternet(StripePayment.this)) {
+            showLoading();
+            JsonObject params = new JsonObject();
+            params.addProperty("totalPay", amount);
+            params.addProperty("orderId", orderId);
+            Log.d("confirm doba param", params.toString());
+
+            Call<ResponseBody> myCall = restService.postDobaSystemPayment(params, UrlController.AddHeaders(this));
+            myCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
+                    loadingLayout.setVisibility(View.GONE);
+                    try {
+                        if (responseObj.isSuccessful()) {
+                            Log.d("info Checkout Resp", "" + responseObj.toString());
+
+                            JSONObject response = new JSONObject(responseObj.body().string());
+                            Log.d("info Checkout object", "" + response.toString());
+                            if (response.getBoolean("success")) {
+                                getDataForThankYou();
 
                             } else
                                 Toast.makeText(StripePayment.this, response.get("message").toString(), Toast.LENGTH_SHORT).show();
@@ -486,8 +952,8 @@ public class StripePayment extends WXPayEntryActivity {
                     } else {
                         Toast.makeText(getApplicationContext(), "Something error", Toast.LENGTH_SHORT).show();
                         SettingsMain.hideDilog();
-                        Log.d("info Checkout err", String.valueOf(t));
-                        Log.d("info Checkout err", String.valueOf(t.getMessage() + t.getCause() + t.fillInStackTrace()));
+                        Log.d("confirm doba err", String.valueOf(t));
+                        Log.d("confirm doba err", String.valueOf(t.getMessage() + t.getCause() + t.fillInStackTrace()));
                     }
                 }
             });
@@ -699,7 +1165,7 @@ public class StripePayment extends WXPayEntryActivity {
                         Log.i("paymentExample", paymentDetails);
                         paymentId = confirm.toJSONObject()
                                 .getJSONObject("response").getString("id");
-                        adforest_Checkout();
+                        Checkout();
 
                     } catch (JSONException e) {
                         Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
@@ -719,7 +1185,7 @@ public class StripePayment extends WXPayEntryActivity {
                 // Do not use the source
             } else {
                 // The source was approved.
-                adforest_Checkout();
+                Checkout();
             }
         }
     }
@@ -751,7 +1217,7 @@ public class StripePayment extends WXPayEntryActivity {
         loadingLayout.setVisibility(View.GONE);
     }
 
-    public void adforest_getDataForThankYou() {
+    public void getDataForThankYou() {
         Intent intent = new Intent(StripePayment.this, Thankyou.class);
 //                                intent.putExtra("data", responseData.getString("data"));
         intent.putExtra("order_thankyou_title", "Congratulation");

@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import com.brian.market.R;
-import com.brian.market.modelsList.ChatMessage;
+import com.brian.market.models.ChatMessage;
 import com.brian.market.utills.SettingsMain;
 
 public class ChatAdapter extends BaseAdapter {

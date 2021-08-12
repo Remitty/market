@@ -8,10 +8,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.brian.market.modelsList.OrderDetail;
+import com.brian.market.models.OrderDetail;
 import com.google.android.material.tabs.TabLayout;
 import com.brian.market.R;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.profile.adapter.MyProductPageAdapter;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
@@ -24,7 +24,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeoutException;
 
 import androidx.appcompat.app.AppCompatActivity;

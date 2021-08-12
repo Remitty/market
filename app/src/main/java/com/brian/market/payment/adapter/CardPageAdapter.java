@@ -1,6 +1,6 @@
 package com.brian.market.payment.adapter;
 
-import com.brian.market.modelsList.CreditCard;
+import com.brian.market.models.CreditCard;
 import com.brian.market.payment.AddCard;
 import com.brian.market.payment.CardListPage;
 

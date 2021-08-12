@@ -18,12 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brian.market.databases.User_Cart_DB;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.payment.ShippingActivity;
 import com.google.gson.JsonObject;
 
@@ -33,7 +32,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -41,7 +39,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import com.brian.market.R;
 import com.brian.market.home.adapter.ItemMainAllLocationAds;
-import com.brian.market.modelsList.homeCatListModel;
+import com.brian.market.models.homeCatListModel;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
@@ -61,7 +59,7 @@ public class CartFragment extends Fragment {
     private JSONObject responseData;
 
     CartItemAdapter cartItemsAdapter;
-    static List<ProductDetails> cartItemsList;
+    static ArrayList<ProductDetails> cartItemsList = new ArrayList<>();
     ArrayList<Integer> recents;
 
     User_Cart_DB user_cart_db = new User_Cart_DB();
@@ -74,12 +72,23 @@ public class CartFragment extends Fragment {
     private double cartSubTotal;
     private double cartTotalPrice;
 
+    private static boolean wholesaleFlag = false;
+    private String shipId = "";
+
     public CartFragment() {
         // Required empty public constructor
     }
 
     public static CartFragment newInstance() {
         CartFragment fragment = new CartFragment();
+        return fragment;
+    }
+
+    public static CartFragment newInstance(ArrayList<ProductDetails> products, String shipId) {
+        CartFragment fragment = new CartFragment();
+        fragment.cartItemsList = products;
+        fragment.wholesaleFlag = true;
+        fragment.shipId = shipId;
         return fragment;
     }
 
@@ -106,21 +115,23 @@ public class CartFragment extends Fragment {
 
         cart_items_recycler = view.findViewById(R.id.cart_list);
 
-        cartItemsList = new ArrayList<>();
-        int size = user_cart_db.getUserCartIDs().size();
-        recents = user_cart_db.getUserCartIDs();
+        if(cartItemsList.size() == 0) {
+            int size = user_cart_db.getUserCartIDs().size();
+            recents = user_cart_db.getUserCartIDs();
 
-        if (recents.size() < 1) {
-            cart_view.setVisibility(View.GONE);
-            cart_view_empty.setVisibility(View.VISIBLE);
+            if (recents.size() < 1) {
+                cart_view.setVisibility(View.GONE);
+                cart_view_empty.setVisibility(View.VISIBLE);
+            }
+            else {
+                cart_view.setVisibility(View.VISIBLE);
+                cart_view_empty.setVisibility(View.GONE);
+
+                cartItemsList = user_cart_db.getCartItems();
+
+            }
         }
-        else {
-            cart_view.setVisibility(View.VISIBLE);
-            cart_view_empty.setVisibility(View.GONE);
 
-            cartItemsList = user_cart_db.getCartItems();
-
-        }
 
         // Initialize the AddressListAdapter for RecyclerView
         cartItemsAdapter = new CartItemAdapter(getContext(), cartItemsList, CartFragment.this);
@@ -213,16 +224,23 @@ public class CartFragment extends Fragment {
     }
 
 
-    public static int GetItemQTY(int product_id){
-        User_Cart_DB user_cart_db = new User_Cart_DB();
-        return user_cart_db.getUserCartQty(product_id);
+    public static int GetItemQTY(String product_id){
+        if(!wholesaleFlag) {
+            User_Cart_DB user_cart_db = new User_Cart_DB();
+            return user_cart_db.getUserCartQty(product_id);
+        } else {
+            return cartItemsList.get(0).getCustomersBasketQuantity();
+        }
 
     }
 
-    public static void UpdateCartItemQty(int id, int qty){
-
-        User_Cart_DB user_cart_db = new User_Cart_DB();
-        user_cart_db.updateCartItem(id,qty);
+    public static void UpdateCartItemQty(String id, int qty){
+        if(!wholesaleFlag) {
+            User_Cart_DB user_cart_db = new User_Cart_DB();
+            user_cart_db.updateCartItem(id,qty);
+        } else {
+            cartItemsList.get(0).setCustomersBasketQuantity(qty);
+        }
 
     }
 
@@ -253,14 +271,14 @@ public class CartFragment extends Fragment {
 
     //*********** Static method to Delete the given Item from User's Cart ********//
 
-    public static void DeleteCartItem(int cart_item_id) {
+    public static void DeleteCartItem(String cart_item_id) {
         User_Cart_DB user_cart_db = new User_Cart_DB();
         user_cart_db.deleteCartItem(cart_item_id);
     }
 
     //*********** Static method to Delete the given Item from User's Cart ********//
 
-    public static void DeleteCartItemID(int product_id) {
+    public static void DeleteCartItemID(String product_id) {
         User_Cart_DB user_cart_db = new User_Cart_DB();
         user_cart_db.deleteCartItemID(product_id);
     }
@@ -289,7 +307,7 @@ public class CartFragment extends Fragment {
 
     //*********** Static method to check if the given Product is already in User's Cart ********//
 
-    public static boolean checkCartHasProduct(int cart_item_id) {
+    public static boolean checkCartHasProduct(String cart_item_id) {
         User_Cart_DB user_cart_db = new User_Cart_DB();
         return user_cart_db.getCartItemsIDs().contains(cart_item_id);
 //        return false;
@@ -343,8 +361,14 @@ public class CartFragment extends Fragment {
     //*********** Set Order Details and Proceed to Checkout ********//
 
     private void proceedCheckout() {
+        Intent intent = new Intent(getActivity(), ShippingActivity.class);
+        intent.putExtra("wholesaleflag", wholesaleFlag);
+        if(wholesaleFlag) {
+            intent.putExtra("goods", cartItemsList);
+            intent.putExtra("shipId", shipId);
 
-       startActivity(new Intent(getActivity(), ShippingActivity.class));
+        }
+        startActivity(intent);
 
     }
 

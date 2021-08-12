@@ -41,8 +41,8 @@ import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip;
 import com.brian.market.R;
 import com.brian.market.adapters.SpinnerAndListAdapter;
 import com.brian.market.helper.OnItemClickListenerPackages;
-import com.brian.market.modelsList.PackagesModel;
-import com.brian.market.modelsList.subcatDiloglist;
+import com.brian.market.models.PackagesModel;
+import com.brian.market.models.subcatDiloglist;
 import com.brian.market.utills.SettingsMain;
 
 public class ItemPackagesAdapter extends RecyclerView.Adapter<ItemPackagesAdapter.CustomViewHolder> {

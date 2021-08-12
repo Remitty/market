@@ -12,37 +12,31 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.brian.market.R;
-import com.brian.market.modelsList.CreditCard;
+import com.brian.market.models.CreditCard;
 import com.brian.market.payment.adapter.CardPagerAdapter;
 import com.brian.market.payment.adapter.PaypalPagerAdapter;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
-import com.google.firebase.auth.AuthResult;
 import com.google.gson.JsonObject;
 import com.stripe.android.Stripe;
 import com.stripe.android.exception.APIConnectionException;
 import com.stripe.android.exception.APIException;
 import com.stripe.android.exception.AuthenticationException;
-import com.stripe.android.exception.CardException;
 import com.stripe.android.exception.InvalidRequestException;
 import com.stripe.android.model.SourceParams;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 import okhttp3.ResponseBody;

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -29,7 +28,7 @@ import java.util.ArrayList;
 import cn.iwgang.countdownview.CountdownView;
 import com.brian.market.R;
 import com.brian.market.helper.OnItemClickListener2;
-import com.brian.market.modelsList.ProductDetails;
+import com.brian.market.models.ProductDetails;
 import com.brian.market.utills.SettingsMain;
 
 

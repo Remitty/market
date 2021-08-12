@@ -39,7 +39,7 @@ import com.brian.market.R;
 import com.brian.market.Search.FragmentCatSubNSearch;
 import com.brian.market.helper.OnItemClickListener;
 import com.brian.market.home.adapter.ItemMainAllLocationAds;
-import com.brian.market.modelsList.homeCatListModel;
+import com.brian.market.models.homeCatListModel;
 import com.brian.market.utills.Network.RestService;
 import com.brian.market.utills.SettingsMain;
 import com.brian.market.utills.UrlController;
