@@ -98,7 +98,7 @@ public class DobaProduct {
         }
     }
 
-    public String getShipTo() {
+    public String getShipLimit() {
         try {
             String ship = data.getString("shipLimit");
             ship = ship.replace("[", "");

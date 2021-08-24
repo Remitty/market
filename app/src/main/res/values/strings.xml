@@ -152,7 +152,7 @@
 
     <string name="get_direction">Get Direction</string>
     <string name="ships_for">Ship for</string>
-    <string name="ships_to">Ship to:</string>
+    <string name="ships_to">Ship limit:</string>
     <string name="ships_method">Ship method:</string>
     <string name="related_products">Related Products</string>
 
@@ -196,11 +196,11 @@
 
     <string name="view_profile">View profile</string>
 
-    <string name="shop_locally">Shop individual</string>
+    <string name="shop_locally">Individual</string>
     <string name="shop_ali">Shop locally</string>
-    <string name="shop_wholesale">Shop wholesale</string>
+    <string name="shop_wholesale">Wholesalers</string>
     <string name="categories">Categories</string>
-    <string name="shop_auction_sales">Shop auction sales</string>
+    <string name="shop_auction_sales">Auction Sales</string>
     <string name="withdraw">Withdraw</string>
     <string name="deposit_cryptos">Deposit cryptos</string>
     <string name="my_orders">My orders</string>

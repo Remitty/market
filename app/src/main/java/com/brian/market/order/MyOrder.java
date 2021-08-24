@@ -20,6 +20,7 @@ import com.brian.market.utills.UrlController;
 import com.google.gson.JsonObject;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -107,7 +108,7 @@ public class MyOrder extends Fragment {
                 builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(order.getPayment().equals("Token") || order.getPayment().equals("DobaCard"))
+                        if((order.getPayment().equals("Token") || order.getPayment().equals("DobaCard")) && !order.getTxnId().isEmpty())
                             dobaOrderCancel();
                         else orderCancel();
                     }
@@ -144,7 +145,7 @@ public class MyOrder extends Fragment {
                 builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if(order.getPayment().equals("Token") || order.getPayment().equals("DobaCard"))
+                        if((order.getPayment().equals("Token") || order.getPayment().equals("DobaCard")) && !order.getTxnId().isEmpty())
                             dobarOrderConfirm();
                         else orderConfirm();
                     }
@@ -168,7 +169,7 @@ public class MyOrder extends Fragment {
         settingsMain.showDilog(getActivity());
 
         Doba doba = new Doba();
-        okhttp3.Call mycall = doba.requestConfirmOrder(order.getOrderId());
+        okhttp3.Call mycall = doba.requestConfirmOrder(order.getTxnId());
         mycall.enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
@@ -187,18 +188,32 @@ public class MyOrder extends Fragment {
                 try {
                     object = new JSONObject(responseData);
                     if(object.getInt("responseCode") == 0) {
-                        JSONObject bdata = object.getJSONObject("businessData");
-                        JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
-                        orderConfirm();
+                        JSONArray bdata = object.getJSONArray("businessData");
+                        if(bdata.getJSONObject(0).getBoolean("successful"))
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    orderConfirm();
+                                }
+                            });
+
+                        else {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Toast.makeText(getContext(), bdata.getJSONObject(0).getString("businessMessage"), Toast.LENGTH_SHORT).show();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                    }
-                });
+
             }
         });
     }
@@ -207,7 +222,7 @@ public class MyOrder extends Fragment {
         settingsMain.showDilog(getActivity());
 
         Doba doba = new Doba();
-        okhttp3.Call mycall = doba.requestCancelOrder(order.getOrderId(), "This was test");
+        okhttp3.Call mycall = doba.requestCancelOrder(order.getTxnId(), "This was test");
         mycall.enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
@@ -226,9 +241,27 @@ public class MyOrder extends Fragment {
                 try {
                     object = new JSONObject(responseData);
                     if(object.getInt("responseCode") == 0) {
-                        JSONObject bdata = object.getJSONObject("businessData");
-                        JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
-                        orderCancel();
+                        JSONArray bdata = object.getJSONArray("businessData");
+                        if(bdata.getJSONObject(0).getBoolean("successful"))
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    orderCancel();
+                                }
+                            });
+
+                        else {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        Toast.makeText(getContext(), bdata.getJSONObject(0).getString("businessMessage"), Toast.LENGTH_SHORT).show();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -4,29 +4,42 @@
         android:id="@+id/group1"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/home"
-            android:icon="@drawable/ic_home_black_24dp"
-            android:title="@string/shop_locally" />
+            android:id="@+id/shop"
+            android:title="Shop from">
+            <menu>
+                <group
+                    android:id="@+id/group3"
+                    android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/home"
+                        android:icon="@drawable/ic_home_black_24dp"
+                        android:title="@string/shop_locally" />
 
-        <item
-            android:id="@+id/shop_ali"
-            android:visible="false"
-            android:icon="@drawable/ic_home_black_24dp"
-            android:title="@string/shop_ali" />
-        <item
-            android:id="@+id/shop_wholesale"
-            android:icon="@drawable/ic_home_black_24dp"
-            android:title="@string/shop_wholesale" />
+                    <item
+                        android:id="@+id/shop_ali"
+                        android:visible="false"
+                        android:icon="@drawable/ic_home_black_24dp"
+                        android:title="@string/shop_ali" />
+                    <item
+                        android:id="@+id/shop_wholesale"
+                        android:icon="@drawable/ic_home_black_24dp"
+                        android:title="@string/shop_wholesale" />
+                    <item
+                        android:id="@+id/auctions"
+                        android:icon="@drawable/auction"
+                        android:title="@string/shop_auction_sales" />
+
+                </group>
+            </menu>
+        </item>
+
         <item
             android:id="@+id/category"
             android:icon="@drawable/ic_categories"
             android:visible="false"
             android:title="@string/categories" />
 
-        <item
-            android:id="@+id/auctions"
-            android:icon="@drawable/auction"
-            android:title="@string/shop_auction_sales" />
+
         <item
             android:id="@+id/payment"
             android:icon="@drawable/credit_card"

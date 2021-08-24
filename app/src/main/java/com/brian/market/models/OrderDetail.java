@@ -18,6 +18,10 @@ public class OrderDetail {
         return data.optString("id");
     }
 
+    public String getTxnId(){
+        return data.optString("transaction_id");
+    }
+
     public int getProductCounts(){
         return data.optInt("no_products");
     }
@@ -38,7 +42,7 @@ public class OrderDetail {
         return data.optString("status");
     }
     public String getPayment(){
-        return data.optString("payment");
+        return data.optString("payment_mode");
     }
 
     public int getShipping(){

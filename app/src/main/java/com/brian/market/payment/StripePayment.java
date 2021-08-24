@@ -115,8 +115,13 @@ public class StripePayment extends WXPayEntryActivity {
     private static final int START_DOBAPAY_REQUEST = 100;
     private String PUBLISHABLE_KEY="";
     private int START_ALIPAY_REQUEST = 0;
-    private String shipId="14";
+    private String shipId="";
     private String orderId;
+    private String shipMethodId = "";
+
+    String orderPayUrl = "";
+    String dobaorderId = "";
+    String orderBatchId = "";
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -311,7 +316,7 @@ public class StripePayment extends WXPayEntryActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        okhttp3.Call mycall = doba.requestShipFee(shipAddress, goods);
+        okhttp3.Call mycall = doba.requestShipFee(shipAddress, shipId,  goods);
         mycall.enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
@@ -332,10 +337,10 @@ public class StripePayment extends WXPayEntryActivity {
                     if(responseobject.getInt("responseCode") == 0) {
                         JSONObject bdata = responseobject.getJSONArray("businessData").getJSONObject(0);
                         if(bdata.getInt("businessStatus") == 0) {
-                            JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
+                            JSONObject data = bdata.getJSONObject("data");
                             JSONArray costs = data.getJSONArray("costs");
                             Double shipFee = costs.getJSONObject(0).getDouble("shipFee");
-                            shipId = costs.getJSONObject(0).getString("shipId");
+                            shipMethodId = costs.getJSONObject(0).getString("shippingMethodId");
                             strShipping = String.valueOf(shipFee);
 
                             strTotal = String.valueOf(Double.parseDouble(strSubtotal) + shipFee);
@@ -418,7 +423,13 @@ public class StripePayment extends WXPayEntryActivity {
                     dialog.dismiss();
                     handleWechatPay();
                 } else {
-                    if(wholesaleflag) billingAddressDialog();
+                    if(wholesaleflag) {
+                        if(shipMethodId.isEmpty()) {
+                            Toast.makeText(getBaseContext(), "No found a ship to the province", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        billingAddressDialog();
+                    }
                     else Checkout();
                 }
             }
@@ -684,8 +695,8 @@ public class StripePayment extends WXPayEntryActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
                     loadingLayout.setVisibility(View.GONE);
                     try {
-                        if (responseObj.isSuccessful()) {
                             Log.d("info Checkout Resp", "" + responseObj.toString());
+                        if (responseObj.isSuccessful()) {
 
                             JSONObject response = new JSONObject(responseObj.body().string());
                             Log.d("info Checkout object", "" + response.toString());
@@ -704,8 +715,8 @@ public class StripePayment extends WXPayEntryActivity {
                                 Toast.makeText(StripePayment.this, response.get("message").toString(), Toast.LENGTH_SHORT).show();
 
                         } else {
-                            Log.e("checkout issue: ", responseObj.errorBody().string());
                             Toast.makeText(getBaseContext(), responseObj.errorBody().string(), Toast.LENGTH_SHORT).show();
+                            Log.e("checkout issue: ", responseObj.errorBody().string());
                         }
                     } catch (JSONException e) {
                         SettingsMain.hideDilog();
@@ -755,7 +766,7 @@ public class StripePayment extends WXPayEntryActivity {
             try {
                 object.put("itemNo", cartItemsList.get(i).getId());
                 object.put("quantityOrdered", String.valueOf(cartItemsList.get(i).getCustomersBasketQuantity()));
-                object.put("shippingMethodId", shipId);
+                object.put("shippingMethodId", shipMethodId);
                 list.put(object);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -787,22 +798,35 @@ public class StripePayment extends WXPayEntryActivity {
                 String responseData = response.body().string();
                 Log.e("doba good onResponse:", responseData);
                 JSONObject object = null;
-                String orderPayUrl = "";
+
                 try {
                     object = new JSONObject(responseData);
                     if(object.getInt("responseCode") == 0) {
                         JSONObject bdata = object.getJSONObject("businessData");
                         if(bdata.getBoolean("successful")) {
-                            JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
+                            JSONObject data = bdata.getJSONObject("data");
                             JSONArray resList = data.getJSONArray("orderSuccessResList");
                             orderPayUrl = resList.getJSONObject(0).getString("orderPayURL");
-                            if(strPaymentMethod.equals("Token")) getDobaSystemCardId();
-                            else makeDobaCardPayment(orderPayUrl);
+                            dobaorderId = resList.getJSONObject(0).getString("orderId");
+                            orderBatchId = resList.getJSONObject(0).getString("ordBatchId");
+
+                            if(strPaymentMethod.equals("Token")) getDobaSystemCardId(orderBatchId);
+                            else {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        sendDobaOrderToServer(dobaorderId, orderPayUrl);
+                                    }
+                                });
+
+                                makeDobaCardPayment(orderPayUrl);
+                            }
                         } else {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     Toast.makeText(getBaseContext(), bdata.optString("businessMessage"), Toast.LENGTH_SHORT).show();
+                                    deleteOrder();
                                 }
                             });
                         }
@@ -822,7 +846,7 @@ public class StripePayment extends WXPayEntryActivity {
         startActivityForResult(intent, START_DOBAPAY_REQUEST);
     }
 
-    private void getDobaSystemCardId() {
+    private void getDobaSystemCardId(String orderBatchId) {
         settingsMain.showDilog(this);
 
         Doba doba = new Doba();
@@ -848,7 +872,9 @@ public class StripePayment extends WXPayEntryActivity {
                         JSONObject bdata = object.getJSONObject("businessData");
                         JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
                         String cardId = data.getString("cardId");
-                        makeDobaSystemPayment(cardId);
+                        makeDobaSystemPayment(orderBatchId, cardId);
+                    } else {
+                        deleteOrder();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -858,11 +884,11 @@ public class StripePayment extends WXPayEntryActivity {
         });
     }
 
-    private void makeDobaSystemPayment(String cardId) {
+    private void makeDobaSystemPayment(String orderBatchId, String cardId) {
         settingsMain.showDilog(this);
 
         Doba doba = new Doba();
-        okhttp3.Call mycall = doba.requestSystemPayment("spuId", cardId);
+        okhttp3.Call mycall = doba.requestSystemPayment(orderBatchId, cardId);
         mycall.enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(okhttp3.@NotNull Call call, @NotNull IOException e) {
@@ -884,27 +910,25 @@ public class StripePayment extends WXPayEntryActivity {
                         JSONObject bdata = object.getJSONObject("businessData");
                         JSONObject data = bdata.getJSONArray("data").getJSONObject(0);
                         String totalPay = data.getString("totalPay");
-                        confirmDobaSystemPayment(totalPay);
+                        confirmDobaSystemPaymentToServer(orderBatchId, totalPay); // to server
+                    } else {
+                      deleteOrder();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
 
-                    }
-                });
             }
         });
     }
 
-    private void confirmDobaSystemPayment(String amount) {
+    private void confirmDobaSystemPaymentToServer(String orderBatchId, String amount) {
         if (SettingsMain.isConnectingToInternet(StripePayment.this)) {
             showLoading();
             JsonObject params = new JsonObject();
-            params.addProperty("totalPay", amount);
+            params.addProperty("total", amount);
             params.addProperty("orderId", orderId);
+            params.addProperty("txnId", orderBatchId);
             Log.d("confirm doba param", params.toString());
 
             Call<ResponseBody> myCall = restService.postDobaSystemPayment(params, UrlController.AddHeaders(this));
@@ -913,8 +937,8 @@ public class StripePayment extends WXPayEntryActivity {
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
                     loadingLayout.setVisibility(View.GONE);
                     try {
-                        if (responseObj.isSuccessful()) {
                             Log.d("info Checkout Resp", "" + responseObj.toString());
+                        if (responseObj.isSuccessful()) {
 
                             JSONObject response = new JSONObject(responseObj.body().string());
                             Log.d("info Checkout object", "" + response.toString());
@@ -923,6 +947,128 @@ public class StripePayment extends WXPayEntryActivity {
 
                             } else
                                 Toast.makeText(StripePayment.this, response.get("message").toString(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    } catch (JSONException e) {
+                        SettingsMain.hideDilog();
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        SettingsMain.hideDilog();
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    loadingLayout.setVisibility(View.GONE);
+                    if (t instanceof TimeoutException) {
+                        Toast.makeText(getApplicationContext(), settingsMain.getAlertDialogMessage("internetMessage"), Toast.LENGTH_SHORT).show();
+                        settingsMain.hideDilog();
+                    }
+                    if (t instanceof SocketTimeoutException || t instanceof NullPointerException) {
+
+                        Toast.makeText(getApplicationContext(), settingsMain.getAlertDialogMessage("internetMessage"), Toast.LENGTH_SHORT).show();
+                        settingsMain.hideDilog();
+                    }
+                    if (t instanceof NullPointerException || t instanceof UnknownError || t instanceof NumberFormatException) {
+                        Log.d("info Checkout ", "NullPointert Exception" + t.getLocalizedMessage());
+                        settingsMain.hideDilog();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Something error", Toast.LENGTH_SHORT).show();
+                        SettingsMain.hideDilog();
+                        Log.d("confirm doba err", String.valueOf(t));
+                        Log.d("confirm doba err", String.valueOf(t.getMessage() + t.getCause() + t.fillInStackTrace()));
+                    }
+                }
+            });
+        } else {
+            Toast.makeText(StripePayment.this, settingsMain.getAlertDialogTitle("error"), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void sendDobaOrderToServer(String dobaOrderId, String payUrl) {
+        if (SettingsMain.isConnectingToInternet(StripePayment.this)) {
+//            showLoading();
+            JsonObject params = new JsonObject();
+            params.addProperty("payUrl", payUrl);  // if payUrl is empty, it is success for payment.
+            params.addProperty("txnId", dobaOrderId);
+            params.addProperty("orderId", this.orderId);
+            Log.d("send doba order param", params.toString());
+
+            Call<ResponseBody> myCall = restService.sendDobaOrderToServer(params, UrlController.AddHeaders(this));
+            myCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
+//                    loadingLayout.setVisibility(View.GONE);
+                    try {
+                        Log.d("info Checkout Resp", "" + responseObj.toString());
+                        if (responseObj.isSuccessful()) {
+
+                            JSONObject response = new JSONObject(responseObj.body().string());
+                            Log.d("info Checkout object", "" + response.toString());
+                            if (response.getBoolean("success")) {
+//                                getDataForThankYou();
+
+                            } else
+                                Toast.makeText(StripePayment.this, response.get("message").toString(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    } catch (JSONException e) {
+                        SettingsMain.hideDilog();
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        SettingsMain.hideDilog();
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                    loadingLayout.setVisibility(View.GONE);
+                    if (t instanceof TimeoutException) {
+                        Toast.makeText(getApplicationContext(), settingsMain.getAlertDialogMessage("internetMessage"), Toast.LENGTH_SHORT).show();
+//                        settingsMain.hideDilog();
+                    }
+                    if (t instanceof SocketTimeoutException || t instanceof NullPointerException) {
+
+                        Toast.makeText(getApplicationContext(), settingsMain.getAlertDialogMessage("internetMessage"), Toast.LENGTH_SHORT).show();
+//                        settingsMain.hideDilog();
+                    }
+                    if (t instanceof NullPointerException || t instanceof UnknownError || t instanceof NumberFormatException) {
+                        Log.d("info Checkout ", "NullPointert Exception" + t.getLocalizedMessage());
+//                        settingsMain.hideDilog();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Something error", Toast.LENGTH_SHORT).show();
+//                        SettingsMain.hideDilog();
+                        Log.d("confirm doba err", String.valueOf(t));
+                        Log.d("confirm doba err", String.valueOf(t.getMessage() + t.getCause() + t.fillInStackTrace()));
+                    }
+                }
+            });
+        } else {
+            Toast.makeText(StripePayment.this, settingsMain.getAlertDialogTitle("error"), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void deleteOrder() {
+        if (SettingsMain.isConnectingToInternet(StripePayment.this)) {
+            showLoading();
+            JsonObject params = new JsonObject();
+            params.addProperty("orderId", orderId);
+            Log.d("delete doba order", params.toString());
+
+            Call<ResponseBody> myCall = restService.deleteOrder(params, UrlController.AddHeaders(this));
+            myCall.enqueue(new Callback<ResponseBody>() {
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> responseObj) {
+                    loadingLayout.setVisibility(View.GONE);
+                    try {
+                            Log.d("info Checkout Resp", "" + responseObj.toString());
+                        if (responseObj.isSuccessful()) {
+
+                            JSONObject response = new JSONObject(responseObj.body().string());
+                            Log.d("info Checkout object", "" + response.toString());
+
 
                         }
                     } catch (JSONException e) {

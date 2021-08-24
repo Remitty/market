@@ -370,6 +370,7 @@
                     android:textStyle="bold"
                     android:background="@color/green"
                     android:textColor="@color/white"
+                    android:visibility="gone"
                     android:textSize="18sp" />
 
                 <androidx.recyclerview.widget.RecyclerView

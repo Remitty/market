@@ -62,8 +62,11 @@ public class DobaGoodAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private void populateItemRows(GoodViewHolder holder, int position) {
 
         final DobaProduct item = goodList.get(position);
-
-        Picasso.with(mContext).load(item.getPics().optJSONObject(0).optString("thumb")).error(R.drawable.placeholder).placeholder(R.drawable.placeholder).into(holder.image);
+        String path ="";
+        if(item.getPics().length() > 0)
+            path = item.getPics().optJSONObject(0).optString("thumb");
+        if(!path.isEmpty())
+            Picasso.with(mContext).load(path).error(R.drawable.placeholder).placeholder(R.drawable.placeholder).into(holder.image);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

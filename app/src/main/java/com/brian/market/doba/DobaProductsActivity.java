@@ -185,8 +185,16 @@ public class DobaProductsActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
-                            if(goods.length() > 0)
+                            if(goods.length() > 0) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        emptyLayout.setVisibility(View.GONE);
+                                    }
+                                });
                                 getGoodsList();
+
+                            }
                             else {
 
                                 settingsMain.hideDilog();
@@ -253,8 +261,7 @@ public class DobaProductsActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     hideMoreLoading();
-                                    if(goodList.size() > 0)
-                                        emptyLayout.setVisibility(View.GONE);
+
 //                                    goodAdapter.notifyDataSetChanged();
                                     goodAdapter.loadMore(goodList);
                                 }

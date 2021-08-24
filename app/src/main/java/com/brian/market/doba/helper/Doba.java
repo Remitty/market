@@ -71,13 +71,14 @@ public class Doba{
         return http.get(urlBuilder);
     }
 
-    public Call requestShipFee(ShippingAddressModel shipAddress, JSONArray goods) {
+    public Call requestShipFee(ShippingAddressModel shipAddress, String shipId, JSONArray goods) {
         JSONObject object = new JSONObject();
         try {
             object.put("shipToCountry", shipAddress.getCountry());
-            object.put("shipToProvince", shipAddress.getCountry());
-            object.put("shipToCity", shipAddress.getCity());
+            object.put("shipToProvince", shipAddress.getState());
+//            object.put("shipToCity", shipAddress.getCity());
             object.put("shipToZipCode", shipAddress.getPostalCode());
+            object.put("shipId", shipId);
             object.put("goods", goods);
         } catch (JSONException e) {
             e.printStackTrace();

@@ -923,4 +923,16 @@ public interface RestService {
             @HeaderMap Map<String, String> headers
     );
 
+    @POST("doba/order/update")
+    Call<ResponseBody> sendDobaOrderToServer(
+            @Body JsonObject updateStatus,
+            @HeaderMap Map<String, String> headers
+    );
+
+    @POST("order/delete")
+    Call<ResponseBody> deleteOrder(
+            @Body JsonObject updateStatus,
+            @HeaderMap Map<String, String> headers
+    );
+
 }

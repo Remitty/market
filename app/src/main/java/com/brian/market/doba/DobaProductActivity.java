@@ -182,7 +182,7 @@ public class DobaProductActivity extends AppCompatActivity {
                         tvTitle.setText(product.getTitle());
                         htmlTextView.setHtml(product.getDescription());
                         tvPrice.setText(product.getMarketPrice() + " " + product.getCurrency());
-                        tvShip.setText(product.getShipTo());
+                        tvShip.setText(product.getShipLimit());
                         tvQty.setText(product.getQty());
                         tvShipMethod.setText(product.getShipMethod());
                     }

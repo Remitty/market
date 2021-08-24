@@ -108,7 +108,7 @@ public class MyOrderActivity extends AppCompatActivity {
                                         JSONObject order = data.getJSONObject(i);
                                         item.setData(order);
 
-                                        if(item.getStatus().equals("Processing"))
+                                        if(item.getStatus().equals("Processing") || item.getStatus().equals("Paid"))
                                             orderList.add(item);
                                         else orderHistoryList.add(item);
 
